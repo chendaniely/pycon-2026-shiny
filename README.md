@@ -1,6 +1,6 @@
 # PyCon 2026: Shiny Dashboards
 
-Workshop materials for **PyCon US 2026** — Long Beach, California.
+Workshop materials for [**PyCon US 2026**](https://us.pycon.org/2026/) - Long Beach, California.
 
 📖 **Setup & workshop website**: <https://chendaniely.github.io/pycon-2026-shiny>
 
