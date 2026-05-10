@@ -3,6 +3,7 @@ project:
 
 website:
   title: "PyCon 2026: Shiny Dashboards"
+  google-analytics: "G-XFPBQ3BZ6M"
   navbar:
     left:
       - href: index.qmd
