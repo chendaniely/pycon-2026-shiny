@@ -66,5 +66,5 @@ typography:
     family: Atkinson Hyperlegible Mono
     size: 0.9em
   link:
-    color: primary
+    color: cyan
     weight: 600
