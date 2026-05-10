@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "PyCon 2026: Shiny Dashboards",
+    "section": "",
+    "text": "Hello PyCon tutorial attendees!\nYou will see all the tutorial materials on this website. First, please take a look at the setup instructions."
+  },
+  {
     "objectID": "setup.html",
     "href": "setup.html",
     "title": "Setup",
@@ -33,12 +40,5 @@
     "title": "Setup",
     "section": "Verify Your Installation",
     "text": "Verify Your Installation\n\nClone or download this repository: https://github.com/chendaniely/pycon-2026-shiny\nActivate your Python environment\n\nStep 1 — check that all packages import correctly:\npython test-install.py\nYou should see a ✓ next to every package and a final All good! message.\nStep 2 — check that Shiny is working:\nshiny run test-install.py\nYou should see:\nINFO:     Started server process [...]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)\nOpen http://127.0.0.1:8000 in your browser and confirm the page loads."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "PyCon 2026: Shiny Dashboards",
-    "section": "",
-    "text": "Hello PyCon tutorial attendees!\nYou will see all the tutorial materials on this website. First, please take a look at the setup instructions."
   }
 ]
