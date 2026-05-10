@@ -1,4 +1,4 @@
-.PHONY: render preview venv clean-venv
+.PHONY: render preview publish venv clean-venv
 
 VENV := .venv
 
@@ -14,3 +14,6 @@ render:
 
 preview:
 	quarto preview website
+
+publish:
+	quarto publish gh-pages website
