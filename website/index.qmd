@@ -1,0 +1,8 @@
+---
+title: "PyCon 2026: Shiny Dashboards"
+---
+
+Hello PyCon tutorial attendees!
+
+You will see all the tutorial materials on this website.
+First, please take a look at the [setup instructions](setup.qmd).

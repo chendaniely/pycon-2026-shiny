@@ -1,0 +1,20 @@
+project:
+  type: website
+
+website:
+  title: "PyCon 2026: Shiny Dashboards"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: setup.qmd
+        text: Setup
+
+format:
+  html:
+    theme:
+      - darkly
+      - brand
+    highlight-style: monokai
+    css: styles.css
+    toc: true
