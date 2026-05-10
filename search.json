@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Setup",
+    "section": "",
+    "text": "Please complete these steps before the tutorial begins. If you run into trouble, find us before the session starts or post in the workshop chat."
+  },
+  {
+    "objectID": "setup.html#python-environment",
+    "href": "setup.html#python-environment",
+    "title": "Setup",
+    "section": "Python Environment",
+    "text": "Python Environment\nPick one of the following methods — they all produce the same result.\nHere are the packages you’ll be installing:\n\n\nrequirements.txt\n\naltair\nanthropic\nanthropic[bedrock]\nboto3\nchatlas\nfaicons\nipykernel\njupyter\nlangchain\nlangchain-anthropic\nlangchain-openai\nlanggraph\nopenai\npalmerpenguins\npandas\npillow\nplaywright\nplotly\nplotnine\npython-dotenv\nquerychat\nrequests\nridgeplot\nseaborn\nshiny\nshinychat\nshinylive\nshinywidgets\ntokenizers\n\n\n\ncondavenvuvpixi\n\n\nconda create -n pycon2026 python=3.12\nconda activate pycon2026\npip install -r requirements.txt\n\n\npython -m venv .venv\n\n# macOS / Linux\nsource .venv/bin/activate\n\n# Windows\n.venv\\Scripts\\activate\n\npip install -r requirements.txt\n\n\nuv venv .venv\n\n# macOS / Linux\nsource .venv/bin/activate\n\n# Windows\n.venv\\Scripts\\activate\n\nuv pip install -r requirements.txt\n\n\npixi init .\npixi add python==3.12.*\npixi run pip install -r requirements.txt\npixi shell"
+  },
+  {
+    "objectID": "setup.html#ide",
+    "href": "setup.html#ide",
+    "title": "Setup",
+    "section": "IDE",
+    "text": "IDE\nWe recommend Positron — it has first-class Shiny support built in. VS Code works just as well.\nWhichever you choose, install the Shiny extension (it works in both).\n\n\n\n\n\n\nNote\n\n\n\nWe will not be using Jupyter Notebooks during this workshop."
+  },
+  {
+    "objectID": "setup.html#ai-chat-model",
+    "href": "setup.html#ai-chat-model",
+    "title": "Setup",
+    "section": "AI / Chat Model",
+    "text": "AI / Chat Model\n\nGitHub Models (free, recommended)\nYou’ll need a GitHub Personal Access Token (PAT). It doesn’t require any special scopes.\n\nCreate a classic PAT following GitHub’s instructions\nSet the token as an environment variable:\n\nexport GITHUB_TOKEN=your_token_here   # macOS / Linux\n$env:GITHUB_TOKEN=\"your_token_here\"   # Windows PowerShell\n\n\nLocal LLM via Ollama (optional, no account needed)\n\nDownload and install Ollama\nPull a model that fits your machine:\n\n\n\n\nModel\nDownload Size\nInstall Command\n\n\n\n\nqwen3:0.6b\n523 MB\nollama run qwen3:0.6b\n\n\nphi4-mini-reasoning\n3.2 GB\nollama run phi4-mini-reasoning\n\n\nqwen3\n5.2 GB\nollama run qwen3\n\n\ndevstral\n14 GB\nollama run devstral\n\n\n\n\n\nPaid API (optional)\n\n\n\n\n\n\nNote\n\n\n\nConsumer subscriptions (Claude.ai, ChatGPT Plus, etc.) and API access are billed separately.\n\n\n\nAnthropic ClaudeOpenAIGoogle Gemini\n\n\n\nSign up at https://console.anthropic.com\nAdd credits\nCreate an API key at https://console.anthropic.com/settings/keys\n\nexport ANTHROPIC_API_KEY=your_key_here\n\n\n\nSign up at https://openai.com/\nCreate an API key at https://platform.openai.com/api-keys\n\nexport OPENAI_API_KEY=your_key_here\n\n\n\nSign in at https://aistudio.google.com\nClick Create API key\n\nexport GOOGLE_API_KEY=your_key_here"
+  },
+  {
+    "objectID": "setup.html#verify-your-installation",
+    "href": "setup.html#verify-your-installation",
+    "title": "Setup",
+    "section": "Verify Your Installation",
+    "text": "Verify Your Installation\n\nClone or download this repository: https://github.com/chendaniely/pycon-2026-shiny\nActivate your Python environment\n\nStep 1 — check that all packages import correctly:\npython test-install.py\nYou should see a ✓ next to every package and a final All good! message.\nStep 2 — check that Shiny is working:\nshiny run test-install.py\nYou should see:\nINFO:     Started server process [...]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)\nOpen http://127.0.0.1:8000 in your browser and confirm the page loads."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "PyCon 2026: Shiny Dashboards",
+    "section": "",
+    "text": "Hello PyCon tutorial attendees!\nYou will see all the tutorial materials on this website. First, please take a look at the setup instructions."
+  }
+]
