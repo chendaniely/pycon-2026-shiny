@@ -10,6 +10,9 @@ website:
         text: Home
       - href: setup.qmd
         text: Setup
+    right:
+      - icon: github
+        href: https://github.com/chendaniely/pycon-2026-shiny
 
 format:
   html:
