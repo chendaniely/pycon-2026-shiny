@@ -25,7 +25,7 @@
     "href": "setup.html#ide",
     "title": "Setup",
     "section": "IDE",
-    "text": "IDE\nWe recommend Positron — it has first-class Shiny support built in. VS Code works just as well.\nWhichever you choose, install the Shiny extension (it works in both).\n\n\n\n\n\n\nNote\n\n\n\nWe will not be using Jupyter Notebooks during this workshop."
+    "text": "IDE\nWe recommend Positron, this is what the workshop will be using. VS Code works just as well.\nWhichever you choose, install the Shiny extension (it works in both).\n\n\n\n\n\n\nNote\n\n\n\nWe will not be using Jupyter Notebooks during this workshop."
   },
   {
     "objectID": "setup.html#ai-chat-model",
