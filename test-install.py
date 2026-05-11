@@ -7,7 +7,23 @@ import importlib
 import sys
 
 PACKAGES = {
+    # AI / LLM
+    "anthropic": "anthropic",
+    "boto3": "boto3",
+    "chatlas": "chatlas",
+    "langchain": "langchain",
+    "langchain-anthropic": "langchain_anthropic",
+    "langchain-openai": "langchain_openai",
+    "langgraph": "langgraph",
+    "openai": "openai",
+    "querychat": "querychat",
+    "shinychat": "shinychat",
+    "tokenizers": "tokenizers",
+    # Data / Viz
     "altair": "altair",
+    "ibis-framework": "ibis",
+    "narwhals": "narwhals",
+    "polars": "polars",
     "faicons": "faicons",
     "ipykernel": "ipykernel",
     "palmerpenguins": "palmerpenguins",
@@ -20,6 +36,7 @@ PACKAGES = {
     "requests": "requests",
     "ridgeplot": "ridgeplot",
     "seaborn": "seaborn",
+    # Shiny
     "shiny": "shiny",
     "shinylive": "shinylive",
     "shinywidgets": "shinywidgets",

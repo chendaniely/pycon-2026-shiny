@@ -1,0 +1,76 @@
+name: Test Install
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - requirements.txt
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        method: [uv, venv, conda, pixi]
+    name: test (${{ matrix.method }})
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # ── uv ──────────────────────────────────────────────────────────────────
+      - name: Set up uv
+        if: matrix.method == 'uv'
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: requirements.txt
+
+      - name: Install and test (uv)
+        if: matrix.method == 'uv'
+        run: |
+          uv python install 3.12
+          uv venv .venv
+          uv pip install -r requirements.txt
+          source .venv/bin/activate
+          python test-install.py
+
+      # ── venv ─────────────────────────────────────────────────────────────────
+      - name: Set up Python (venv)
+        if: matrix.method == 'venv'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install and test (venv)
+        if: matrix.method == 'venv'
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+          python test-install.py
+
+      # ── conda ────────────────────────────────────────────────────────────────
+      - name: Install and test (conda)
+        if: matrix.method == 'conda'
+        run: |
+          conda create -n pycon2026 python=3.12 -y
+          conda run -n pycon2026 pip install -r requirements.txt
+          conda run -n pycon2026 python test-install.py
+
+      # ── pixi ─────────────────────────────────────────────────────────────────
+      - name: Install pixi
+        if: matrix.method == 'pixi'
+        run: |
+          curl -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> $GITHUB_PATH
+
+      - name: Install and test (pixi)
+        if: matrix.method == 'pixi'
+        run: |
+          pixi init .
+          pixi add python==3.12.*
+          pixi run pip install -r requirements.txt
+          pixi run python test-install.py

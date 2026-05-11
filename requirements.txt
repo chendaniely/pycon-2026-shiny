@@ -1,4 +1,7 @@
 altair
+ibis-framework[duckdb,examples,polars]
+narwhals
+polars
 anthropic
 anthropic[bedrock]
 boto3
