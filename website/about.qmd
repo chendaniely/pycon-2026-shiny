@@ -37,3 +37,6 @@ If you're curious about the tools about how this tutorial site was made:
         - <https://quarto-ext.github.io/shinylive/>
 - `brand.yml`: Specifying colors and branding
     - <https://posit-dev.github.io/brand-yml/>
+- Claude Code skills
+    - All of the branding setup was done though a Claude Code skill. I just pointed Claude to the PyCon website and Google Sheets template, and asked it to make me a `_brand.yml` file.
+        - <https://github.com/posit-dev/skills>
