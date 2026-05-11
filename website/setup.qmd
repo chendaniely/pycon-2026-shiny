@@ -67,7 +67,7 @@ pixi shell
 
 ## IDE
 
-We recommend [Positron](https://positron.posit.co/) — it has first-class Shiny support built in.
+We recommend [Positron](https://positron.posit.co/), this is what the workshop will be using.
 [VS Code](https://code.visualstudio.com/) works just as well.
 
 Whichever you choose, install the
