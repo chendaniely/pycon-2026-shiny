@@ -73,6 +73,6 @@ jobs:
         if: matrix.method == 'pixi'
         run: |
           pixi init .
-          pixi add python==3.12.*
+          pixi add python==3.12.* pip
           pixi run python -m pip install -r requirements.txt
           pixi run python test-install.py
