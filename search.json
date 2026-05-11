@@ -1585,7 +1585,7 @@
     "href": "about.html#how-its-made",
     "title": "Daniel Chen",
     "section": "How it’s made",
-    "text": "How it’s made\nIf you’re curious about the tools about how this tutorial site was made:\n\nQuarto Website + Quarto Slides\n\nhttps://quarto.org/\n\nShinylive = Shiny + WebAssembly\n\nhttps://shiny.posit.co/py/get-started/shinylive.html\nShinylive + quarto:\n\nhttps://github.com/quarto-ext/shinylive\nhttps://quarto-ext.github.io/shinylive/\n\n\nbrand.yml: Specifying colors and branding\n\nhttps://posit-dev.github.io/brand-yml/"
+    "text": "How it’s made\nIf you’re curious about the tools about how this tutorial site was made:\n\nQuarto Website + Quarto Slides\n\nhttps://quarto.org/\n\nShinylive = Shiny + WebAssembly\n\nhttps://shiny.posit.co/py/get-started/shinylive.html\nShinylive + quarto:\n\nhttps://github.com/quarto-ext/shinylive\nhttps://quarto-ext.github.io/shinylive/\n\n\nbrand.yml: Specifying colors and branding\n\nhttps://posit-dev.github.io/brand-yml/\n\nClaude Code skills\n\nAll of the branding setup was done though a Claude Code skill. I just pointed Claude to the PyCon website and Google Sheets template, and asked it to make me a _brand.yml file.\n\nhttps://github.com/posit-dev/skills"
   },
   {
     "objectID": "resources.html",
