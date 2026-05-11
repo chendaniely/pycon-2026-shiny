@@ -19,11 +19,11 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Cache Quarto
         id: cache-quarto
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/quarto
           key: quarto-${{ env.QUARTO_VERSION }}-${{ runner.os }}
@@ -41,7 +41,7 @@ jobs:
         run: echo "$HOME/quarto/bin" >> $GITHUB_PATH
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v8
         with:
           enable-cache: true
           cache-dependency-glob: requirements.txt

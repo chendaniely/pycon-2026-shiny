@@ -18,12 +18,12 @@ jobs:
     name: test (${{ matrix.method }})
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # ── uv ──────────────────────────────────────────────────────────────────
       - name: Set up uv
         if: matrix.method == 'uv'
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v8
         with:
           enable-cache: true
           cache-dependency-glob: requirements.txt
@@ -40,7 +40,7 @@ jobs:
       # ── venv ─────────────────────────────────────────────────────────────────
       - name: Set up Python (venv)
         if: matrix.method == 'venv'
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
