@@ -3,6 +3,10 @@ name: Publish Website
 on:
   push:
     branches: [main]
+    paths:
+      - website/**
+      - requirements.txt
+      - .github/workflows/publish.yml
   workflow_dispatch:
 
 permissions:
