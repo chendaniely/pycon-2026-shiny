@@ -1574,17 +1574,24 @@
     ]
   },
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Daniel Chen",
+    "section": "",
+    "text": "Hi I’m Daniel. I’m a Lecturer at the University of British Columbia. I primary teach Data Science tooling through the Statistics department, and through the Master’s of Data Science program at UBC.\nPreviously, I was a data science educator and developer advocate at Posit, PBC. They are the authors of a TON of open source data science tools, some of which are used in this tutorial. They’ll be in the PyCon US 2026 Expo hall (booth 539), so check them out!"
+  },
+  {
+    "objectID": "about.html#how-its-made",
+    "href": "about.html#how-its-made",
+    "title": "Daniel Chen",
+    "section": "How it’s made",
+    "text": "How it’s made\nIf you’re curious about the tools about how this tutorial site was made:\n\nQuarto Website + Quarto Slides\n\nhttps://quarto.org/\n\nShinylive = Shiny + WebAssembly\n\nhttps://shiny.posit.co/py/get-started/shinylive.html\nShinylive + quarto:\n\nhttps://github.com/quarto-ext/shinylive\nhttps://quarto-ext.github.io/shinylive/\n\n\nbrand.yml: Specifying colors and branding\n\nhttps://posit-dev.github.io/brand-yml/"
+  },
+  {
     "objectID": "resources.html",
     "href": "resources.html",
     "title": "Resources",
     "section": "",
     "text": "Shiny for Python docs: https://shiny.posit.co/py/\nComponent gallery: https://shiny.posit.co/py/components/\nTemplates: https://shiny.posit.co/py/templates/\nchatlas: https://posit-dev.github.io/chatlas/\nshinychat: https://posit-dev.github.io/shinychat/py/\nquerychat: https://github.com/posit-dev/querychat"
-  },
-  {
-    "objectID": "resources.html#how-its-made",
-    "href": "resources.html#how-its-made",
-    "title": "Resources",
-    "section": "How it’s made",
-    "text": "How it’s made\n\nQuarto Website + Quarto Slides\n\nhttps://quarto.org/\n\nShinylive = Shiny + WebAssembly\n\nhttps://shiny.posit.co/py/get-started/shinylive.html\nShinylive + quarto:\n\nhttps://github.com/quarto-ext/shinylive\nhttps://quarto-ext.github.io/shinylive/"
   }
 ]
