@@ -1,0 +1,115 @@
+---
+title: "Your Next Application"
+---
+
+## Beyond the basics
+
+Your first app had one input and one output.
+
+Real dashboards have:
+
+- Layout structure (sidebars, columns, tabs)
+- Multiple coordinated outputs
+- Summary statistics (value boxes)
+- Shared reactive computations
+
+## Layout components
+
+```python
+from shiny.express import input, render, ui
+
+ui.page_opts(title="Tips Dashboard", fillable=True)
+
+with ui.sidebar():
+    ui.input_slider("bill", "Max bill ($)", 3, 50, 25)
+    ui.input_checkbox_group("time", "Meal", ["Lunch", "Dinner"],
+                            selected=["Lunch", "Dinner"])
+
+with ui.layout_columns():
+    with ui.card():
+        ...  # output 1
+
+    with ui.card():
+        ...  # output 2
+```
+
+## Value boxes
+
+```python
+from shiny.express import render, ui
+from faicons import icon_svg
+
+with ui.value_box(showcase=icon_svg("dollar-sign")):
+    "Average bill"
+
+    @render.text
+    def avg_bill():
+        return f"${filtered()['total_bill'].mean():.2f}"
+```
+
+## `@reactive.calc` for shared filtering
+
+```python
+from shiny import reactive
+
+@reactive.calc
+def filtered():
+    df = tips.copy()
+    df = df[df["total_bill"] <= input.bill()]
+    df = df[df["time"].isin(input.time())]
+    return df
+```
+
+All outputs call `filtered()` — the filter runs once per change.
+
+## Full app structure
+
+```python
+ui.page_opts(title="Tips Dashboard", fillable=True)
+
+with ui.sidebar():
+    # inputs ...
+
+@reactive.calc
+def filtered():
+    # shared data transform ...
+
+with ui.layout_columns():
+    with ui.value_box(...):
+        @render.text
+        def avg_bill(): ...
+
+    with ui.card():
+        @render.plot
+        def scatter(): ...
+
+    with ui.card():
+        @render.data_frame
+        def table(): ...
+```
+
+## Tabs and navigation
+
+```python
+with ui.navset_card_underline():
+    with ui.nav_panel("Plot"):
+        @render.plot
+        def scatter(): ...
+
+    with ui.nav_panel("Table"):
+        @render.data_frame
+        def table(): ...
+```
+
+## Your turn
+
+::: {.callout-tip}
+## Exercise (~25 min)
+
+Build a dashboard using the seaborn `tips` dataset (or your own data):
+
+1. Add a sidebar with at least two inputs
+2. Use `@reactive.calc` for the filtered data
+3. Include at least one value box, one plot, and one table
+4. Try using `ui.layout_columns()` to arrange your outputs
+:::

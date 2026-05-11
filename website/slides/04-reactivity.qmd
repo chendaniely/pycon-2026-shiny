@@ -1,0 +1,124 @@
+---
+title: "Shiny Reactivity"
+---
+
+## References
+
+- [Gordon Shotwell & Tracy Teal — Build Simple and Scalable Apps with Shiny | PyData NYC 2023](https://www.youtube.com/watch?v=9RC8PobU5oQ)
+- [Joe Cheng — Shiny: Data-centric web applications in Python | PyData Seattle 2023](https://www.youtube.com/watch?v=0ovCLxttJGE)
+
+## What makes Shiny special?
+
+**Reactivity.**
+
+> Outputs automatically update whenever their inputs change —
+> without explicit event handling or manual refreshes.
+
+- No writing callbacks
+- No polling
+- Shiny tracks dependencies for you
+
+## The reactive graph
+
+Every Shiny app has a reactive graph:
+
+```
+input.species()  ──►  plot()
+input.bins()     ──►  plot()
+                 ──►  summary()
+```
+
+When an input changes, only the outputs that depend on it re-execute.
+
+## Problem: redundant computation
+
+```python
+@render.plot
+def plot():
+    filtered = dat[dat["species"] == input.species()]  # filters here
+    return ggplot(filtered, ...) + ...
+
+@render.text
+def count():
+    filtered = dat[dat["species"] == input.species()]  # filters again!
+    return f"{len(filtered)} penguins"
+```
+
+The filter runs twice every time `input.species()` changes.
+
+## Solution: `@reactive.calc`
+
+```python
+from shiny.express import input, render, ui
+from shiny import reactive
+
+@reactive.calc  # <1>
+def filtered():
+    return dat[dat["species"] == input.species()]
+
+@render.plot
+def plot():
+    return ggplot(filtered(), ...) + ...  # <2>
+
+@render.text
+def count():
+    return f"{len(filtered())} penguins"  # <2>
+```
+
+1. `@reactive.calc` caches the result and only re-runs when its inputs change
+2. Call it like a function — `filtered()` — to read the cached value
+
+## `@reactive.calc` in the graph
+
+```
+input.species()  ──►  filtered()  ──►  plot()
+                                   ──►  count()
+```
+
+`filtered()` runs once. Both outputs read from the cache.
+
+## `reactive.value`
+
+Store arbitrary state that outputs can depend on:
+
+```python
+count = reactive.value(0)
+
+ui.input_action_button("btn", "Click me")
+
+@reactive.effect
+def _():
+    input.btn()          # take a dependency on the button
+    count.set(count() + 1)
+
+@render.text
+def display():
+    return f"Clicked {count()} times"
+```
+
+## Reactive rules
+
+- Read a reactive value inside a reactive context → dependency is tracked
+- Write a reactive value → invalidates all dependents
+- Outside a reactive context → reading a reactive value raises an error
+
+## When to use what
+
+| Need | Tool |
+|---|---|
+| Filter / transform data shared by multiple outputs | `@reactive.calc` |
+| Respond to a button or event | `@reactive.effect` |
+| Store mutable state | `reactive.value` |
+| Render output | `@render.plot` / `@render.text` / ... |
+
+## Your turn
+
+::: {.callout-tip}
+## Exercise (~15 min)
+
+In your app from the previous exercise:
+
+1. Extract the data filtering step into a `@reactive.calc`
+2. Use it in both a plot and a text output showing the filtered row count
+3. Add an action button that resets the species selection
+:::

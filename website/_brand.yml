@@ -6,12 +6,7 @@ meta:
     home: https://us.pycon.org/2026/
 
 logo:
-  images:
-    pycon-logo: https://us.pycon.org/2026/static/images/theme/sub-logo-full.94351d59d82e.svg
-    pycon-logo-dark: https://us.pycon.org/2026/static/images/theme/sub-logo-full-dark.bdcc46a28282.svg
-  medium:
-    light: pycon-logo-dark
-    dark: pycon-logo
+  medium: https://us.pycon.org/2026/static/images/theme/sub-logo-full.94351d59d82e.svg
 
 color:
   palette:
@@ -27,6 +22,12 @@ color:
     yellow: "#FFD779"
     red: "#D47454"
     cyan: "#25C8EB"
+
+    # Synthwave accents (from PyCon 2026 presentation template)
+    amber: "#FFBD59"
+    peach: "#FCCE90"
+    lavender: "#E2A9F1"
+    cream: "#F8EAD6"
 
     # Neutrals
     white: "#FFFFFF"

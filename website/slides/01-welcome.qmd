@@ -1,0 +1,60 @@
+---
+title: "Welcome"
+---
+
+## Get your computer ready
+
+If you haven't done so, please have your computer set up for this workshop:
+
+<https://chendaniely.github.io/pycon-2026-shiny/setup.html>
+
+![](/img/qr-setup.png){width="400px" fig-align="center"}
+
+## Today's goal
+
+Learn how to build reactive web apps with Shiny for Python,
+from the simple to the mission critical.
+
+## Who's in the room?
+
+Have you used...
+
+::: {.incremental}
+- Python?
+- Data visualization in Python (matplotlib, plotnine, plotly, ...)?
+- Interactive dashboards (Dash, Streamlit, Panel, ...)?
+- Shiny for R?
+- Shiny for Python?
+:::
+
+## Agenda
+
+| Time  | Topic |
+|-------|-------|
+| 9:00  | Welcome + Introduction |
+| 9:10  | Introduction to Shiny |
+| 9:20  | Your first application |
+| 9:50  | Shiny reactivity |
+| 10:20 | Deploying your application |
+| 10:30 | ☕ Coffee + Tea Break |
+| 11:00 | Your next application |
+| 11:30 | An AI + LLM Primer |
+| 11:50 | AI + LLM dashboards |
+| 12:10 | Testing |
+| 12:20 | Wrap up + Feedback Survey |
+
+## House rules
+
+- Ask questions any time
+- Help your neighbor - teaching is the best way to learn
+- Stuck? Raise your hand - helpers are roaming the room
+- Everything is at: <https://github.com/chendaniely/pycon-2026-shiny>
+
+
+### Important locations
+
+TODO: fill this out
+
+- Bathrooms:
+    - Gender-neutral:
+- This room: 

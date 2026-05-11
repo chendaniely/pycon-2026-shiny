@@ -1,0 +1,94 @@
+/*-- scss:defaults --*/
+
+// Backgrounds
+$body-bg: #090A28;
+$body-color: #F5F5F5;
+
+// Links
+$link-color: #25C8EB;
+$link-color-hover: #FCCE90;
+
+// Headings — cyan for h1/h2, amber for h3/h4
+$presentation-heading-color: #25C8EB;
+$presentation-heading-font-weight: 700;
+
+// Code
+$code-block-bg: #101136;
+$code-color: #25C8EB;
+$code-bg: #101136;
+
+// Selection highlight
+$selection-bg: #680579;
+$selection-color: #FFFFFF;
+
+/*-- scss:rules --*/
+
+// h3/h4 use amber instead of cyan
+.reveal h3,
+.reveal h4 {
+  color: #FFD779;
+}
+
+// Footer
+.reveal .footer {
+  color: #8C8C8C;
+  font-size: 0.5em;
+}
+
+// Progress bar — cyan
+.reveal .progress span {
+  background: #25C8EB;
+}
+
+// Slide numbers
+.reveal .slide-number {
+  color: #8C8C8C;
+  background-color: transparent;
+}
+
+// Callouts
+.reveal .callout.callout-style-default.callout-tip {
+  border-left-color: #25C8EB;
+}
+.reveal .callout.callout-style-default.callout-important {
+  border-left-color: #DD04D2;
+}
+.reveal .callout.callout-style-default.callout-warning {
+  border-left-color: #FFBD59;
+}
+.reveal .callout.callout-style-default.callout-note {
+  border-left-color: #5833E9;
+}
+
+// Inline code
+.reveal code:not(.sourceCode) {
+  color: #25C8EB;
+  background-color: #101136;
+  padding: 0.05em 0.25em;
+  border-radius: 3px;
+}
+
+// Tables — subtle header tint
+.reveal table th {
+  background-color: #101136;
+  color: #25C8EB;
+}
+.reveal table tr:nth-child(even) {
+  background-color: rgba(16, 17, 54, 0.5);
+}
+
+// Incremental list highlight — dim non-current items
+.reveal .slides section .fragment.visible:not(.current-fragment) {
+  opacity: 0.6;
+}
+
+// Title slide — overlay text on background image
+.reveal .title-slide h1,
+#title-slide h1 {
+  color: #FCCE90;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+#title-slide .subtitle {
+  color: #25C8EB;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}

@@ -2,6 +2,8 @@ _site
 .claude
 .env
 **.env
+**_files
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,4 +1,4 @@
-.PHONY: render preview publish venv clean-venv
+.PHONY: render preview publish venv clean-venv setup-quarto
 
 VENV := .venv
 
@@ -17,3 +17,7 @@ preview:
 
 publish:
 	quarto publish gh-pages website
+
+setup-quarto:
+	cd website && quarto add coatless-quarto/embedio --no-prompt
+	cd website && quarto add quarto-ext/shinylive --no-prompt

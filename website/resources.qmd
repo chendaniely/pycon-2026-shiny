@@ -1,0 +1,21 @@
+---
+title: Resources
+---
+
+- Shiny for Python docs: <https://shiny.posit.co/py/>
+- Component gallery: <https://shiny.posit.co/py/components/>
+- Templates: <https://shiny.posit.co/py/templates/>
+- chatlas: <https://posit-dev.github.io/chatlas/>
+- shinychat: <https://posit-dev.github.io/shinychat/py/>
+- querychat: <https://github.com/posit-dev/querychat>
+
+
+## How it's made
+
+- Quarto Website + Quarto Slides
+    - <https://quarto.org/>
+- Shinylive = Shiny + WebAssembly
+    - <https://shiny.posit.co/py/get-started/shinylive.html>
+    - Shinylive + quarto:
+        - <https://github.com/quarto-ext/shinylive>
+        - <https://quarto-ext.github.io/shinylive/>
