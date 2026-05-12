@@ -11,16 +11,10 @@ shinylive
 # AI slides (07-08)
 anthropic
 chatlas
-langchain
-langchain-anthropic
-langchain-openai
-langgraph
 openai
 python-dotenv
 querychat
-requests
 shinychat
-tokenizers
 
 # extended Shiny UI
 faicons
@@ -30,3 +24,6 @@ shinywidgets
 pandas
 plotly
 seaborn
+
+# testing
+playwright

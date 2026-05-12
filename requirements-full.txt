@@ -7,10 +7,16 @@ narwhals
 polars
 ridgeplot
 
-# AWS / Bedrock
+# AI
 anthropic[bedrock]
 boto3
+langchain
+langchain-anthropic
+langchain-openai
+langgraph
+requests
+tokenizers
 
 # testing & media
 pillow
-playwright
+

@@ -7,39 +7,30 @@ import importlib
 import sys
 
 PACKAGES = {
-    # AI / LLM
+    # Core code examples
+    "palmerpenguins": "palmerpenguins",
+    "plotnine": "plotnine",
+    "shiny": "shiny",
+    # Website rendering
+    "ipykernel": "ipykernel",
+    "jupyter": "jupyter_core",
+    "shinylive": "shinylive",
+    # AI slides (07-08)
     "anthropic": "anthropic",
-    "boto3": "boto3",
     "chatlas": "chatlas",
-    "langchain": "langchain",
-    "langchain-anthropic": "langchain_anthropic",
-    "langchain-openai": "langchain_openai",
-    "langgraph": "langgraph",
     "openai": "openai",
+    "python-dotenv": "dotenv",
     "querychat": "querychat",
     "shinychat": "shinychat",
-    "tokenizers": "tokenizers",
-    # Data / Viz
-    "altair": "altair",
-    "ibis-framework": "ibis",
-    "narwhals": "narwhals",
-    "polars": "polars",
+    # Extended Shiny UI
     "faicons": "faicons",
-    "ipykernel": "ipykernel",
-    "palmerpenguins": "palmerpenguins",
-    "pandas": "pandas",
-    "pillow": "PIL",
-    "playwright": "playwright",
-    "plotly": "plotly",
-    "plotnine": "plotnine",
-    "python-dotenv": "dotenv",
-    "requests": "requests",
-    "ridgeplot": "ridgeplot",
-    "seaborn": "seaborn",
-    # Shiny
-    "shiny": "shiny",
-    "shinylive": "shinylive",
     "shinywidgets": "shinywidgets",
+    # Data & visualization
+    "pandas": "pandas",
+    "plotly": "plotly",
+    "seaborn": "seaborn",
+    # Testing
+    "playwright": "playwright",
 }
 
 
