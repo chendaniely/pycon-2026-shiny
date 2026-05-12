@@ -10,12 +10,15 @@ clean-venv:
 	rm -rf $(VENV)
 
 render:
+	rm -rf website/.quarto/
 	quarto render website
 
 preview:
-	quarto preview website
+	rm -rf website/.quarto/
+	quarto preview website --port 12345
 
 publish:
+	rm -rf website/.quarto/
 	quarto publish gh-pages website
 
 setup-quarto:
