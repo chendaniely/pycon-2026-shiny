@@ -8,7 +8,7 @@ If you haven't done so, please have your computer set up for this workshop:
 
 <https://chendaniely.github.io/pycon-2026-shiny/setup.html>
 
-![](/img/qr-setup.png){width="400px" fig-align="center"}
+![](/img/qr-setup.png){width="350px" fig-align="center"}
 
 ## Today's goal
 
