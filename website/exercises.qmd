@@ -59,9 +59,6 @@ Open `code/app-01-intro.py` and run it.
 
 ## Exercise 2 - Reactivity
 
-
-## Your turn
-
 ::: {.exercise}
 
 **Part A** — open `code/app-03-reactivity.py`:
