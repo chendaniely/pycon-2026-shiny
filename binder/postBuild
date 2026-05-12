@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-# Install Python packages (binder/postBuild runs from repo root)
-pip install -r requirements.txt
-
 # Install Quarto (not pre-installed on Binder)
 QUARTO_VERSION="1.10.3"
 wget -qO quarto.tar.gz \

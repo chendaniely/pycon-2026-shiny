@@ -4,6 +4,14 @@ Workshop materials for [**PyCon US 2026**](https://us.pycon.org/2026/) - Long Be
 
 📖 **Setup & workshop website**: <https://chendaniely.github.io/pycon-2026-shiny>
 
+
+## Verify Installation
+
+```bash
+python test-install.py
+shiny run test-install.py
+```
+
 ## Run in the cloud (no local install needed)
 
 | Platform | Launch |
@@ -40,19 +48,4 @@ Use the running Jupyter server URL (replace `/lab` with `/proxy/8888/`) to view 
 
 ```bash
 pip install -r requirements.txt
-```
-
-## Local setup
-
-```bash
-make venv
-source .venv/bin/activate
-make setup-quarto   # install Quarto extensions (one-time)
-```
-
-## Verify Installation
-
-```bash
-python test-install.py
-shiny run test-install.py
 ```
