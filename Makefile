@@ -4,7 +4,7 @@ VENV := .venv
 
 venv:
 	uv venv $(VENV)
-	uv pip install --python $(VENV) -r requirements.txt
+	uv pip install --python $(VENV) -r requirements-full.txt
 
 clean-venv:
 	rm -rf $(VENV)

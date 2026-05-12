@@ -1,0 +1,16 @@
+-r requirements.txt
+
+# heavy data processing
+altair
+ibis-framework[duckdb,examples,polars]
+narwhals
+polars
+ridgeplot
+
+# AWS / Bedrock
+anthropic[bedrock]
+boto3
+
+# testing & media
+pillow
+playwright

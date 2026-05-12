@@ -1,32 +1,32 @@
-altair
-ibis-framework[duckdb,examples,polars]
-narwhals
-polars
-anthropic
-anthropic[bedrock]
-boto3
-chatlas
-faicons
+# core code examples
+palmerpenguins
+plotnine
+shiny
+
+# website rendering
 ipykernel
 jupyter
+shinylive
+
+# AI slides (07-08)
+anthropic
+chatlas
 langchain
 langchain-anthropic
 langchain-openai
 langgraph
 openai
-palmerpenguins
-pandas
-pillow
-playwright
-plotly
-plotnine
 python-dotenv
 querychat
 requests
-ridgeplot
-seaborn
-shiny
 shinychat
-shinylive
-shinywidgets
 tokenizers
+
+# extended Shiny UI
+faicons
+shinywidgets
+
+# data & visualization
+pandas
+plotly
+seaborn

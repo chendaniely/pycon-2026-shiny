@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - requirements.txt
+      - requirements-full.txt
       - test-install.py
       - .github/workflows/test-install.yml
 
