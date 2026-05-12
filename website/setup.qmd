@@ -78,6 +78,18 @@ Whichever you choose, install the
 We will **not** be using Jupyter Notebooks during this workshop.
 :::
 
+## Run in the Cloud
+
+No local install needed — see the [Cloud](cloud.qmd) page for GitHub Codespaces, MyBinder, and Posit Cloud instructions.
+
+:::{.callout-warning}
+It's best to do a local installation of everything you need.
+The cloud experience will be slow, and some things may not work.
+
+This is really provided as a backup.
+:::
+
+
 ## AI / Chat Model
 
 ### GitHub Models (free, recommended)

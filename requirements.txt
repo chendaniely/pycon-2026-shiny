@@ -8,6 +8,9 @@ ipykernel
 jupyter
 shinylive
 
+# mybinder
+jupyter-server-proxy
+
 # AI slides (07-08)
 anthropic
 chatlas
