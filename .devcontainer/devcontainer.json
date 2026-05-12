@@ -6,7 +6,10 @@
       "version": "1.10.3"
     }
   },
-  "postCreateCommand": "pip install uv && uv pip install --system -r requirements.txt",
+  "postCreateCommand": "python -m venv /home/vscode/.venv && /home/vscode/.venv/bin/pip install -r requirements.txt",
+  "remoteEnv": {
+    "PATH": "/home/vscode/.venv/bin:${containerEnv:PATH}"
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -14,7 +17,10 @@
         "ms-python.python",
         "ms-python.vscode-pylance",
         "posit.shiny"
-      ]
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/home/vscode/.venv/bin/python"
+      }
     }
   },
   "forwardPorts": [8000, 4848],
