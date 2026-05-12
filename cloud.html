@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Show off your data – PyCon 2026: Shiny Dashboards</title>
+<title>Run in the Cloud – PyCon 2026: Shiny Dashboards</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -110,7 +145,7 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -118,7 +153,7 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
 <span class="menu-text">Setup</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cloud.html"> 
+    <a class="nav-link active" href="./cloud.html" aria-current="page"> 
 <span class="menu-text">Cloud</span></a>
   </li>  
   <li class="nav-item">
@@ -147,7 +182,7 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Show off your data</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Run in the Cloud</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -246,7 +281,9 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#schedule" id="toc-schedule" class="nav-link active" data-scroll-target="#schedule">Schedule</a></li>
+  <li><a href="#github-codespaces" id="toc-github-codespaces" class="nav-link active" data-scroll-target="#github-codespaces">GitHub Codespaces</a></li>
+  <li><a href="#mybinder" id="toc-mybinder" class="nav-link" data-scroll-target="#mybinder">MyBinder</a></li>
+  <li><a href="#posit-cloud" id="toc-posit-cloud" class="nav-link" data-scroll-target="#posit-cloud">Posit Cloud</a></li>
   </ul>
 </nav>
     </div>
@@ -255,8 +292,7 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Show off your data</h1>
-<p class="subtitle lead">Interactive dashboards in Python</p>
+<h1 class="title">Run in the Cloud</h1>
 </div>
 
 
@@ -273,70 +309,68 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
 </header>
 
 
-<p>📅 Thursday, May 14th<br>
-🕘 9 a.m.–12:30 p.m<br>
-🏢 Room 102A<br>
-🔗 <a href="https://us.pycon.org/2026/schedule/presentation/112/" class="uri">https://us.pycon.org/2026/schedule/presentation/112/</a></p>
-<section id="schedule" class="level2">
-<h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
+<p>No local install required — pick a platform below and you’ll have a working Python environment in minutes.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Time</th>
-<th>Topic</th>
+<th>Platform</th>
+<th>Launch</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>9:00</td>
-<td><a href="./workshop/01-welcome.html">Welcome + Introduction</a></td>
+<td>GitHub Codespaces</td>
+<td><a href="https://codespaces.new/chendaniely/pycon-2026-shiny"><img src="https://github.com/codespaces/badge.svg" class="img-fluid" alt="Open in GitHub Codespaces"></a></td>
 </tr>
 <tr class="even">
-<td>9:10</td>
-<td><a href="./workshop/02-shiny_intro.html">Introduction to Shiny</a></td>
+<td>MyBinder</td>
+<td><a href="https://mybinder.org/v2/gh/chendaniely/pycon-2026-shiny/HEAD"><img src="https://mybinder.org/badge_logo.svg" class="img-fluid" alt="Launch on Binder"></a></td>
 </tr>
 <tr class="odd">
-<td>9:20</td>
-<td><a href="./workshop/03-first_app.html">Your first application</a></td>
-</tr>
-<tr class="even">
-<td>9:50</td>
-<td><a href="./workshop/04-reactivity.html">Shiny reactivity</a></td>
-</tr>
-<tr class="odd">
-<td>10:20</td>
-<td><a href="./workshop/05-deploy.html">Deploying your application</a></td>
-</tr>
-<tr class="even">
-<td>10:30</td>
-<td>☕ Coffee + Tea Break</td>
-</tr>
-<tr class="odd">
-<td>11:00</td>
-<td><a href="./workshop/06-next_app.html">Your next application</a></td>
-</tr>
-<tr class="even">
-<td>11:30</td>
-<td><a href="./workshop/07-ai_primer.html">An AI + LLM primer</a></td>
-</tr>
-<tr class="odd">
-<td>11:50</td>
-<td><a href="./workshop/08-ai_dashboards.html">AI + LLM dashboards</a></td>
-</tr>
-<tr class="even">
-<td>12:10</td>
-<td><a href="./workshop/09-testing.html">Testing</a> your shiny apps with playwright</td>
-</tr>
-<tr class="odd">
-<td>12:20</td>
-<td><a href="./workshop/10-wrap_up.html">Wrap up</a> + Feedback Survey</td>
-</tr>
-<tr class="even">
-<td>12:30</td>
-<td>Finish</td>
+<td>Posit Cloud</td>
+<td>See instructions below</td>
 </tr>
 </tbody>
 </table>
+<section id="github-codespaces" class="level2">
+<h2 class="anchored" data-anchor-id="github-codespaces">GitHub Codespaces</h2>
+<p>Click the badge above (or go to <strong>Code → Codespaces → Create</strong> on the GitHub repo page). The devcontainer installs Python 3.12, Quarto 1.10.3, and all required packages automatically. Once ready, run an app from the terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run code/app-01-intro.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The port is forwarded automatically and a browser preview opens.</p>
+</section>
+<section id="mybinder" class="level2">
+<h2 class="anchored" data-anchor-id="mybinder">MyBinder</h2>
+<p>Click the Binder badge above. The first launch takes a few minutes to build the image; subsequent launches are fast.</p>
+<p>Once in JupyterLab, open a terminal (<strong>File → New → Terminal</strong>) and run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run code/app-01-intro.py <span class="at">--host</span> 0.0.0.0 <span class="at">--port</span> 8000</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Binder runs on a remote server, so <code>127.0.0.1</code> won’t work in your browser. Take your current Binder URL, drop everything from <code>/lab</code> onward, and add <code>/proxy/8000/</code>:</p>
+<pre><code># Your Binder URL looks like:
+https://hub.mybinder.ovh/user/some-random-id/lab/tree/...
+
+# Change it to:
+https://hub.mybinder.ovh/user/some-random-id/proxy/8000/</code></pre>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Keep the terminal open while viewing the app — closing it stops the server.</p>
+</div>
+</div>
+</section>
+<section id="posit-cloud" class="level2">
+<h2 class="anchored" data-anchor-id="posit-cloud">Posit Cloud</h2>
+<ol type="1">
+<li>Go to <a href="https://posit.cloud">posit.cloud</a> and create a <strong>New Project → From Git Repository</strong></li>
+<li>Enter <code>https://github.com/chendaniely/pycon-2026-shiny</code></li>
+<li>Quarto is pre-installed; install Python packages in the terminal:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
