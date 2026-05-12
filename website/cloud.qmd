@@ -45,7 +45,8 @@ https://hub.mybinder.ovh/user/some-random-id/proxy/8000/
 ```
 
 ::: {.callout-important}
-Keep the terminal open while viewing the app — closing it stops the server.
+Keep the terminal open while viewing the app.
+Closing it stops the server.
 :::
 
 ## Posit Cloud

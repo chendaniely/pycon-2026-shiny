@@ -10,3 +10,6 @@ format:
       data-background-image: "../img/bg-night.png"
       data-background-size: cover
       data-background-opacity: "0.7"
+
+execute:
+  echo: true

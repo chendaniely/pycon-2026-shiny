@@ -1,9 +1,15 @@
+.DS_Store
+
 _site
 .claude
 .env
 **.env
+
+/.quarto/
 **_files
-.DS_Store
+**.quarto_ipynb
+**/*.quarto_ipynb
+**/*.quarto_ipynb_1
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -223,6 +229,3 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
-
-/.quarto/
-**/*.quarto_ipynb
