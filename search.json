@@ -239,7 +239,7 @@
     "href": "workshop/02-shiny_intro.html#shiny-express-vs-shiny-core",
     "title": "Introduction to Shiny",
     "section": "Shiny Express vs Shiny Core",
-    "text": "Shiny Express vs Shiny Core\n\n\n\n\n\n\nImportant\n\n\n\nShiny for Python has two syntaxes for writing the same apps:\n\nShiny Express — lightweight, great for quick exploration and teaching\nShiny Core — more explicit, closer to Shiny for R\n\n\n\nToday we’ll use Shiny Express.",
+    "text": "Shiny Express vs Shiny Core\n\n\n\n\n\n\nImportant\n\n\n\nShiny for Python has two syntaxes for writing the same apps. There is full feature parody between the 2 syntax modes.\n\nShiny Express — simpler syntax (think Streamlit)\nShiny Core — more explicit, closer to Shiny for R and Dash\n\n\n\nToday we’ll use Shiny Express.",
     "crumbs": [
       "Home",
       "Introduction to Shiny"
@@ -759,7 +759,7 @@
     "href": "slides/02-shiny_intro.html#shiny-express-vs-shiny-core",
     "title": "Introduction to Shiny",
     "section": "Shiny Express vs Shiny Core",
-    "text": "Shiny Express vs Shiny Core\n\n\n\n\n\n\nImportant\n\n\nShiny for Python has two syntaxes for writing the same apps:\n\nShiny Express — lightweight, great for quick exploration and teaching\nShiny Core — more explicit, closer to Shiny for R\n\n\n\n\nToday we’ll use Shiny Express."
+    "text": "Shiny Express vs Shiny Core\n\n\n\n\n\n\nImportant\n\n\nShiny for Python has two syntaxes for writing the same apps. There is full feature parody between the 2 syntax modes.\n\nShiny Express — simpler syntax (think Streamlit)\nShiny Core — more explicit, closer to Shiny for R and Dash\n\n\n\n\nToday we’ll use Shiny Express."
   },
   {
     "objectID": "slides/02-shiny_intro.html#running-a-shiny-app",
