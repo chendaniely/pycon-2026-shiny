@@ -21,3 +21,10 @@ shiny run test-install.py
 | Posit Cloud | [Instructions](https://chendaniely.github.io/pycon-2026-shiny/cloud.html#posit-cloud) |
 
 Full instructions: <https://chendaniely.github.io/pycon-2026-shiny/cloud.html>
+
+## Slide Theming Notes
+
+`website/slides/slides-theme.scss` — all slide visual tweaks live here:
+
+- **Title slide font sizes**: `$title-font-size` and `$subtitle-font-size` variables near the bottom of the file
+- **`.smaller` slide font size**: `$smaller-font-size` variable at the top of the file (Quarto default is `0.7em`)

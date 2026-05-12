@@ -1,5 +1,8 @@
 /*-- scss:defaults --*/
 
+// Smaller slide font size (Quarto default is 0.7em)
+$smaller-font-size: 0.8em;
+
 // Backgrounds
 $body-bg: #090A28;
 $body-color: #F5F5F5;
@@ -60,6 +63,11 @@ $selection-color: #FFFFFF;
   border-left-color: #5833E9;
 }
 
+// Smaller slides — override Quarto's 0.7em default
+.reveal .slides section.smaller {
+  font-size: $smaller-font-size;
+}
+
 // Inline code
 .reveal code:not(.sourceCode) {
   color: #25C8EB;
@@ -83,12 +91,17 @@ $selection-color: #FFFFFF;
 }
 
 // Title slide — overlay text on background image
+$title-font-size: 2.2em;
+$subtitle-font-size: 1.2em;
+
 .reveal .title-slide h1,
 #title-slide h1 {
   color: #FCCE90;
+  font-size: $title-font-size;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
 }
 #title-slide .subtitle {
   color: #25C8EB;
+  font-size: $subtitle-font-size;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
