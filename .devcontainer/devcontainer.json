@@ -1,0 +1,31 @@
+{
+  "name": "PyCon 2026 Shiny Workshop",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "features": {
+    "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {
+      "version": "1.10.3"
+    }
+  },
+  "postCreateCommand": "pip install uv && uv pip install --system -r requirements.txt",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "quarto.quarto",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "posit.shiny"
+      ]
+    }
+  },
+  "forwardPorts": [8000, 4848],
+  "portsAttributes": {
+    "8000": {
+      "label": "Shiny App",
+      "onAutoForward": "notify"
+    },
+    "4848": {
+      "label": "Quarto Preview",
+      "onAutoForward": "notify"
+    }
+  }
+}
