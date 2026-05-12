@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Deploying Your Application – PyCon 2026: Shiny Dashboards</title>
+<title>Exercises – PyCon 2026: Shiny Dashboards</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,65 +23,35 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b65803fd109541e968e8a862f308f2e2.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b65803fd109541e968e8a862f308f2e2.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b65803fd109541e968e8a862f308f2e2.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c0a8125121396f71ad460452467de944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-dark-02237f0e9102e9198409d526f990c58f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c0a8125121396f71ad460452467de944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b65803fd109541e968e8a862f308f2e2.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b65803fd109541e968e8a862f308f2e2.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b65803fd109541e968e8a862f308f2e2.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-c0a8125121396f71ad460452467de944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-dark-02237f0e9102e9198409d526f990c58f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-c0a8125121396f71ad460452467de944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="dark">
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="site_libs/quarto-contrib/shinylive-0.10.9/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.10.9/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.10.9/shinylive/shinylive.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -131,16 +101,9 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   background-image: none;
 }
 </style>
- 
-  <style>
-  .slide-deck {
-      border: 3px solid #dee2e6;
-  }
-  </style>
-  
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -150,11 +113,11 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
     <img src="https://us.pycon.org/2026/static/images/theme/sub-logo-full.94351d59d82e.svg" alt="" class="navbar-logo light-content">
     <img src="https://us.pycon.org/2026/static/images/theme/sub-logo-full.94351d59d82e.svg" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">PyCon 2026: Shiny Dashboards</span>
     </a>
   </div>
@@ -165,29 +128,29 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../exercises.html"> 
+    <a class="nav-link active" href="./exercises.html" aria-current="page"> 
 <span class="menu-text">Exercises</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../setup.html"> 
+    <a class="nav-link" href="./setup.html"> 
 <span class="menu-text">Setup</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../cloud.html"> 
+    <a class="nav-link" href="./cloud.html"> 
 <span class="menu-text">Cloud</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../resources.html"> 
+    <a class="nav-link" href="./resources.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -206,7 +169,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workshop/05-deploy.html">Deploying your application</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Exercises</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -220,7 +183,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
+      <a href="./index.html" class="sidebar-logo-link">
       <img src="https://us.pycon.org/2026/static/images/theme/sub-logo-full.94351d59d82e.svg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
       <img src="https://us.pycon.org/2026/static/images/theme/sub-logo-full.94351d59d82e.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
@@ -237,61 +200,61 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/01-welcome.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop/01-welcome.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome + Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/02-shiny_intro.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop/02-shiny_intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Shiny</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/03-first_app.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop/03-first_app.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Your first application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/04-reactivity.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop/04-reactivity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Shiny reactivity</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/05-deploy.html" class="sidebar-item-text sidebar-link active">
+  <a href="./workshop/05-deploy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deploying your application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/06-next_app.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop/06-next_app.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Your next application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/07-ai_primer.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop/07-ai_primer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">An AI + LLM primer</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/08-ai_dashboards.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop/08-ai_dashboards.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AI + LLM dashboards</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/09-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop/09-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Testing</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workshop/10-wrap_up.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop/10-wrap_up.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wrap up</span></a>
   </div>
 </li>
@@ -305,25 +268,18 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#slide-contents" id="toc-slide-contents" class="nav-link active" data-scroll-target="#slide-contents">Slide Contents</a>
-  <ul class="collapse">
-  <li><a href="#options" id="toc-options" class="nav-link" data-scroll-target="#options">Options</a></li>
-  <li><a href="#requirements.txt-is-required" id="toc-requirements.txt-is-required" class="nav-link" data-scroll-target="#requirements.txt-is-required"><code>requirements.txt</code> is required</a></li>
-  <li><a href="#deploy-to-posit-connect-cloud" id="toc-deploy-to-posit-connect-cloud" class="nav-link" data-scroll-target="#deploy-to-posit-connect-cloud">Deploy to Posit Connect Cloud</a></li>
-  <li><a href="#deploy-with-the-publish-button" id="toc-deploy-with-the-publish-button" class="nav-link" data-scroll-target="#deploy-with-the-publish-button">Deploy with the publish button</a></li>
-  <li><a href="#updating-a-deployed-app" id="toc-updating-a-deployed-app" class="nav-link" data-scroll-target="#updating-a-deployed-app">Updating a deployed app</a></li>
-  <li><a href="#shinylive-no-server-required" id="toc-shinylive-no-server-required" class="nav-link" data-scroll-target="#shinylive-no-server-required">Shinylive: no server required</a></li>
+  <li><a href="#exercise-1---basic-app" id="toc-exercise-1---basic-app" class="nav-link active" data-scroll-target="#exercise-1---basic-app">Exercise 1 - Basic App</a></li>
+  <li><a href="#exercise-2---reactivity" id="toc-exercise-2---reactivity" class="nav-link" data-scroll-target="#exercise-2---reactivity">Exercise 2 - Reactivity</a></li>
   <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your turn</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Deploying Your Application</h1>
+<h1 class="title">Exercises</h1>
 </div>
 
 
@@ -340,122 +296,210 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </header>
 
 
-<div class="column-page-inset-right">
-    <p><a href="../slides/05-deploy.html" target="_blank">View slides in full screen</a></p>
-       <div class="ratio ratio-16x9">
-      <iframe class="slide-deck" src="../slides/05-deploy.html" height="500px" width="100%"></iframe>
-    </div>
-  
-</div>
-<section id="slide-contents" class="level1">
-<h1>Slide Contents</h1>
-<section id="options" class="level2">
-<h2 class="anchored" data-anchor-id="options">Options</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Platform</th>
-<th>Cost</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="https://connect.posit.cloud">Posit Connect Cloud</a></td>
-<td>Free tier</td>
-<td>Easiest, GitHub-based deploy</td>
-</tr>
-<tr class="even">
-<td><a href="https://www.shinyapps.io">shinyapps.io</a></td>
-<td>Free tier</td>
-<td>Classic option, rsconnect CLI</td>
-</tr>
-<tr class="odd">
-<td>Posit Connect (self-hosted)</td>
-<td>Paid</td>
-<td>Enterprise, on-prem</td>
-</tr>
-<tr class="even">
-<td><a href="https://shiny.posit.co/py/docs/shinylive.html">Shinylive</a></td>
-<td>Free</td>
-<td>Runs entirely in the browser (no server)</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="requirements.txt-is-required" class="level2">
-<h2 class="anchored" data-anchor-id="requirements.txt-is-required"><code>requirements.txt</code> is required</h2>
-<p>Posit Connect Cloud installs packages from <code>requirements.txt</code> before running your app.</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>requirements.txt</strong></pre>
-</div>
-<pre class="text" data-filename="requirements.txt"><code>shiny
-palmerpenguins
-plotnine
-pandas</code></pre>
-</div>
-<p>If a package isn’t listed, the deployed app will crash with an <code>ImportError</code>.</p>
-</section>
-<section id="deploy-to-posit-connect-cloud" class="level2">
-<h2 class="anchored" data-anchor-id="deploy-to-posit-connect-cloud">Deploy to Posit Connect Cloud</h2>
-<ol type="1">
-<li>Go to <a href="https://connect.posit.cloud" class="uri">https://connect.posit.cloud</a> and sign in with GitHub</li>
-<li>Click <strong>New Content</strong> → <strong>Import from GitHub</strong></li>
-<li>Select your repository and branch</li>
-<li>Set the <strong>Entry point</strong> to your <code>app.py</code></li>
-<li>Click <strong>Deploy</strong></li>
-</ol>
-<p>That’s it. Posit Connect Cloud handles the environment.</p>
-</section>
-<section id="deploy-with-the-publish-button" class="level2">
-<h2 class="anchored" data-anchor-id="deploy-with-the-publish-button">Deploy with the publish button</h2>
-<p>In Positron or VS Code with the Shiny extension:</p>
-<ol type="1">
-<li>Open your <code>app.py</code></li>
-<li>Click the <strong>Publish</strong> button in the editor toolbar</li>
-<li>Follow the prompts to connect your account</li>
-</ol>
-</section>
-<section id="updating-a-deployed-app" class="level2">
-<h2 class="anchored" data-anchor-id="updating-a-deployed-app">Updating a deployed app</h2>
-<p>Push to the connected branch — Connect Cloud redeploys automatically.</p>
-<p>Or click <strong>Redeploy</strong> in the Connect Cloud dashboard.</p>
-</section>
-<section id="shinylive-no-server-required" class="level2">
-<h2 class="anchored" data-anchor-id="shinylive-no-server-required">Shinylive: no server required</h2>
-<p>Compile your app to WebAssembly and host it as a static site:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shinylive</span> export app/ site/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Limitations:</p>
-<ul>
-<li>No file I/O, no database connections</li>
-<li>Package support is limited to what Pyodide supports</li>
-<li>Startup is slower (downloads Python + packages to browser)</li>
-</ul>
-<p>Great for: demos, tutorials, sharing one-off apps.</p>
-</section>
-<section id="your-turn" class="level2">
-<h2 class="anchored" data-anchor-id="your-turn">Your turn</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
+<section id="exercise-1---basic-app" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1---basic-app">Exercise 1 - Basic App</h2>
+<p>Small exercises to do on your own, or talk through solutions.</p>
+<div class="callout callout-style-default callout-exercise callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Exercise (~5 min)
+<span class="screen-reader-only">Exercise</span>Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>Open <code>code/app-01-intro.py</code> and run it.</p>
 <ol type="1">
-<li>Make sure your app has a <code>requirements.txt</code></li>
-<li>Push it to GitHub</li>
-<li>Deploy it to Posit Connect Cloud</li>
+<li>Add a third input — a checkbox group to filter by species — and connect it to the plot</li>
+<li>Try <code>ui.input_slider()</code> to filter by one of the numeric columns</li>
+<li>Add a <code>@render.text</code> output showing how many points are currently displayed</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution 1a — species checkbox
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_point, ggplot, theme_minimal
+from shiny.express import input, render, ui
+
+dat = load_penguins().dropna()
+num_cols = dat.select_dtypes("float64").columns.tolist()
+species = dat["species"].unique().tolist()  #&lt;&lt;
+
+ui.input_select("x", "", num_cols, selected="bill_depth_mm")
+ui.input_select("y", "", num_cols, selected="body_mass_g")
+ui.input_checkbox_group("species", "Species", species, selected=species)  #&lt;&lt;
+
+
+@render.plot
+def plot():
+    sel = dat[dat["species"].isin(input.species())]  #&lt;&lt;
+    return (
+        ggplot(sel, aes(x=input.x(), y=input.y(), color="species"))  #&lt;&lt;
+        + geom_point(alpha=0.7)
+        + theme_minimal()
+    )
+</code></pre>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution 1b — body mass slider
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_point, ggplot, theme_minimal
+from shiny.express import input, render, ui
+
+dat = load_penguins().dropna()
+num_cols = dat.select_dtypes("float64").columns.tolist()
+
+ui.input_select("x", "", num_cols, selected="bill_depth_mm")
+ui.input_select("y", "", num_cols, selected="body_mass_g")
+ui.input_slider(  #&lt;&lt;
+    "body_mass", "Body Mass (g)",  #&lt;&lt;
+    min=int(dat["body_mass_g"].min()),  #&lt;&lt;
+    max=int(dat["body_mass_g"].max()),  #&lt;&lt;
+    value=[int(dat["body_mass_g"].min()), int(dat["body_mass_g"].max())],  #&lt;&lt;
+)  #&lt;&lt;
+
+
+@render.plot
+def plot():
+    sel = dat[  #&lt;&lt;
+        (dat["body_mass_g"] &gt;= input.body_mass()[0])  #&lt;&lt;
+        &amp; (dat["body_mass_g"] &lt;= input.body_mass()[1])  #&lt;&lt;
+    ]  #&lt;&lt;
+    return (
+        ggplot(sel, aes(x=input.x(), y=input.y(), color="species"))  #&lt;&lt;
+        + geom_point(alpha=0.7)
+        + theme_minimal()
+    )
+</code></pre>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution 1c — full solution (checkbox + count)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_point, ggplot, theme_minimal
+from shiny import reactive  #&lt;&lt;
+from shiny.express import input, render, ui
+
+dat = load_penguins().dropna()
+num_cols = dat.select_dtypes("float64").columns.tolist()
+species = dat["species"].unique().tolist()
+
+ui.input_select("x", "", num_cols, selected="bill_depth_mm")
+ui.input_select("y", "", num_cols, selected="body_mass_g")
+ui.input_checkbox_group("species", "Species", species, selected=species)
+
+
+@reactive.calc  #&lt;&lt;
+def filtered():  #&lt;&lt;
+    return dat[dat["species"].isin(input.species())]  #&lt;&lt;
+
+
+@render.plot
+def plot():
+    return (
+        ggplot(filtered(), aes(x=input.x(), y=input.y(), color="species"))  #&lt;&lt;
+        + geom_point(alpha=0.7)
+        + theme_minimal()
+    )
+
+
+@render.text  #&lt;&lt;
+def count():  #&lt;&lt;
+    return f"{len(filtered())} penguins selected"  #&lt;&lt;
+</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2---reactivity" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2---reactivity">Exercise 2 - Reactivity</h2>
+</section>
+<section id="your-turn" class="level2">
+<h2 class="anchored" data-anchor-id="your-turn">Your turn</h2>
+<div class="callout callout-style-default callout-exercise callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Part A</strong> — open <code>code/app-03-reactivity.py</code>:</p>
+<ol type="1">
+<li>Run it and confirm the scatter plot and count update together</li>
+<li>Add a <code>print("filtering...")</code> inside <code>filtered()</code> — change Species and verify it prints only once</li>
+</ol>
+<p><strong>Part B</strong> — open <code>code/app-04-reactivity_chained.py</code>:</p>
+<ol type="1">
+<li>Run it and explore all three outputs (plot, count, table)</li>
+<li>Change Y Axis — notice count does <em>not</em> change (filtered is still cached)</li>
+<li>Add a <code>print</code> to each calc to confirm which ones re-run for each input change</li>
 </ol>
 </div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

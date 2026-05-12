@@ -118,6 +118,19 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
 </script>
+<style>
+div.callout-exercise.callout {
+  border-left-color: #F97316;
+}
+div.callout-exercise.callout-style-default .callout-header {
+  background-color: rgba(249, 115, 22, 0.13);
+}
+div.callout-exercise .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-exercise.callout-style-default .callout-icon::before, div.callout-exercise.callout-titled .callout-icon::before {
+  content: '🏋️';
+  background-image: none;
+}
+</style>
  
   <style>
   .slide-deck {
@@ -154,6 +167,10 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
   <li class="nav-item">
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../exercises.html"> 
+<span class="menu-text">Exercises</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../setup.html"> 
@@ -293,7 +310,10 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
   <li><a href="#what-is-a-shiny-app" id="toc-what-is-a-shiny-app" class="nav-link" data-scroll-target="#what-is-a-shiny-app">What is a Shiny app?</a></li>
   <li><a href="#components" id="toc-components" class="nav-link" data-scroll-target="#components">Components</a></li>
   <li><a href="#reactivity" id="toc-reactivity" class="nav-link" data-scroll-target="#reactivity">Reactivity</a></li>
-  <li><a href="#spreadsheet-analogy" id="toc-spreadsheet-analogy" class="nav-link" data-scroll-target="#spreadsheet-analogy">Spreadsheet analogy</a></li>
+  <li><a href="#spreadsheet-analogy" id="toc-spreadsheet-analogy" class="nav-link" data-scroll-target="#spreadsheet-analogy">Spreadsheet analogy</a>
+  <ul class="collapse">
+  <li><a href="#other-reactive-tools" id="toc-other-reactive-tools" class="nav-link" data-scroll-target="#other-reactive-tools">Other reactive tools</a></li>
+  </ul></li>
   <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key features</a></li>
   <li><a href="#why-shiny-for-python" id="toc-why-shiny-for-python" class="nav-link" data-scroll-target="#why-shiny-for-python">Why Shiny for Python?</a></li>
   <li><a href="#shiny-express-vs-shiny-core" id="toc-shiny-express-vs-shiny-core" class="nav-link" data-scroll-target="#shiny-express-vs-shiny-core">Shiny Express vs Shiny Core</a></li>
@@ -366,6 +386,13 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
 </ul>
 <p>When you change a value cell, only the formula cells that depend on it recalculate.</p>
 <p>Shiny works the same way.</p>
+<section id="other-reactive-tools" class="level3">
+<h3 class="anchored" data-anchor-id="other-reactive-tools">Other reactive tools</h3>
+<ul>
+<li>Pluto Notebooks: <a href="https://plutojl.org//" class="uri">https://plutojl.org//</a></li>
+<li>Marimo Notebooks: <a href="https://marimo.io/" class="uri">https://marimo.io/</a></li>
+</ul>
+</section>
 </section>
 <section id="key-features" class="level2">
 <h2 class="anchored" data-anchor-id="key-features">Key features</h2>
@@ -399,8 +426,8 @@ Important
 <div class="callout-body-container callout-body">
 <p>Shiny for Python has two syntaxes for writing the same apps. There is full feature parody between the 2 syntax modes.</p>
 <ol type="1">
-<li><strong>Shiny Express</strong> — simpler syntax (think Streamlit)</li>
-<li><strong>Shiny Core</strong> — more explicit, closer to Shiny for R and Dash</li>
+<li><strong>Shiny Express</strong> — simpler syntax (think <a href="https://streamlit.io/">Streamlit</a>)</li>
+<li><strong>Shiny Core</strong> — more explicit, closer to <a href="https://shiny.posit.co/">Shiny for R</a> and <a href="https://dash.plotly.com/">Dash</a></li>
 </ol>
 </div>
 </div>
@@ -410,7 +437,8 @@ Important
 <h2 class="anchored" data-anchor-id="running-a-shiny-app">Running a Shiny app</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run app.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or in Positron / VS Code: click the <strong>Run App</strong> button in the editor toolbar.</p>
-<p>Open <a href="http://127.0.0.1:8000" class="uri">http://127.0.0.1:8000</a> in your browser.</p>
+<p>Open URL:Port (e.g., <a href="http://127.0.0.1:8000" class="uri">http://127.0.0.1:8000</a>) in your browser.</p>
+<p><img src="../img/positron-shiny-run-annotated.png" class="img-fluid"></p>
 
 
 </section>

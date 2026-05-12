@@ -83,6 +83,19 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
 </script>
+<style>
+div.callout-exercise.callout {
+  border-left-color: #F97316;
+}
+div.callout-exercise.callout-style-default .callout-header {
+  background-color: rgba(249, 115, 22, 0.13);
+}
+div.callout-exercise .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-exercise.callout-style-default .callout-icon::before, div.callout-exercise.callout-titled .callout-icon::before {
+  content: '🏋️';
+  background-image: none;
+}
+</style>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -112,6 +125,10 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./exercises.html"> 
+<span class="menu-text">Exercises</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./setup.html"> 
@@ -241,8 +258,16 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#shiny" id="toc-shiny" class="nav-link active" data-scroll-target="#shiny">Shiny</a></li>
+  <li><a href="#shiny-reactivity" id="toc-shiny-reactivity" class="nav-link" data-scroll-target="#shiny-reactivity">Shiny Reactivity</a></li>
+  <li><a href="#python-shiny-ai-llms" id="toc-python-shiny-ai-llms" class="nav-link" data-scroll-target="#python-shiny-ai-llms">Python, Shiny, AI, LLMs</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -266,16 +291,37 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
 </header>
 
 
+<section id="shiny" class="level2">
+<h2 class="anchored" data-anchor-id="shiny">Shiny</h2>
 <ul>
-<li>Shiny for Python docs: <a href="https://shiny.posit.co/py/" class="uri">https://shiny.posit.co/py/</a></li>
-<li>Component gallery: <a href="https://shiny.posit.co/py/components/" class="uri">https://shiny.posit.co/py/components/</a></li>
-<li>Templates: <a href="https://shiny.posit.co/py/templates/" class="uri">https://shiny.posit.co/py/templates/</a></li>
+<li><p>Shiny for Python docs: <a href="https://shiny.posit.co/py/" class="uri">https://shiny.posit.co/py/</a></p></li>
+<li><p>Component gallery: <a href="https://shiny.posit.co/py/components/" class="uri">https://shiny.posit.co/py/components/</a></p></li>
+<li><p>Templates: <a href="https://shiny.posit.co/py/templates/" class="uri">https://shiny.posit.co/py/templates/</a></p></li>
+<li><p>Shiny concepts page: <a href="https://shiny.posit.co/py/docs/overview.html" class="uri">https://shiny.posit.co/py/docs/overview.html</a></p></li>
+<li><p>Mastering Shiny book (R): <a href="https://mastering-shiny.org/" class="uri">https://mastering-shiny.org/</a></p></li>
+<li><p>UBC DSCI 532: Data Visualization 2 course: <a href="https://ubc-mds.github.io/DSCI_532_vis-2_book/" class="uri">https://ubc-mds.github.io/DSCI_532_vis-2_book/</a></p></li>
+</ul>
+</section>
+<section id="shiny-reactivity" class="level2">
+<h2 class="anchored" data-anchor-id="shiny-reactivity">Shiny Reactivity</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=9RC8PobU5oQ">Gordon Shotwell &amp; Tracy Teal — Build Simple and Scalable Apps with Shiny | PyData NYC 2023</a>
+<ul>
+<li>Slides: <a href="https://github.com/gshotwell/shiny-algorithm" class="uri">https://github.com/gshotwell/shiny-algorithm</a></li>
+</ul></li>
+<li><a href="https://www.youtube.com/watch?v=0ovCLxttJGE">Joe Cheng — Shiny: Data-centric web applications in Python | PyData Seattle 2023</a></li>
+</ul>
+</section>
+<section id="python-shiny-ai-llms" class="level2">
+<h2 class="anchored" data-anchor-id="python-shiny-ai-llms">Python, Shiny, AI, LLMs</h2>
+<ul>
 <li>chatlas: <a href="https://posit-dev.github.io/chatlas/" class="uri">https://posit-dev.github.io/chatlas/</a></li>
 <li>shinychat: <a href="https://posit-dev.github.io/shinychat/py/" class="uri">https://posit-dev.github.io/shinychat/py/</a></li>
 <li>querychat: <a href="https://github.com/posit-dev/querychat" class="uri">https://github.com/posit-dev/querychat</a></li>
 </ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

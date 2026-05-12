@@ -126,6 +126,19 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
 <script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<style>
+div.callout-exercise.callout {
+  border-left-color: #F97316;
+}
+div.callout-exercise.callout-style-default .callout-header {
+  background-color: rgba(249, 115, 22, 0.13);
+}
+div.callout-exercise .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-exercise.callout-style-default .callout-icon::before, div.callout-exercise.callout-titled .callout-icon::before {
+  content: '🏋️';
+  background-image: none;
+}
+</style>
  
   <style>
   .slide-deck {
@@ -162,6 +175,10 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
   <li class="nav-item">
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../exercises.html"> 
+<span class="menu-text">Exercises</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../setup.html"> 
@@ -326,7 +343,6 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
   <li><a href="#species-changes-cascade-through-both-calcs" id="toc-species-changes-cascade-through-both-calcs" class="nav-link" data-scroll-target="#species-changes-cascade-through-both-calcs">Species changes — cascade through both calcs</a></li>
   <li><a href="#the-chained-code" id="toc-the-chained-code" class="nav-link" data-scroll-target="#the-chained-code">The chained code</a></li>
   <li><a href="#when-to-use-what" id="toc-when-to-use-what" class="nav-link" data-scroll-target="#when-to-use-what">When to use what</a></li>
-  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your turn</a></li>
   </ul></li>
   <li><a href="#demo-shared-reactive.calc" id="toc-demo-shared-reactive.calc" class="nav-link" data-scroll-target="#demo-shared-reactive.calc">Demo: shared <code>@reactive.calc</code></a></li>
   <li><a href="#demo-chained-reactive.calc" id="toc-demo-chained-reactive.calc" class="nav-link" data-scroll-target="#demo-chained-reactive.calc">Demo: chained <code>@reactive.calc</code></a></li>
@@ -367,12 +383,12 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
 <hr>
 <section id="title-shiny-reactivity" class="level2">
 <h2 class="anchored" data-anchor-id="title-shiny-reactivity">title: “Shiny Reactivity”</h2>
-<style>
-.nodeLabel > p { white-space: normal; }
-</style>
 </section>
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
+<style>
+.nodeLabel > p { white-space: normal; }
+</style>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=9RC8PobU5oQ">Gordon Shotwell &amp; Tracy Teal — Build Simple and Scalable Apps with Shiny | PyData NYC 2023</a>
 <ul>
@@ -821,32 +837,6 @@ gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
 </tr>
 </tbody>
 </table>
-</section>
-<section id="your-turn" class="level2">
-<h2 class="anchored" data-anchor-id="your-turn">Your turn</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Exercise (~20 min)
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Part A</strong> — open <code>code/app-03-reactivity.py</code>:</p>
-<ol type="1">
-<li>Run it and confirm the scatter plot and count update together</li>
-<li>Add a <code>print("filtering...")</code> inside <code>filtered()</code> — change Species and verify it prints only once</li>
-</ol>
-<p><strong>Part B</strong> — open <code>code/app-04-reactivity_chained.py</code>:</p>
-<ol type="1">
-<li>Run it and explore all three outputs (plot, count, table)</li>
-<li>Change Y Axis — notice count does <em>not</em> change (filtered is still cached)</li>
-<li>Add a <code>print</code> to each calc to confirm which ones re-run for each input change</li>
-</ol>
-</div>
-</div>
 </section>
 </section>
 <section id="demo-shared-reactive.calc" class="level1 page-columns page-full">

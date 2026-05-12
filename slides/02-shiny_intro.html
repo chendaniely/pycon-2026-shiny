@@ -97,7 +97,7 @@
     code span.vs { color: #e6db74; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-433cb3c9659b2a2abca66517e1bc242d.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-73e4dc99ccaa08f049bfb76917fbc65e.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XFPBQ3BZ6M"></script>
 
   <script type="text/javascript">
@@ -198,6 +198,18 @@
       margin-right: 0; 
     }
   </style>
+  <style>
+  .reveal div.callout-exercise.callout {
+    border-left-color: #F97316;
+  }
+  .reveal div.callout-exercise.callout-style-default .callout-title {
+    background-color: rgba(249, 115, 22, 0.13);
+  }
+  .reveal div.callout-exercise.callout-style-default .callout-icon::before, .reveal div.callout-exercise.callout-titled .callout-icon::before {
+    content: '🏋️';
+    background-image: none;
+  }
+  </style>
 </head>
 <body class="quarto-dark">
   <div class="reveal">
@@ -243,6 +255,11 @@
 </ul>
 <p>When you change a value cell, only the formula cells that depend on it recalculate.</p>
 <p>Shiny works the same way.</p>
+<h3 id="other-reactive-tools">Other reactive tools</h3>
+<ul>
+<li>Pluto Notebooks: <a href="https://plutojl.org//" class="uri">https://plutojl.org//</a></li>
+<li>Marimo Notebooks: <a href="https://marimo.io/" class="uri">https://marimo.io/</a></li>
+</ul>
 </section>
 <section id="key-features" class="slide level2">
 <h2>Key features</h2>
@@ -275,8 +292,8 @@
 <div class="callout-content">
 <p>Shiny for Python has two syntaxes for writing the same apps. There is full feature parody between the 2 syntax modes.</p>
 <ol type="1">
-<li><strong>Shiny Express</strong> — simpler syntax (think Streamlit)</li>
-<li><strong>Shiny Core</strong> — more explicit, closer to Shiny for R and Dash</li>
+<li><strong>Shiny Express</strong> — simpler syntax (think <a href="https://streamlit.io/">Streamlit</a>)</li>
+<li><strong>Shiny Core</strong> — more explicit, closer to <a href="https://shiny.posit.co/">Shiny for R</a> and <a href="https://dash.plotly.com/">Dash</a></li>
 </ol>
 </div>
 </div>
@@ -287,10 +304,11 @@
 <h2>Running a Shiny app</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">shiny</span> run app.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or in Positron / VS Code: click the <strong>Run App</strong> button in the editor toolbar.</p>
-<p>Open <a href="http://127.0.0.1:8000" class="uri">http://127.0.0.1:8000</a> in your browser.</p>
+<p>Open URL:Port (e.g., <a href="http://127.0.0.1:8000" class="uri">http://127.0.0.1:8000</a>) in your browser.</p>
 
 
-</section>
+
+<img data-src="../img/positron-shiny-run-annotated.png" class="r-stretch"></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="https://us.pycon.org/2026/static/images/theme/sub-logo-full.94351d59d82e.svg" class="slide-logo"></p>
