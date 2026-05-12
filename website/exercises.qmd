@@ -1,0 +1,77 @@
+---
+title: Exercises
+---
+
+## Exercise 1 - Basic App
+
+Small exercises to do on your own, or talk through solutions.
+
+::: {.exercise}
+Open `code/app-01-intro.py` and run it.
+
+1. Add a third input — a checkbox group to filter by species — and connect it to the plot
+2. Try `ui.input_slider()` to filter by one of the numeric columns
+3. Add a `@render.text` output showing how many points are currently displayed
+:::
+
+::: {.callout-note collapse="true"}
+## Solution 1a — species checkbox
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+{{< include /../code/exercise_solutions/ex01a-species_checkbox.py >}}
+```
+
+:::
+
+::: {.callout-note collapse="true"}
+## Solution 1b — body mass slider
+
+
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+{{< include /../code/exercise_solutions/ex01b-slider.py >}}
+```
+
+:::
+
+::: {.callout-note collapse="true"}
+## Solution 1c — full solution (checkbox + count)
+
+```{shinylive-python}
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+{{< include /../code/exercise_solutions/ex01c-full.py >}}
+```
+
+:::
+
+## Exercise 2 - Reactivity
+
+
+## Your turn
+
+::: {.exercise}
+
+**Part A** — open `code/app-03-reactivity.py`:
+
+1. Run it and confirm the scatter plot and count update together
+2. Add a `print("filtering...")` inside `filtered()` — change Species and verify it prints only once
+
+**Part B** — open `code/app-04-reactivity_chained.py`:
+
+1. Run it and explore all three outputs (plot, count, table)
+2. Change Y Axis — notice count does *not* change (filtered is still cached)
+3. Add a `print` to each calc to confirm which ones re-run for each input change
+:::

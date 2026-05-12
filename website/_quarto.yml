@@ -12,6 +12,8 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: exercises.qmd
+        text: Exercises
       - href: setup.qmd
         text: Setup
       - href: cloud.qmd
@@ -59,6 +61,13 @@ format:
     css: styles.css
     toc: true
 
-filters: 
+custom-callout:
+  exercise:
+    title: "Exercise"
+    icon: true
+    icon-symbol: "🏋️"
+    color: "#F97316"
+
+filters:
   - shinylive
-  
+  - custom-callout
