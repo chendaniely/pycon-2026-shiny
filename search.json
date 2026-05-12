@@ -242,7 +242,7 @@
     "href": "workshop/07-ai_primer.html#example-conversation",
     "title": "An AI + LLM Primer",
     "section": "Example conversation",
-    "text": "Example conversation\n\n“What’s the capital of the moon?”\n\n. . .\n\"There isn't one.\"\n. . .\n\n“Are you sure?”\n\n. . .\n\"Yes, I am sure.\"",
+    "text": "Example conversation\n\n\nWhat’s the capital of the moon?\n\n\nThere isn’t one.\n\n\nAre you sure?\n\n\nYes, I am sure.",
     "crumbs": [
       "Home",
       "An AI + LLM primer"
@@ -634,7 +634,7 @@
     "href": "slides/07-ai_primer.html#example-conversation",
     "title": "An AI + LLM Primer",
     "section": "Example conversation",
-    "text": "Example conversation\n\n“What’s the capital of the moon?”\n\n\n\"There isn't one.\"\n\n\n\n“Are you sure?”\n\n\n\n\"Yes, I am sure.\""
+    "text": "Example conversation\n\n\nWhat’s the capital of the moon?\n\n\nThere isn’t one.\n\n\nAre you sure?\n\n\nYes, I am sure."
   },
   {
     "objectID": "slides/07-ai_primer.html#example-request",
@@ -1724,14 +1724,7 @@
     "href": "exercises.html#exercise-2---reactivity",
     "title": "Exercises",
     "section": "Exercise 2 - Reactivity",
-    "text": "Exercise 2 - Reactivity"
-  },
-  {
-    "objectID": "exercises.html#your-turn",
-    "href": "exercises.html#your-turn",
-    "title": "Exercises",
-    "section": "Your turn",
-    "text": "Your turn\n\n\n\n\n\n\nExerciseExercise\n\n\n\nPart A — open code/app-03-reactivity.py:\n\nRun it and confirm the scatter plot and count update together\nAdd a print(\"filtering...\") inside filtered() — change Species and verify it prints only once\n\nPart B — open code/app-04-reactivity_chained.py:\n\nRun it and explore all three outputs (plot, count, table)\nChange Y Axis — notice count does not change (filtered is still cached)\nAdd a print to each calc to confirm which ones re-run for each input change"
+    "text": "Exercise 2 - Reactivity\n\n\n\n\n\n\nExerciseExercise\n\n\n\nPart A — open code/app-03-reactivity.py:\n\nRun it and confirm the scatter plot and count update together\nAdd a print(\"filtering...\") inside filtered() — change Species and verify it prints only once\n\nPart B — open code/app-04-reactivity_chained.py:\n\nRun it and explore all three outputs (plot, count, table)\nChange Y Axis — notice count does not change (filtered is still cached)\nAdd a print to each calc to confirm which ones re-run for each input change"
   },
   {
     "objectID": "resources.html",
