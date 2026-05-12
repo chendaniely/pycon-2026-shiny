@@ -376,20 +376,3 @@ def table():
 | Trigger side effects (write file, log, etc.) | `@reactive.effect` |
 | Store mutable state | `reactive.value` |
 | Render a plot / table / text | `@render.*` |
-
-## Your turn
-
-::: {.callout-tip}
-## Exercise (~20 min)
-
-**Part A** — open `code/app-03-reactivity.py`:
-
-1. Run it and confirm the scatter plot and count update together
-2. Add a `print("filtering...")` inside `filtered()` — change Species and verify it prints only once
-
-**Part B** — open `code/app-04-reactivity_chained.py`:
-
-1. Run it and explore all three outputs (plot, count, table)
-2. Change Y Axis — notice count does *not* change (filtered is still cached)
-3. Add a `print` to each calc to confirm which ones re-run for each input change
-:::
