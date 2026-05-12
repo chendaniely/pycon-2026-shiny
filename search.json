@@ -356,11 +356,22 @@
     ]
   },
   {
-    "objectID": "workshop/04-reactivity.html#references",
-    "href": "workshop/04-reactivity.html#references",
+    "objectID": "workshop/04-reactivity.html#title-shiny-reactivity",
+    "href": "workshop/04-reactivity.html#title-shiny-reactivity",
     "title": "Shiny Reactivity",
-    "section": "References",
-    "text": "References\n\nGordon Shotwell & Tracy Teal — Build Simple and Scalable Apps with Shiny | PyData NYC 2023\nJoe Cheng — Shiny: Data-centric web applications in Python | PyData Seattle 2023",
+    "section": "title: “Shiny Reactivity”",
+    "text": "title: “Shiny Reactivity”",
+    "crumbs": [
+      "Home",
+      "Shiny reactivity"
+    ]
+  },
+  {
+    "objectID": "workshop/04-reactivity.html#further-reading",
+    "href": "workshop/04-reactivity.html#further-reading",
+    "title": "Shiny Reactivity",
+    "section": "Further reading",
+    "text": "Further reading\n\nGordon Shotwell & Tracy Teal — Build Simple and Scalable Apps with Shiny | PyData NYC 2023\n\nSlides: https://github.com/gshotwell/shiny-algorithm\n\nJoe Cheng — Shiny: Data-centric web applications in Python | PyData Seattle 2023",
     "crumbs": [
       "Home",
       "Shiny reactivity"
@@ -371,73 +382,139 @@
     "href": "workshop/04-reactivity.html#what-makes-shiny-special",
     "title": "Shiny Reactivity",
     "section": "What makes Shiny special?",
-    "text": "What makes Shiny special?\nReactivity.\n\nOutputs automatically update whenever their inputs change — without explicit event handling or manual refreshes.\n\n\nNo writing callbacks\nNo polling\nShiny tracks dependencies for you",
+    "text": "What makes Shiny special?\nReactivity — outputs update automatically when their inputs change, with no callbacks.\n\nThe reactive graph\nShiny builds and maintains a dependency graph for your app:\n\n\nRectangle\nReactive input\n\nHexagon\n@reactive.calc\n\nCircle\nReactive output",
     "crumbs": [
       "Home",
       "Shiny reactivity"
     ]
   },
   {
-    "objectID": "workshop/04-reactivity.html#the-reactive-graph",
-    "href": "workshop/04-reactivity.html#the-reactive-graph",
+    "objectID": "workshop/04-reactivity.html#the-apps-reactive-graph",
+    "href": "workshop/04-reactivity.html#the-apps-reactive-graph",
     "title": "Shiny Reactivity",
-    "section": "The reactive graph",
-    "text": "The reactive graph\nEvery Shiny app has a reactive graph:\ninput.species()  ──►  plot()\ninput.bins()     ──►  plot()\n                 ──►  summary()\nWhen an input changes, only the outputs that depend on it re-execute.",
+    "section": "The app’s reactive graph",
+    "text": "The app’s reactive graph\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  X[X Axis] --&gt; Pl((plot))\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2,3,4 display:none\n\n\n\n\n\n\n\n\nSpecies — checkbox group\nX Axis / Y Axis — dropdowns\nfiltered — @reactive.calc\nplot — @render.plot\ncount — @render.text",
     "crumbs": [
       "Home",
       "Shiny reactivity"
     ]
   },
   {
-    "objectID": "workshop/04-reactivity.html#problem-redundant-computation",
-    "href": "workshop/04-reactivity.html#problem-redundant-computation",
+    "objectID": "workshop/04-reactivity.html#shiny-is-lazy-nothing-runs-until-needed",
+    "href": "workshop/04-reactivity.html#shiny-is-lazy-nothing-runs-until-needed",
     "title": "Shiny Reactivity",
-    "section": "Problem: redundant computation",
-    "text": "Problem: redundant computation\n@render.plot\ndef plot():\n    filtered = dat[dat[\"species\"] == input.species()]  # filters here\n    return ggplot(filtered, ...) + ...\n\n@render.text\ndef count():\n    filtered = dat[dat[\"species\"] == input.species()]  # filters again!\n    return f\"{len(filtered)} penguins\"\nThe filter runs twice every time input.species() changes.",
+    "section": "Shiny is lazy — nothing runs until needed",
+    "text": "Shiny is lazy — nothing runs until needed\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  X[X Axis] --&gt; Pl((plot)):::active\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::active\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2,3,4 display:none\n\n\n\n\n\n\n\nBoth outputs need to render.\nShiny runs them and tracks every reactive value they read.",
     "crumbs": [
       "Home",
       "Shiny reactivity"
     ]
   },
   {
-    "objectID": "workshop/04-reactivity.html#solution-reactive.calc",
-    "href": "workshop/04-reactivity.html#solution-reactive.calc",
+    "objectID": "workshop/04-reactivity.html#plot-and-count-both-read-filtered",
+    "href": "workshop/04-reactivity.html#plot-and-count-both-read-filtered",
     "title": "Shiny Reactivity",
-    "section": "Solution: @reactive.calc",
-    "text": "Solution: @reactive.calc\nfrom shiny.express import input, render, ui\nfrom shiny import reactive\n\n1@reactive.calc\ndef filtered():\n    return dat[dat[\"species\"] == input.species()]\n\n@render.plot\ndef plot():\n2    return ggplot(filtered(), ...) + ...\n\n@render.text\ndef count():\n    return f\"{len(filtered())} penguins\"\n\n1\n\n@reactive.calc caches the result and only re-runs when its inputs change\n\n2\n\nCall it like a function — filtered() — to read the cached value",
+    "section": "plot and count both read filtered",
+    "text": "plot and count both read filtered\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}:::active\n  X[X Axis] --&gt; Pl((plot))\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2 display:none\n\n\n\n\n\n\n\nfiltered() is called by both outputs.\nShiny runs it once, caches the result, and records:\n\nfiltered → plot\nfiltered → count",
     "crumbs": [
       "Home",
       "Shiny reactivity"
     ]
   },
   {
-    "objectID": "workshop/04-reactivity.html#reactive.calc-in-the-graph",
-    "href": "workshop/04-reactivity.html#reactive.calc-in-the-graph",
+    "objectID": "workshop/04-reactivity.html#filtered-reads-species-plot-reads-x-and-y",
+    "href": "workshop/04-reactivity.html#filtered-reads-species-plot-reads-x-and-y",
     "title": "Shiny Reactivity",
-    "section": "@reactive.calc in the graph",
-    "text": "@reactive.calc in the graph\ninput.species()  ──►  filtered()  ──►  plot()\n                                   ──►  count()\nfiltered() runs once. Both outputs read from the cache.",
+    "section": "filtered reads Species; plot reads X and Y",
+    "text": "filtered reads Species; plot reads X and Y\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}\n  X[X Axis]:::active --&gt; Pl((plot))\n  Y[Y Axis]:::active --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nAll dependencies recorded. The full graph is built.\nShiny now watches it — any change triggers only the affected branch.",
     "crumbs": [
       "Home",
       "Shiny reactivity"
     ]
   },
   {
-    "objectID": "workshop/04-reactivity.html#reactive.value",
-    "href": "workshop/04-reactivity.html#reactive.value",
+    "objectID": "workshop/04-reactivity.html#species-changes-invalidation-cascades",
+    "href": "workshop/04-reactivity.html#species-changes-invalidation-cascades",
     "title": "Shiny Reactivity",
-    "section": "reactive.value",
-    "text": "reactive.value\nStore arbitrary state that outputs can depend on:\ncount = reactive.value(0)\n\nui.input_action_button(\"btn\", \"Click me\")\n\n@reactive.effect\ndef _():\n    input.btn()          # take a dependency on the button\n    count.set(count() + 1)\n\n@render.text\ndef display():\n    return f\"Clicked {count()} times\"",
+    "section": "Species changes — invalidation cascades",
+    "text": "Species changes — invalidation cascades\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid\n  X[X Axis] --&gt; Pl((plot)):::invalid\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::invalid\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nSpecies changes → filtered cache discarded → plot and count marked stale.\nX Axis and Y Axis are untouched — only the affected branch re-runs.\nfiltered() executes once. Both outputs share the new result.",
     "crumbs": [
       "Home",
       "Shiny reactivity"
     ]
   },
   {
-    "objectID": "workshop/04-reactivity.html#reactive-rules",
-    "href": "workshop/04-reactivity.html#reactive-rules",
+    "objectID": "workshop/04-reactivity.html#the-problem-without-reactive.calc",
+    "href": "workshop/04-reactivity.html#the-problem-without-reactive.calc",
     "title": "Shiny Reactivity",
-    "section": "Reactive rules",
-    "text": "Reactive rules\n\nRead a reactive value inside a reactive context → dependency is tracked\nWrite a reactive value → invalidates all dependents\nOutside a reactive context → reading a reactive value raises an error",
+    "section": "The problem without @reactive.calc",
+    "text": "The problem without @reactive.calc\n@render.plot\ndef plot():\n    sel = dat[dat[\"species\"].isin(input.species())]  # filter #1\n    return ggplot(sel, aes(x=input.x(), y=input.y(), color=\"species\")) + ...\n\n@render.text\ndef count():\n    sel = dat[dat[\"species\"].isin(input.species())]  # filter #2 — redundant!\n    return f\"{len(sel)} penguins selected\"\nSpecies changes → the filter runs twice. With more outputs this keeps getting worse.",
+    "crumbs": [
+      "Home",
+      "Shiny reactivity"
+    ]
+  },
+  {
+    "objectID": "workshop/04-reactivity.html#the-solution-reactive.calc",
+    "href": "workshop/04-reactivity.html#the-solution-reactive.calc",
+    "title": "Shiny Reactivity",
+    "section": "The solution: @reactive.calc",
+    "text": "The solution: @reactive.calc\nfrom shiny import reactive\n\n1@reactive.calc\ndef filtered():\n    return dat[dat[\"species\"].isin(input.species())]\n\n@render.plot\n2def plot():\n    return ggplot(filtered(), aes(x=input.x(), y=input.y(), color=\"species\")) + ...\n\n@render.text\ndef count():\n    return f\"{len(filtered())} penguins selected\"\n\n1\n\nfiltered() runs once per change and caches the result\n\n2\n\nBoth outputs call filtered() — they get the cached dataframe",
+    "crumbs": [
+      "Home",
+      "Shiny reactivity"
+    ]
+  },
+  {
+    "objectID": "workshop/04-reactivity.html#adding-a-second-calc-downstream",
+    "href": "workshop/04-reactivity.html#adding-a-second-calc-downstream",
+    "title": "Shiny Reactivity",
+    "section": "Adding a second calc downstream",
+    "text": "Adding a second calc downstream\nWhat if we also want a summary table of per-species statistics?\nThe summary depends on:\n\nfiltered() — which rows to include\ninput.y() — which column to summarise\n\nRather than re-filtering inside the table render, we build a second calc that sits downstream of the first.",
+    "crumbs": [
+      "Home",
+      "Shiny reactivity"
+    ]
+  },
+  {
+    "objectID": "workshop/04-reactivity.html#the-chained-reactive-graph",
+    "href": "workshop/04-reactivity.html#the-chained-reactive-graph",
+    "title": "Shiny Reactivity",
+    "section": "The chained reactive graph",
+    "text": "The chained reactive graph\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  Y[Y Axis] --&gt; Pl((plot))\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n  Fi --&gt; Su\n  Su --&gt; Ta((table))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\n\nfiltered — species filter (as before)\nsummary — per-species stats for the selected Y column\ntable — @render.data_frame fed by summary\n\nsummary depends on both filtered and Y Axis.",
+    "crumbs": [
+      "Home",
+      "Shiny reactivity"
+    ]
+  },
+  {
+    "objectID": "workshop/04-reactivity.html#y-axis-changes-surgical-invalidation",
+    "href": "workshop/04-reactivity.html#y-axis-changes-surgical-invalidation",
+    "title": "Shiny Reactivity",
+    "section": "Y Axis changes — surgical invalidation",
+    "text": "Y Axis changes — surgical invalidation\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}:::cached\n  Y[Y Axis]:::active --&gt; Pl((plot)):::invalid\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}:::invalid\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::cached\n  Fi --&gt; Su\n  Su --&gt; Ta((table)):::invalid\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nY Axis changes → plot, summary, and table re-run.\nfiltered and count are unaffected — Species didn’t change, so that branch stays cached.\nShiny re-runs the minimum necessary.",
+    "crumbs": [
+      "Home",
+      "Shiny reactivity"
+    ]
+  },
+  {
+    "objectID": "workshop/04-reactivity.html#species-changes-cascade-through-both-calcs",
+    "href": "workshop/04-reactivity.html#species-changes-cascade-through-both-calcs",
+    "title": "Shiny Reactivity",
+    "section": "Species changes — cascade through both calcs",
+    "text": "Species changes — cascade through both calcs\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid\n  Y[Y Axis] --&gt; Pl((plot)):::invalid\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}:::invalid\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::invalid\n  Fi --&gt; Su\n  Su --&gt; Ta((table)):::invalid\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nSpecies changes → filtered cache discarded → everything downstream is stale.\nfiltered() runs once. summary() runs once using the new filtered result. All four outputs update.",
+    "crumbs": [
+      "Home",
+      "Shiny reactivity"
+    ]
+  },
+  {
+    "objectID": "workshop/04-reactivity.html#the-chained-code",
+    "href": "workshop/04-reactivity.html#the-chained-code",
+    "title": "Shiny Reactivity",
+    "section": "The chained code",
+    "text": "The chained code\n@reactive.calc\n1def filtered():\n    return dat[dat[\"species\"].isin(input.species())]\n\n@reactive.calc\n2def summary():\n    return (\n        filtered()\n        .groupby(\"species\")[input.y()]\n        .agg(Mean=\"mean\", Median=\"median\", SD=\"std\")\n        .round(2)\n        .reset_index()\n    )\n\n@render.plot\ndef plot():\n    return ggplot(filtered(), aes(x=input.x(), y=input.y(), color=\"species\")) + ...\n\n@render.text\ndef count():\n    return f\"{len(filtered())} penguins selected\"\n\n@render.data_frame\ndef table():\n3    return summary()\n\n1\n\nFirst calc: filters rows\n\n2\n\nSecond calc: derives stats from filtered() — reads Y Axis too\n\n3\n\nTable only calls summary() — no filtering logic here",
     "crumbs": [
       "Home",
       "Shiny reactivity"
@@ -448,7 +525,7 @@
     "href": "workshop/04-reactivity.html#when-to-use-what",
     "title": "Shiny Reactivity",
     "section": "When to use what",
-    "text": "When to use what\n\n\n\n\n\n\n\nNeed\nTool\n\n\n\n\nFilter / transform data shared by multiple outputs\n@reactive.calc\n\n\nRespond to a button or event\n@reactive.effect\n\n\nStore mutable state\nreactive.value\n\n\nRender output\n@render.plot / @render.text / …",
+    "text": "When to use what\n\n\n\n\n\n\n\nNeed\nTool\n\n\n\n\nFilter / transform shared by multiple outputs\n@reactive.calc\n\n\nDerive from another calc (chain)\n@reactive.calc calling another calc\n\n\nTrigger side effects (write file, log, etc.)\n@reactive.effect\n\n\nStore mutable state\nreactive.value\n\n\nRender a plot / table / text\n@render.*",
     "crumbs": [
       "Home",
       "Shiny reactivity"
@@ -459,7 +536,7 @@
     "href": "workshop/04-reactivity.html#your-turn",
     "title": "Shiny Reactivity",
     "section": "Your turn",
-    "text": "Your turn\n\n\n\n\n\n\nTipExercise (~15 min)\n\n\n\nIn your app from the previous exercise:\n\nExtract the data filtering step into a @reactive.calc\nUse it in both a plot and a text output showing the filtered row count\nAdd an action button that resets the species selection",
+    "text": "Your turn\n\n\n\n\n\n\nTipExercise (~20 min)\n\n\n\nPart A — open code/app-03-reactivity.py:\n\nRun it and confirm the scatter plot and count update together\nAdd a print(\"filtering...\") inside filtered() — change Species and verify it prints only once\n\nPart B — open code/app-04-reactivity_chained.py:\n\nRun it and explore all three outputs (plot, count, table)\nChange Y Axis — notice count does not change (filtered is still cached)\nAdd a print to each calc to confirm which ones re-run for each input change",
     "crumbs": [
       "Home",
       "Shiny reactivity"
@@ -741,74 +818,116 @@
     "text": "Your turn\n\n\n\n\n\n\nExercise (~5 min)\n\n\n\nMake sure your app has a requirements.txt\nPush it to GitHub\nDeploy it to Posit Connect Cloud"
   },
   {
-    "objectID": "slides/04-reactivity.html#references",
-    "href": "slides/04-reactivity.html#references",
+    "objectID": "slides/04-reactivity.html#further-reading",
+    "href": "slides/04-reactivity.html#further-reading",
     "title": "Shiny Reactivity",
-    "section": "References",
-    "text": "References\n\nGordon Shotwell & Tracy Teal — Build Simple and Scalable Apps with Shiny | PyData NYC 2023\nJoe Cheng — Shiny: Data-centric web applications in Python | PyData Seattle 2023"
+    "section": "Further reading",
+    "text": "Further reading\n\nGordon Shotwell & Tracy Teal — Build Simple and Scalable Apps with Shiny | PyData NYC 2023\n\nSlides: https://github.com/gshotwell/shiny-algorithm\n\nJoe Cheng — Shiny: Data-centric web applications in Python | PyData Seattle 2023"
   },
   {
     "objectID": "slides/04-reactivity.html#what-makes-shiny-special",
     "href": "slides/04-reactivity.html#what-makes-shiny-special",
     "title": "Shiny Reactivity",
     "section": "What makes Shiny special?",
-    "text": "What makes Shiny special?\nReactivity.\n\nOutputs automatically update whenever their inputs change — without explicit event handling or manual refreshes.\n\n\nNo writing callbacks\nNo polling\nShiny tracks dependencies for you"
+    "text": "What makes Shiny special?\nReactivity — outputs update automatically when their inputs change, with no callbacks.\nThe reactive graph\nShiny builds and maintains a dependency graph for your app:\n\n\nRectangle\nReactive input\n\nHexagon\n@reactive.calc\n\nCircle\nReactive output"
   },
   {
-    "objectID": "slides/04-reactivity.html#the-reactive-graph",
-    "href": "slides/04-reactivity.html#the-reactive-graph",
+    "objectID": "slides/04-reactivity.html#the-apps-reactive-graph",
+    "href": "slides/04-reactivity.html#the-apps-reactive-graph",
     "title": "Shiny Reactivity",
-    "section": "The reactive graph",
-    "text": "The reactive graph\nEvery Shiny app has a reactive graph:\ninput.species()  ──►  plot()\ninput.bins()     ──►  plot()\n                 ──►  summary()\nWhen an input changes, only the outputs that depend on it re-execute."
+    "section": "The app’s reactive graph",
+    "text": "The app’s reactive graph\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  X[X Axis] --&gt; Pl((plot))\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2,3,4 display:none\n\n\n\n\n\n\n\n\nSpecies — checkbox group\nX Axis / Y Axis — dropdowns\nfiltered — @reactive.calc\nplot — @render.plot\ncount — @render.text"
   },
   {
-    "objectID": "slides/04-reactivity.html#problem-redundant-computation",
-    "href": "slides/04-reactivity.html#problem-redundant-computation",
+    "objectID": "slides/04-reactivity.html#shiny-is-lazy-nothing-runs-until-needed",
+    "href": "slides/04-reactivity.html#shiny-is-lazy-nothing-runs-until-needed",
     "title": "Shiny Reactivity",
-    "section": "Problem: redundant computation",
-    "text": "Problem: redundant computation\n@render.plot\ndef plot():\n    filtered = dat[dat[\"species\"] == input.species()]  # filters here\n    return ggplot(filtered, ...) + ...\n\n@render.text\ndef count():\n    filtered = dat[dat[\"species\"] == input.species()]  # filters again!\n    return f\"{len(filtered)} penguins\"\nThe filter runs twice every time input.species() changes."
+    "section": "Shiny is lazy — nothing runs until needed",
+    "text": "Shiny is lazy — nothing runs until needed\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  X[X Axis] --&gt; Pl((plot)):::active\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::active\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2,3,4 display:none\n\n\n\n\n\n\n\nBoth outputs need to render.\nShiny runs them and tracks every reactive value they read."
   },
   {
-    "objectID": "slides/04-reactivity.html#solution-reactive.calc",
-    "href": "slides/04-reactivity.html#solution-reactive.calc",
+    "objectID": "slides/04-reactivity.html#plot-and-count-both-read-filtered",
+    "href": "slides/04-reactivity.html#plot-and-count-both-read-filtered",
     "title": "Shiny Reactivity",
-    "section": "Solution: @reactive.calc",
-    "text": "Solution: @reactive.calc\nfrom shiny.express import input, render, ui\nfrom shiny import reactive\n\n1@reactive.calc\ndef filtered():\n    return dat[dat[\"species\"] == input.species()]\n\n@render.plot\ndef plot():\n2    return ggplot(filtered(), ...) + ...\n\n@render.text\ndef count():\n    return f\"{len(filtered())} penguins\"\n\n1\n\n@reactive.calc caches the result and only re-runs when its inputs change\n\n2\n\nCall it like a function — filtered() — to read the cached value"
+    "section": "plot and count both read filtered",
+    "text": "plot and count both read filtered\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}:::active\n  X[X Axis] --&gt; Pl((plot))\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  linkStyle 0,1,2 display:none\n\n\n\n\n\n\n\nfiltered() is called by both outputs.\nShiny runs it once, caches the result, and records:\n\nfiltered → plot\nfiltered → count"
   },
   {
-    "objectID": "slides/04-reactivity.html#reactive.calc-in-the-graph",
-    "href": "slides/04-reactivity.html#reactive.calc-in-the-graph",
+    "objectID": "slides/04-reactivity.html#filtered-reads-species-plot-reads-x-and-y",
+    "href": "slides/04-reactivity.html#filtered-reads-species-plot-reads-x-and-y",
     "title": "Shiny Reactivity",
-    "section": "@reactive.calc in the graph",
-    "text": "@reactive.calc in the graph\ninput.species()  ──►  filtered()  ──►  plot()\n                                   ──►  count()\nfiltered() runs once. Both outputs read from the cache."
+    "section": "filtered reads Species; plot reads X and Y",
+    "text": "filtered reads Species; plot reads X and Y\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}\n  X[X Axis]:::active --&gt; Pl((plot))\n  Y[Y Axis]:::active --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nAll dependencies recorded. The full graph is built.\nShiny now watches it — any change triggers only the affected branch."
   },
   {
-    "objectID": "slides/04-reactivity.html#reactive.value",
-    "href": "slides/04-reactivity.html#reactive.value",
+    "objectID": "slides/04-reactivity.html#species-changes-invalidation-cascades",
+    "href": "slides/04-reactivity.html#species-changes-invalidation-cascades",
     "title": "Shiny Reactivity",
-    "section": "reactive.value",
-    "text": "reactive.value\nStore arbitrary state that outputs can depend on:\ncount = reactive.value(0)\n\nui.input_action_button(\"btn\", \"Click me\")\n\n@reactive.effect\ndef _():\n    input.btn()          # take a dependency on the button\n    count.set(count() + 1)\n\n@render.text\ndef display():\n    return f\"Clicked {count()} times\""
+    "section": "Species changes — invalidation cascades",
+    "text": "Species changes — invalidation cascades\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid\n  X[X Axis] --&gt; Pl((plot)):::invalid\n  Y[Y Axis] --&gt; Pl\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::invalid\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nSpecies changes → filtered cache discarded → plot and count marked stale.\nX Axis and Y Axis are untouched — only the affected branch re-runs.\nfiltered() executes once. Both outputs share the new result."
   },
   {
-    "objectID": "slides/04-reactivity.html#reactive-rules",
-    "href": "slides/04-reactivity.html#reactive-rules",
+    "objectID": "slides/04-reactivity.html#the-problem-without-reactive.calc",
+    "href": "slides/04-reactivity.html#the-problem-without-reactive.calc",
     "title": "Shiny Reactivity",
-    "section": "Reactive rules",
-    "text": "Reactive rules\n\nRead a reactive value inside a reactive context → dependency is tracked\nWrite a reactive value → invalidates all dependents\nOutside a reactive context → reading a reactive value raises an error"
+    "section": "The problem without @reactive.calc",
+    "text": "The problem without @reactive.calc\n@render.plot\ndef plot():\n    sel = dat[dat[\"species\"].isin(input.species())]  # filter #1\n    return ggplot(sel, aes(x=input.x(), y=input.y(), color=\"species\")) + ...\n\n@render.text\ndef count():\n    sel = dat[dat[\"species\"].isin(input.species())]  # filter #2 — redundant!\n    return f\"{len(sel)} penguins selected\"\nSpecies changes → the filter runs twice. With more outputs this keeps getting worse."
+  },
+  {
+    "objectID": "slides/04-reactivity.html#the-solution-reactive.calc",
+    "href": "slides/04-reactivity.html#the-solution-reactive.calc",
+    "title": "Shiny Reactivity",
+    "section": "The solution: @reactive.calc",
+    "text": "The solution: @reactive.calc\nfrom shiny import reactive\n\n1@reactive.calc\ndef filtered():\n    return dat[dat[\"species\"].isin(input.species())]\n\n@render.plot\n2def plot():\n    return ggplot(filtered(), aes(x=input.x(), y=input.y(), color=\"species\")) + ...\n\n@render.text\ndef count():\n    return f\"{len(filtered())} penguins selected\"\n\n1\n\nfiltered() runs once per change and caches the result\n\n2\n\nBoth outputs call filtered() — they get the cached dataframe"
+  },
+  {
+    "objectID": "slides/04-reactivity.html#adding-a-second-calc-downstream",
+    "href": "slides/04-reactivity.html#adding-a-second-calc-downstream",
+    "title": "Shiny Reactivity",
+    "section": "Adding a second calc downstream",
+    "text": "Adding a second calc downstream\nWhat if we also want a summary table of per-species statistics?\nThe summary depends on:\n\nfiltered() — which rows to include\ninput.y() — which column to summarise\n\nRather than re-filtering inside the table render, we build a second calc that sits downstream of the first."
+  },
+  {
+    "objectID": "slides/04-reactivity.html#the-chained-reactive-graph",
+    "href": "slides/04-reactivity.html#the-chained-reactive-graph",
+    "title": "Shiny Reactivity",
+    "section": "The chained reactive graph",
+    "text": "The chained reactive graph\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}\n  Y[Y Axis] --&gt; Pl((plot))\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}\n  Fi --&gt; Pl\n  Fi --&gt; Co((count))\n  Fi --&gt; Su\n  Su --&gt; Ta((table))\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\n\nfiltered — species filter (as before)\nsummary — per-species stats for the selected Y column\ntable — @render.data_frame fed by summary\n\nsummary depends on both filtered and Y Axis."
+  },
+  {
+    "objectID": "slides/04-reactivity.html#y-axis-changes-surgical-invalidation",
+    "href": "slides/04-reactivity.html#y-axis-changes-surgical-invalidation",
+    "title": "Shiny Reactivity",
+    "section": "Y Axis changes — surgical invalidation",
+    "text": "Y Axis changes — surgical invalidation\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species] --&gt; Fi{{filtered}}:::cached\n  Y[Y Axis]:::active --&gt; Pl((plot)):::invalid\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}:::invalid\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::cached\n  Fi --&gt; Su\n  Su --&gt; Ta((table)):::invalid\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nY Axis changes → plot, summary, and table re-run.\nfiltered and count are unaffected — Species didn’t change, so that branch stays cached.\nShiny re-runs the minimum necessary."
+  },
+  {
+    "objectID": "slides/04-reactivity.html#species-changes-cascade-through-both-calcs",
+    "href": "slides/04-reactivity.html#species-changes-cascade-through-both-calcs",
+    "title": "Shiny Reactivity",
+    "section": "Species changes — cascade through both calcs",
+    "text": "Species changes — cascade through both calcs\n\n\n\n\n\n\n\nflowchart TD\n  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid\n  Y[Y Axis] --&gt; Pl((plot)):::invalid\n  X[X Axis] --&gt; Pl\n  Y --&gt; Su{{summary}}:::invalid\n  Fi --&gt; Pl\n  Fi --&gt; Co((count)):::invalid\n  Fi --&gt; Su\n  Su --&gt; Ta((table)):::invalid\n\n  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9\n  classDef active fill:#25C8EB,color:#090A28,font-weight:bold\n  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold\n  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold\n\n\n\n\n\n\n\nSpecies changes → filtered cache discarded → everything downstream is stale.\nfiltered() runs once. summary() runs once using the new filtered result. All four outputs update."
+  },
+  {
+    "objectID": "slides/04-reactivity.html#the-chained-code",
+    "href": "slides/04-reactivity.html#the-chained-code",
+    "title": "Shiny Reactivity",
+    "section": "The chained code",
+    "text": "The chained code\n@reactive.calc\n1def filtered():\n    return dat[dat[\"species\"].isin(input.species())]\n\n@reactive.calc\n2def summary():\n    return (\n        filtered()\n        .groupby(\"species\")[input.y()]\n        .agg(Mean=\"mean\", Median=\"median\", SD=\"std\")\n        .round(2)\n        .reset_index()\n    )\n\n@render.plot\ndef plot():\n    return ggplot(filtered(), aes(x=input.x(), y=input.y(), color=\"species\")) + ...\n\n@render.text\ndef count():\n    return f\"{len(filtered())} penguins selected\"\n\n@render.data_frame\ndef table():\n3    return summary()\n\n1\n\nFirst calc: filters rows\n\n2\n\nSecond calc: derives stats from filtered() — reads Y Axis too\n\n3\n\nTable only calls summary() — no filtering logic here"
   },
   {
     "objectID": "slides/04-reactivity.html#when-to-use-what",
     "href": "slides/04-reactivity.html#when-to-use-what",
     "title": "Shiny Reactivity",
     "section": "When to use what",
-    "text": "When to use what\n\n\n\n\n\n\n\nNeed\nTool\n\n\n\n\nFilter / transform data shared by multiple outputs\n@reactive.calc\n\n\nRespond to a button or event\n@reactive.effect\n\n\nStore mutable state\nreactive.value\n\n\nRender output\n@render.plot / @render.text / …"
+    "text": "When to use what\n\n\n\n\n\n\n\nNeed\nTool\n\n\n\n\nFilter / transform shared by multiple outputs\n@reactive.calc\n\n\nDerive from another calc (chain)\n@reactive.calc calling another calc\n\n\nTrigger side effects (write file, log, etc.)\n@reactive.effect\n\n\nStore mutable state\nreactive.value\n\n\nRender a plot / table / text\n@render.*"
   },
   {
     "objectID": "slides/04-reactivity.html#your-turn",
     "href": "slides/04-reactivity.html#your-turn",
     "title": "Shiny Reactivity",
     "section": "Your turn",
-    "text": "Your turn\n\n\n\n\n\n\nExercise (~15 min)\n\n\nIn your app from the previous exercise:\n\nExtract the data filtering step into a @reactive.calc\nUse it in both a plot and a text output showing the filtered row count\nAdd an action button that resets the species selection"
+    "text": "Your turn\n\n\n\n\n\n\nExercise (~20 min)\n\n\nPart A — open code/app-03-reactivity.py:\n\nRun it and confirm the scatter plot and count update together\nAdd a print(\"filtering...\") inside filtered() — change Species and verify it prints only once\n\nPart B — open code/app-04-reactivity_chained.py:\n\nRun it and explore all three outputs (plot, count, table)\nChange Y Axis — notice count does not change (filtered is still cached)\nAdd a print to each calc to confirm which ones re-run for each input change"
   },
   {
     "objectID": "slides/03-first_app.html#development-approach",

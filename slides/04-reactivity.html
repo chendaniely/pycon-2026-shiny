@@ -97,7 +97,7 @@
     code span.vs { color: #e6db74; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-a7f36eac688fa81a30f74a4aebf2403f.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-433cb3c9659b2a2abca66517e1bc242d.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XFPBQ3BZ6M"></script>
 
   <script type="text/javascript">
@@ -198,6 +198,9 @@
       margin-right: 0; 
     }
   </style>
+  <script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-dark">
   <div class="reveal">
@@ -210,102 +213,423 @@
 </div>
 
 </section>
-<section id="references" class="slide level2">
-<h2>References</h2>
+<section class="slide level2">
+
+<style>
+.nodeLabel > p { white-space: normal; }
+</style>
+</section>
+<section id="further-reading" class="slide level2">
+<h2>Further reading</h2>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=9RC8PobU5oQ">Gordon Shotwell &amp; Tracy Teal — Build Simple and Scalable Apps with Shiny | PyData NYC 2023</a></li>
+<li><a href="https://www.youtube.com/watch?v=9RC8PobU5oQ">Gordon Shotwell &amp; Tracy Teal — Build Simple and Scalable Apps with Shiny | PyData NYC 2023</a>
+<ul>
+<li>Slides: <a href="https://github.com/gshotwell/shiny-algorithm" class="uri">https://github.com/gshotwell/shiny-algorithm</a></li>
+</ul></li>
 <li><a href="https://www.youtube.com/watch?v=0ovCLxttJGE">Joe Cheng — Shiny: Data-centric web applications in Python | PyData Seattle 2023</a></li>
 </ul>
 </section>
 <section id="what-makes-shiny-special" class="slide level2">
 <h2>What makes Shiny special?</h2>
-<p><strong>Reactivity.</strong></p>
-<blockquote>
-<p>Outputs automatically update whenever their inputs change — without explicit event handling or manual refreshes.</p>
-</blockquote>
+<p><strong>Reactivity</strong> — outputs update automatically when their inputs change, with no callbacks.</p>
+<h3 id="the-reactive-graph">The reactive graph</h3>
+<p>Shiny builds and maintains a dependency graph for your app:</p>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><strong>Rectangle</strong></p>
+<p>Reactive input</p>
+</div><div class="column" style="width:33%;">
+<p><strong>Hexagon</strong></p>
+<p><code>@reactive.calc</code></p>
+</div><div class="column" style="width:33%;">
+<p><strong>Circle</strong></p>
+<p>Reactive output</p>
+</div></div>
+</section>
+<section class="slide level2">
+
+</section>
+<section>
+<section id="part-1-how-shiny-evaluates-your-app" class="title-slide slide level1 center">
+<h1>Part 1: How Shiny evaluates your app</h1>
+
+</section>
+<section id="the-apps-reactive-graph" class="slide level2">
+<h2>The app’s reactive graph</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Sp[Species] --&gt; Fi{{filtered}}
+  X[X Axis] --&gt; Pl((plot))
+  Y[Y Axis] --&gt; Pl
+  Fi --&gt; Pl
+  Fi --&gt; Co((count))
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  linkStyle 0,1,2,3,4 display:none
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
 <ul>
-<li>No writing callbacks</li>
-<li>No polling</li>
-<li>Shiny tracks dependencies for you</li>
+<li><strong>Species</strong> — checkbox group</li>
+<li><strong>X Axis / Y Axis</strong> — dropdowns</li>
+<li><strong>filtered</strong> — <code>@reactive.calc</code></li>
+<li><strong>plot</strong> — <code>@render.plot</code></li>
+<li><strong>count</strong> — <code>@render.text</code></li>
 </ul>
+</div></div>
 </section>
-<section id="the-reactive-graph" class="slide level2">
-<h2>The reactive graph</h2>
-<p>Every Shiny app has a reactive graph:</p>
-<pre><code>input.species()  ──►  plot()
-input.bins()     ──►  plot()
-                 ──►  summary()</code></pre>
-<p>When an input changes, only the outputs that depend on it re-execute.</p>
+<section id="shiny-is-lazy-nothing-runs-until-needed" class="slide level2">
+<h2>Shiny is lazy — nothing runs until needed</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Sp[Species] --&gt; Fi{{filtered}}
+  X[X Axis] --&gt; Pl((plot)):::active
+  Y[Y Axis] --&gt; Pl
+  Fi --&gt; Pl
+  Fi --&gt; Co((count)):::active
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  linkStyle 0,1,2,3,4 display:none
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Both outputs need to render.</p>
+<p>Shiny runs them and tracks every reactive value they read.</p>
+</div></div>
 </section>
-<section id="problem-redundant-computation" class="slide level2">
-<h2>Problem: redundant computation</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="at">@render.plot</span></span>
-<span id="cb2-2"><a></a><span class="kw">def</span> plot():</span>
-<span id="cb2-3"><a></a>    filtered <span class="op">=</span> dat[dat[<span class="st">"species"</span>] <span class="op">==</span> <span class="bu">input</span>.species()]  <span class="co"># filters here</span></span>
-<span id="cb2-4"><a></a>    <span class="cf">return</span> ggplot(filtered, ...) <span class="op">+</span> ...</span>
-<span id="cb2-5"><a></a></span>
-<span id="cb2-6"><a></a><span class="at">@render.text</span></span>
-<span id="cb2-7"><a></a><span class="kw">def</span> count():</span>
-<span id="cb2-8"><a></a>    filtered <span class="op">=</span> dat[dat[<span class="st">"species"</span>] <span class="op">==</span> <span class="bu">input</span>.species()]  <span class="co"># filters again!</span></span>
-<span id="cb2-9"><a></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(filtered)<span class="sc">}</span><span class="ss"> penguins"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The filter runs twice every time <code>input.species()</code> changes.</p>
+<section id="plot-and-count-both-read-filtered" class="slide level2">
+<h2>plot and count both read filtered</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Sp[Species] --&gt; Fi{{filtered}}:::active
+  X[X Axis] --&gt; Pl((plot))
+  Y[Y Axis] --&gt; Pl
+  Fi --&gt; Pl
+  Fi --&gt; Co((count))
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  linkStyle 0,1,2 display:none
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><code>filtered()</code> is called by both outputs.</p>
+<p>Shiny runs it <strong>once</strong>, caches the result, and records:</p>
+<ul>
+<li><strong>filtered → plot</strong></li>
+<li><strong>filtered → count</strong></li>
+</ul>
+</div></div>
 </section>
-<section id="solution-reactive.calc" class="slide level2">
-<h2>Solution: <code>@reactive.calc</code></h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-3"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
-<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2"></a><span class="im">from</span> shiny <span class="im">import</span> reactive</span>
-<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-4" class="code-annotation-target"><a href="#annotated-cell-3-4"></a><span class="at">@reactive.calc</span></span>
-<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5"></a><span class="kw">def</span> filtered():</span>
-<span id="annotated-cell-3-6"><a href="#annotated-cell-3-6"></a>    <span class="cf">return</span> dat[dat[<span class="st">"species"</span>] <span class="op">==</span> <span class="bu">input</span>.species()]</span>
-<span id="annotated-cell-3-7"><a href="#annotated-cell-3-7"></a></span>
-<span id="annotated-cell-3-8"><a href="#annotated-cell-3-8"></a><span class="at">@render.plot</span></span>
-<span id="annotated-cell-3-9"><a href="#annotated-cell-3-9"></a><span class="kw">def</span> plot():</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-10" class="code-annotation-target"><a href="#annotated-cell-3-10"></a>    <span class="cf">return</span> ggplot(filtered(), ...) <span class="op">+</span> ...</span>
-<span id="annotated-cell-3-11"><a href="#annotated-cell-3-11"></a></span>
-<span id="annotated-cell-3-12"><a href="#annotated-cell-3-12"></a><span class="at">@render.text</span></span>
-<span id="annotated-cell-3-13"><a href="#annotated-cell-3-13"></a><span class="kw">def</span> count():</span>
-<span id="annotated-cell-3-14"><a href="#annotated-cell-3-14"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(filtered())<span class="sc">}</span><span class="ss"> penguins"</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="filtered-reads-species-plot-reads-x-and-y" class="slide level2">
+<h2>filtered reads Species; plot reads X and Y</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Sp[Species]:::active --&gt; Fi{{filtered}}
+  X[X Axis]:::active --&gt; Pl((plot))
+  Y[Y Axis]:::active --&gt; Pl
+  Fi --&gt; Pl
+  Fi --&gt; Co((count))
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>All dependencies recorded. The full graph is built.</p>
+<p>Shiny now <strong>watches</strong> it — any change triggers only the affected branch.</p>
+</div></div>
+</section>
+<section id="species-changes-invalidation-cascades" class="slide level2">
+<h2>Species changes — invalidation cascades</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid
+  X[X Axis] --&gt; Pl((plot)):::invalid
+  Y[Y Axis] --&gt; Pl
+  Fi --&gt; Pl
+  Fi --&gt; Co((count)):::invalid
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Species changes → <strong>filtered</strong> cache discarded → <strong>plot</strong> and <strong>count</strong> marked stale.</p>
+<p>X Axis and Y Axis are untouched — only the affected branch re-runs.</p>
+<p><code>filtered()</code> executes <strong>once</strong>. Both outputs share the new result.</p>
+</div></div>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="part-2-sharing-an-intermediate-dataframe" class="title-slide slide level1 center">
+<h1>Part 2: Sharing an intermediate dataframe</h1>
+
+</section>
+<section id="the-problem-without-reactive.calc" class="slide level2">
+<h2>The problem without <code>@reactive.calc</code></h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="at">@render.plot</span></span>
+<span id="cb1-2"><a></a><span class="kw">def</span> plot():</span>
+<span id="cb1-3"><a></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #1</span></span>
+<span id="cb1-4"><a></a>    <span class="cf">return</span> ggplot(sel, aes(x<span class="op">=</span><span class="bu">input</span>.x(), y<span class="op">=</span><span class="bu">input</span>.y(), color<span class="op">=</span><span class="st">"species"</span>)) <span class="op">+</span> ...</span>
+<span id="cb1-5"><a></a></span>
+<span id="cb1-6"><a></a><span class="at">@render.text</span></span>
+<span id="cb1-7"><a></a><span class="kw">def</span> count():</span>
+<span id="cb1-8"><a></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #2 — redundant!</span></span>
+<span id="cb1-9"><a></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(sel)<span class="sc">}</span><span class="ss"> penguins selected"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Species changes → the filter runs <strong>twice</strong>. With more outputs this keeps getting worse.</p>
+</section>
+<section id="the-solution-reactive.calc" class="slide level2">
+<h2>The solution: <code>@reactive.calc</code></h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-2"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a><span class="im">from</span> shiny <span class="im">import</span> reactive</span>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3"></a><span class="at">@reactive.calc</span></span>
+<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4"></a><span class="kw">def</span> filtered():</span>
+<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5"></a>    <span class="cf">return</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]</span>
+<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6"></a></span>
+<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7"></a><span class="at">@render.plot</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-8" class="code-annotation-target"><a href="#annotated-cell-2-8"></a><span class="kw">def</span> plot():</span>
+<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9"></a>    <span class="cf">return</span> ggplot(filtered(), aes(x<span class="op">=</span><span class="bu">input</span>.x(), y<span class="op">=</span><span class="bu">input</span>.y(), color<span class="op">=</span><span class="st">"species"</span>)) <span class="op">+</span> ...</span>
+<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10"></a></span>
+<span id="annotated-cell-2-11"><a href="#annotated-cell-2-11"></a><span class="at">@render.text</span></span>
+<span id="annotated-cell-2-12"><a href="#annotated-cell-2-12"></a><span class="kw">def</span> count():</span>
+<span id="annotated-cell-2-13"><a href="#annotated-cell-2-13"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(filtered())<span class="sc">}</span><span class="ss"> penguins selected"</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="4" data-code-annotation="1"><code>@reactive.calc</code> caches the result and only re-runs when its inputs change</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="1"><code>filtered()</code> runs once per change and caches the result</span>
 </dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="10,14" data-code-annotation="2">Call it like a function — <code>filtered()</code> — to read the cached value</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="8,12" data-code-annotation="2">Both outputs call <code>filtered()</code> — they get the cached dataframe</span>
 </dd>
 </dl>
 </section>
-<section id="reactive.calc-in-the-graph" class="slide level2">
-<h2><code>@reactive.calc</code> in the graph</h2>
-<pre><code>input.species()  ──►  filtered()  ──►  plot()
-                                   ──►  count()</code></pre>
-<p><code>filtered()</code> runs once. Both outputs read from the cache.</p>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="part-3-chaining-reactive-calcs" class="title-slide slide level1 center">
+<h1>Part 3: Chaining reactive calcs</h1>
+
 </section>
-<section id="reactive.value" class="slide level2">
-<h2><code>reactive.value</code></h2>
-<p>Store arbitrary state that outputs can depend on:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>count <span class="op">=</span> reactive.value(<span class="dv">0</span>)</span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a>ui.input_action_button(<span class="st">"btn"</span>, <span class="st">"Click me"</span>)</span>
-<span id="cb4-4"><a></a></span>
-<span id="cb4-5"><a></a><span class="at">@reactive.effect</span></span>
-<span id="cb4-6"><a></a><span class="kw">def</span> _():</span>
-<span id="cb4-7"><a></a>    <span class="bu">input</span>.btn()          <span class="co"># take a dependency on the button</span></span>
-<span id="cb4-8"><a></a>    count.<span class="bu">set</span>(count() <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb4-9"><a></a></span>
-<span id="cb4-10"><a></a><span class="at">@render.text</span></span>
-<span id="cb4-11"><a></a><span class="kw">def</span> display():</span>
-<span id="cb4-12"><a></a>    <span class="cf">return</span> <span class="ss">f"Clicked </span><span class="sc">{</span>count()<span class="sc">}</span><span class="ss"> times"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="reactive-rules" class="slide level2">
-<h2>Reactive rules</h2>
+<section id="adding-a-second-calc-downstream" class="slide level2">
+<h2>Adding a second calc downstream</h2>
+<p>What if we also want a <strong>summary table</strong> of per-species statistics?</p>
+<p>The summary depends on:</p>
 <ul>
-<li>Read a reactive value inside a reactive context → dependency is tracked</li>
-<li>Write a reactive value → invalidates all dependents</li>
-<li>Outside a reactive context → reading a reactive value raises an error</li>
+<li><code>filtered()</code> — which rows to include</li>
+<li><code>input.y()</code> — which column to summarise</li>
 </ul>
+<p>Rather than re-filtering inside the table render, we build a <strong>second calc</strong> that sits downstream of the first.</p>
+</section>
+<section id="the-chained-reactive-graph" class="slide level2">
+<h2>The chained reactive graph</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Sp[Species] --&gt; Fi{{filtered}}
+  Y[Y Axis] --&gt; Pl((plot))
+  X[X Axis] --&gt; Pl
+  Y --&gt; Su{{summary}}
+  Fi --&gt; Pl
+  Fi --&gt; Co((count))
+  Fi --&gt; Su
+  Su --&gt; Ta((table))
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><strong>filtered</strong> — species filter (as before)</li>
+<li><strong>summary</strong> — per-species stats for the selected Y column</li>
+<li><strong>table</strong> — <code>@render.data_frame</code> fed by summary</li>
+</ul>
+<p><code>summary</code> depends on <strong>both</strong> filtered <em>and</em> Y Axis.</p>
+</div></div>
+</section>
+<section id="y-axis-changes-surgical-invalidation" class="slide level2">
+<h2>Y Axis changes — surgical invalidation</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Sp[Species] --&gt; Fi{{filtered}}:::cached
+  Y[Y Axis]:::active --&gt; Pl((plot)):::invalid
+  X[X Axis] --&gt; Pl
+  Y --&gt; Su{{summary}}:::invalid
+  Fi --&gt; Pl
+  Fi --&gt; Co((count)):::cached
+  Fi --&gt; Su
+  Su --&gt; Ta((table)):::invalid
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Y Axis changes → <strong>plot</strong>, <strong>summary</strong>, and <strong>table</strong> re-run.</p>
+<p><strong>filtered</strong> and <strong>count</strong> are unaffected — Species didn’t change, so that branch stays cached.</p>
+<p>Shiny re-runs the minimum necessary.</p>
+</div></div>
+</section>
+<section id="species-changes-cascade-through-both-calcs" class="slide level2">
+<h2>Species changes — cascade through both calcs</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid
+  Y[Y Axis] --&gt; Pl((plot)):::invalid
+  X[X Axis] --&gt; Pl
+  Y --&gt; Su{{summary}}:::invalid
+  Fi --&gt; Pl
+  Fi --&gt; Co((count)):::invalid
+  Fi --&gt; Su
+  Su --&gt; Ta((table)):::invalid
+
+  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
+  classDef active fill:#25C8EB,color:#090A28,font-weight:bold
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
+  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Species changes → <strong>filtered</strong> cache discarded → everything downstream is stale.</p>
+<p><code>filtered()</code> runs <strong>once</strong>. <code>summary()</code> runs <strong>once</strong> using the new filtered result. All four outputs update.</p>
+</div></div>
+</section>
+<section id="the-chained-code" class="slide level2">
+<h2>The chained code</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-3"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="at">@reactive.calc</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2"></a><span class="kw">def</span> filtered():</span>
+<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3"></a>    <span class="cf">return</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]</span>
+<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4"></a></span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5"></a><span class="at">@reactive.calc</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-6" class="code-annotation-target"><a href="#annotated-cell-3-6"></a><span class="kw">def</span> summary():</span>
+<span id="annotated-cell-3-7"><a href="#annotated-cell-3-7"></a>    <span class="cf">return</span> (</span>
+<span id="annotated-cell-3-8"><a href="#annotated-cell-3-8"></a>        filtered()</span>
+<span id="annotated-cell-3-9"><a href="#annotated-cell-3-9"></a>        .groupby(<span class="st">"species"</span>)[<span class="bu">input</span>.y()]</span>
+<span id="annotated-cell-3-10"><a href="#annotated-cell-3-10"></a>        .agg(Mean<span class="op">=</span><span class="st">"mean"</span>, Median<span class="op">=</span><span class="st">"median"</span>, SD<span class="op">=</span><span class="st">"std"</span>)</span>
+<span id="annotated-cell-3-11"><a href="#annotated-cell-3-11"></a>        .<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="annotated-cell-3-12"><a href="#annotated-cell-3-12"></a>        .reset_index()</span>
+<span id="annotated-cell-3-13"><a href="#annotated-cell-3-13"></a>    )</span>
+<span id="annotated-cell-3-14"><a href="#annotated-cell-3-14"></a></span>
+<span id="annotated-cell-3-15"><a href="#annotated-cell-3-15"></a><span class="at">@render.plot</span></span>
+<span id="annotated-cell-3-16"><a href="#annotated-cell-3-16"></a><span class="kw">def</span> plot():</span>
+<span id="annotated-cell-3-17"><a href="#annotated-cell-3-17"></a>    <span class="cf">return</span> ggplot(filtered(), aes(x<span class="op">=</span><span class="bu">input</span>.x(), y<span class="op">=</span><span class="bu">input</span>.y(), color<span class="op">=</span><span class="st">"species"</span>)) <span class="op">+</span> ...</span>
+<span id="annotated-cell-3-18"><a href="#annotated-cell-3-18"></a></span>
+<span id="annotated-cell-3-19"><a href="#annotated-cell-3-19"></a><span class="at">@render.text</span></span>
+<span id="annotated-cell-3-20"><a href="#annotated-cell-3-20"></a><span class="kw">def</span> count():</span>
+<span id="annotated-cell-3-21"><a href="#annotated-cell-3-21"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(filtered())<span class="sc">}</span><span class="ss"> penguins selected"</span></span>
+<span id="annotated-cell-3-22"><a href="#annotated-cell-3-22"></a></span>
+<span id="annotated-cell-3-23"><a href="#annotated-cell-3-23"></a><span class="at">@render.data_frame</span></span>
+<span id="annotated-cell-3-24"><a href="#annotated-cell-3-24"></a><span class="kw">def</span> table():</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-3-25" class="code-annotation-target"><a href="#annotated-cell-3-25"></a>    <span class="cf">return</span> summary()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="2" data-code-annotation="1">First calc: filters rows</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="6" data-code-annotation="2">Second calc: derives stats from <code>filtered()</code> — reads Y Axis too</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="25" data-code-annotation="3">Table only calls <code>summary()</code> — no filtering logic here</span>
+</dd>
+</dl>
 </section>
 <section id="when-to-use-what" class="slide level2">
 <h2>When to use what</h2>
@@ -322,20 +646,24 @@ input.bins()     ──►  plot()
 </thead>
 <tbody>
 <tr class="odd">
-<td>Filter / transform data shared by multiple outputs</td>
+<td>Filter / transform shared by multiple outputs</td>
 <td><code>@reactive.calc</code></td>
 </tr>
 <tr class="even">
-<td>Respond to a button or event</td>
-<td><code>@reactive.effect</code></td>
+<td>Derive from another calc (chain)</td>
+<td><code>@reactive.calc</code> calling another calc</td>
 </tr>
 <tr class="odd">
+<td>Trigger side effects (write file, log, etc.)</td>
+<td><code>@reactive.effect</code></td>
+</tr>
+<tr class="even">
 <td>Store mutable state</td>
 <td><code>reactive.value</code></td>
 </tr>
-<tr class="even">
-<td>Render output</td>
-<td><code>@render.plot</code> / <code>@render.text</code> / …</td>
+<tr class="odd">
+<td>Render a plot / table / text</td>
+<td><code>@render.*</code></td>
 </tr>
 </tbody>
 </table>
@@ -348,21 +676,26 @@ input.bins()     ──►  plot()
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Exercise (~15 min)</strong></p>
+<p><strong>Exercise (~20 min)</strong></p>
 </div>
 <div class="callout-content">
-<p>In your app from the previous exercise:</p>
+<p><strong>Part A</strong> — open <code>code/app-03-reactivity.py</code>:</p>
 <ol type="1">
-<li>Extract the data filtering step into a <code>@reactive.calc</code></li>
-<li>Use it in both a plot and a text output showing the filtered row count</li>
-<li>Add an action button that resets the species selection</li>
+<li>Run it and confirm the scatter plot and count update together</li>
+<li>Add a <code>print("filtering...")</code> inside <code>filtered()</code> — change Species and verify it prints only once</li>
+</ol>
+<p><strong>Part B</strong> — open <code>code/app-04-reactivity_chained.py</code>:</p>
+<ol type="1">
+<li>Run it and explore all three outputs (plot, count, table)</li>
+<li>Change Y Axis — notice count does <em>not</em> change (filtered is still cached)</li>
+<li>Add a <code>print</code> to each calc to confirm which ones re-run for each input change</li>
 </ol>
 </div>
 </div>
 </div>
 
 
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="https://us.pycon.org/2026/static/images/theme/sub-logo-full.94351d59d82e.svg" class="slide-logo"></p>
