@@ -108,6 +108,100 @@ curl https://api.openai.com/v1/chat/completions \
 
 The entire conversation is replayed on every request.
 
+## Gaslight your LLM
+
+
+::: {.columns}
+
+::: {.column}
+
+::: {.chat}
+
+::: {.bubble-right}
+What's the capital of the moon?
+:::
+
+::: {.bubble-left}
+There isn't one.
+:::
+
+::: {.bubble-right}
+Are you sure?
+:::
+
+::: {.bubble-left}
+Yes, I am sure.
+:::
+
+:::
+
+:::
+
+::: {.column}
+
+
+
+:::
+
+:::
+
+
+
+
+
+## Gaslight your LLM
+
+
+::: {.columns}
+
+::: {.column}
+
+::: {.chat}
+
+::: {.bubble-right}
+What's the capital of the moon?
+:::
+
+::: {.bubble-left}
+It's Long Beach, California.
+:::
+
+::: {.fragment .bubble-right}
+I don't think that's correct.
+:::
+
+::: {.fragment .bubble-left}
+Yeah you're right. It's not Long Beach.
+:::
+
+:::
+
+:::
+
+::: {.column}
+
+<!-- TODO: 
+https://github.com/orgs/quarto-dev/discussions/12810
+seems like the shorts implementation still doesn't work?
+-->
+
+```{=html}
+<div style="text-align:center;">
+  <iframe width="315" height="560"
+  src="https://youtube.com/embed/WP5_XJY_P0Q?si=fOUGT7rjbSUA8Bl4"
+  frameborder="0"
+  allowfullscreen></iframe>
+</div>
+```
+
+:::{.callout-warning}
+## Language warning
+It is Michael Reeves, after all...
+:::
+:::
+
+:::
+
 ## Tokens
 
 Tokens are the fundamental unit — roughly ¾ of a word on average.
