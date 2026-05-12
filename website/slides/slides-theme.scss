@@ -90,6 +90,36 @@ $selection-color: #FFFFFF;
   opacity: 0.6;
 }
 
+// Shinylive — reset to light mode inside the dark slide theme
+.reveal .shinylive-wrapper {
+  color-scheme: light;
+  color: #212529;
+  background-color: #ffffff;
+}
+.reveal .shinylive-wrapper .cm-editor {
+  background-color: #ffffff !important;
+}
+.reveal .shinylive-wrapper .cm-content,
+.reveal .shinylive-wrapper .cm-line {
+  color: #212529 !important;
+}
+.reveal .shinylive-wrapper .cm-gutters {
+  background-color: #f8f9fa !important;
+  color: #6c757d !important;
+}
+.reveal .shinylive-wrapper .cm-lineNumbers .cm-gutterElement {
+  color: #6c757d !important;
+}
+.reveal .shinylive-wrapper .shinylive-header,
+.reveal .shinylive-wrapper [class*="header"] {
+  background-color: #f8f9fa !important;
+  color: #212529 !important;
+  border-color: #dee2e6 !important;
+}
+.reveal .shinylive-wrapper button {
+  color: #212529 !important;
+}
+
 // Title slide — overlay text on background image
 $title-font-size: 2.2em;
 $subtitle-font-size: 1.2em;
