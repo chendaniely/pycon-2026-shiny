@@ -36,23 +36,26 @@ Goal: demystify the API so you can wire one into a Shiny app.
 
 ## Example conversation
 
-::: {style="text-align: right;"}
-"What's the capital of the moon?"
+::: {.chat}
+
+::: {.bubble-right}
+What's the capital of the moon?
 :::
 
-. . .
-
-`"There isn't one."`
-
-. . .
-
-::: {style="text-align: right;"}
-"Are you sure?"
+::: {.fragment .bubble-left}
+There isn't one.
 :::
 
-. . .
+::: {.fragment .bubble-right}
+Are you sure?
+:::
 
-`"Yes, I am sure."`
+::: {.fragment .bubble-left}
+Yes, I am sure.
+:::
+
+:::
+
 
 ## Example request
 

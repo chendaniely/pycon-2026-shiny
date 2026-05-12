@@ -71,3 +71,6 @@ custom-callout:
 filters:
   - shinylive
   - custom-callout
+
+revealjs-plugins:
+  - chat-bubbles

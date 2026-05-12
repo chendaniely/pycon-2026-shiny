@@ -25,4 +25,5 @@ setup-quarto:
 	cd website && quarto add coatless-quarto/embedio --no-prompt
 	cd website && quarto add quarto-ext/shinylive --no-prompt
 	cd website && quarto add coatless-quarto/custom-callout --no-prompt
+	cd website && quarto add EmilHvitfeldt/quarto-revealjs-chat-bubbles --no-prompt
 
