@@ -56,10 +56,11 @@ Shiny lets you build reactive web apps without worrying about:
 ## Shiny Express vs Shiny Core
 
 ::: {.callout-important}
-Shiny for Python has two syntaxes for writing the same apps:
+Shiny for Python has two syntaxes for writing the same apps.
+There is full feature parody between the 2 syntax modes.
 
-1. **Shiny Express** — lightweight, great for quick exploration and teaching
-2. **Shiny Core** — more explicit, closer to Shiny for R
+1. **Shiny Express** — simpler syntax (think Streamlit)
+2. **Shiny Core** — more explicit, closer to Shiny for R and Dash
 :::
 
 Today we'll use **Shiny Express**.
