@@ -38,6 +38,11 @@ When you change a value cell, only the formula cells that depend on it recalcula
 
 Shiny works the same way.
 
+### Other reactive tools
+
+- Pluto Notebooks: <https://plutojl.org//>
+- Marimo Notebooks: <https://marimo.io/>
+
 ## Key features
 
 - Easy enough for prototypes
@@ -59,8 +64,8 @@ Shiny lets you build reactive web apps without worrying about:
 Shiny for Python has two syntaxes for writing the same apps.
 There is full feature parody between the 2 syntax modes.
 
-1. **Shiny Express** — simpler syntax (think Streamlit)
-2. **Shiny Core** — more explicit, closer to Shiny for R and Dash
+1. **Shiny Express** — simpler syntax (think [Streamlit](https://streamlit.io/))
+2. **Shiny Core** — more explicit, closer to [Shiny for R](https://shiny.posit.co/) and [Dash](https://dash.plotly.com/)
 :::
 
 Today we'll use **Shiny Express**.
@@ -73,4 +78,6 @@ shiny run app.py
 
 Or in Positron / VS Code: click the **Run App** button in the editor toolbar.
 
-Open <http://127.0.0.1:8000> in your browser.
+Open URL:Port (e.g., <http://127.0.0.1:8000>) in your browser.
+
+![](/img/positron-shiny-run-annotated.png)
