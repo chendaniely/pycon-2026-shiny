@@ -3,11 +3,6 @@ title: "Show off your data"
 subtitle: "Interactive dashboards in Python"
 ---
 
-:::{.callout-caution}
-This tutorials site is still a work in progress.
-Thanks to those who are checking it out early!
-:::
-
 📅 Thursday, May 14th\
 🕘 9 a.m.–12:30 p.m\
 🏢 Room 102A\
