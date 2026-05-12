@@ -282,6 +282,28 @@
     ]
   },
   {
+    "objectID": "workshop/07-ai_primer.html#gaslight-your-llm",
+    "href": "workshop/07-ai_primer.html#gaslight-your-llm",
+    "title": "An AI + LLM Primer",
+    "section": "Gaslight your LLM",
+    "text": "Gaslight your LLM\n\n\n\n\nWhat’s the capital of the moon?\n\n\nThere isn’t one.\n\n\nAre you sure?\n\n\nYes, I am sure.",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
+  },
+  {
+    "objectID": "workshop/07-ai_primer.html#gaslight-your-llm-1",
+    "href": "workshop/07-ai_primer.html#gaslight-your-llm-1",
+    "title": "An AI + LLM Primer",
+    "section": "Gaslight your LLM",
+    "text": "Gaslight your LLM\n\n\n\n\nWhat’s the capital of the moon?\n\n\nIt’s Long Beach, California.\n\n\nI don’t think that’s correct.\n\n\nYeah you’re right. It’s not Long Beach.\n\n\n\n\n\n  \n\n\n\n\n\n\n\nWarningLanguage warning\n\n\n\nIt is Michael Reeves, after all…",
+    "crumbs": [
+      "Home",
+      "An AI + LLM primer"
+    ]
+  },
+  {
     "objectID": "workshop/07-ai_primer.html#tokens",
     "href": "workshop/07-ai_primer.html#tokens",
     "title": "An AI + LLM Primer",
@@ -656,6 +678,20 @@
     "title": "An AI + LLM Primer",
     "section": "Follow-up request: full history is resent",
     "text": "Follow-up request: full history is resent\n  \"messages\": [\n    {\"role\": \"system\",    \"content\": \"You are a terse assistant.\"},\n    {\"role\": \"user\",      \"content\": \"What is the capital of the moon?\"},\n    {\"role\": \"assistant\", \"content\": \"The moon does not have a capital.\"},\n    {\"role\": \"user\",      \"content\": \"Are you sure?\"}\n  ]\nThe entire conversation is replayed on every request."
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#gaslight-your-llm",
+    "href": "slides/07-ai_primer.html#gaslight-your-llm",
+    "title": "An AI + LLM Primer",
+    "section": "Gaslight your LLM",
+    "text": "Gaslight your LLM\n\n\n\n\nWhat’s the capital of the moon?\n\n\nThere isn’t one.\n\n\nAre you sure?\n\n\nYes, I am sure."
+  },
+  {
+    "objectID": "slides/07-ai_primer.html#gaslight-your-llm-1",
+    "href": "slides/07-ai_primer.html#gaslight-your-llm-1",
+    "title": "An AI + LLM Primer",
+    "section": "Gaslight your LLM",
+    "text": "Gaslight your LLM\n\n\n\n\nWhat’s the capital of the moon?\n\n\nIt’s Long Beach, California.\n\n\nI don’t think that’s correct.\n\n\nYeah you’re right. It’s not Long Beach.\n\n\n\n\n\n  \n\n\n\n\n\n\n\nLanguage warning\n\n\nIt is Michael Reeves, after all…"
   },
   {
     "objectID": "slides/07-ai_primer.html#tokens",

@@ -315,6 +315,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <li><a href="#example-request" id="toc-example-request" class="nav-link" data-scroll-target="#example-request">Example request</a></li>
   <li><a href="#example-response-abridged" id="toc-example-response-abridged" class="nav-link" data-scroll-target="#example-response-abridged">Example response (abridged)</a></li>
   <li><a href="#follow-up-request-full-history-is-resent" id="toc-follow-up-request-full-history-is-resent" class="nav-link" data-scroll-target="#follow-up-request-full-history-is-resent">Follow-up request: full history is resent</a></li>
+  <li><a href="#gaslight-your-llm" id="toc-gaslight-your-llm" class="nav-link" data-scroll-target="#gaslight-your-llm">Gaslight your LLM</a></li>
+  <li><a href="#gaslight-your-llm-1" id="toc-gaslight-your-llm-1" class="nav-link" data-scroll-target="#gaslight-your-llm-1">Gaslight your LLM</a></li>
   <li><a href="#tokens" id="toc-tokens" class="nav-link" data-scroll-target="#tokens">Tokens</a></li>
   <li><a href="#providers" id="toc-providers" class="nav-link" data-scroll-target="#providers">Providers</a></li>
   <li><a href="#github-models-recommended-for-today" id="toc-github-models-recommended-for-today" class="nav-link" data-scroll-target="#github-models-recommended-for-today">GitHub Models (recommended for today)</a></li>
@@ -459,6 +461,71 @@ Warning
 <span id="cb3-5"><a href="#cb3-5"></a>    <span class="ex">{</span><span class="st">"role"</span><span class="ex">:</span> <span class="st">"user"</span>,      <span class="st">"content"</span>: <span class="st">"Are you sure?"</span>}</span>
 <span id="cb3-6"><a href="#cb3-6"></a>  <span class="ex">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The entire conversation is replayed on every request.</p>
+</section>
+<section id="gaslight-your-llm" class="level2">
+<h2 class="anchored" data-anchor-id="gaslight-your-llm">Gaslight your LLM</h2>
+<div class="columns">
+<div class="column">
+<div class="chat">
+<div class="bubble-right">
+<p>What’s the capital of the moon?</p>
+</div>
+<div class="bubble-left">
+<p>There isn’t one.</p>
+</div>
+<div class="bubble-right">
+<p>Are you sure?</p>
+</div>
+<div class="bubble-left">
+<p>Yes, I am sure.</p>
+</div>
+</div>
+</div><div class="column">
+
+</div>
+</div>
+</section>
+<section id="gaslight-your-llm-1" class="level2">
+<h2 class="anchored" data-anchor-id="gaslight-your-llm-1">Gaslight your LLM</h2>
+<div class="columns">
+<div class="column">
+<div class="chat">
+<div class="bubble-right">
+<p>What’s the capital of the moon?</p>
+</div>
+<div class="bubble-left">
+<p>It’s Long Beach, California.</p>
+</div>
+<div class="fragment bubble-right">
+<p>I don’t think that’s correct.</p>
+</div>
+<div class="fragment bubble-left">
+<p>Yeah you’re right. It’s not Long Beach.</p>
+</div>
+</div>
+</div><div class="column">
+<!-- TODO: 
+https://github.com/orgs/quarto-dev/discussions/12810
+seems like the shorts implementation still doesn't work?
+-->
+<div style="text-align:center;">
+  <iframe width="315" height="560" src="https://youtube.com/embed/WP5_XJY_P0Q?si=fOUGT7rjbSUA8Bl4" frameborder="0" allowfullscreen=""></iframe>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Language warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is Michael Reeves, after all…</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="tokens" class="level2">
 <h2 class="anchored" data-anchor-id="tokens">Tokens</h2>
