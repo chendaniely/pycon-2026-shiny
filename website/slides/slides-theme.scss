@@ -90,34 +90,51 @@ $selection-color: #FFFFFF;
   opacity: 0.6;
 }
 
-// Shinylive — reset to light mode inside the dark slide theme
-.reveal .shinylive-wrapper {
-  color-scheme: light;
-  color: #212529;
-  background-color: #ffffff;
+// Shinylive — light-mode island inside the dark slide theme
+
+// Outer containers
+.reveal .shinylive-wrapper,
+.reveal .shinylive-container {
+  color-scheme: light !important;
+  background-color: #ffffff !important;
+  color: #212529 !important;
 }
+
+// Left side: CodeMirror editor backgrounds (leave token span colors alone)
 .reveal .shinylive-wrapper .cm-editor {
   background-color: #ffffff !important;
 }
 .reveal .shinylive-wrapper .cm-content,
 .reveal .shinylive-wrapper .cm-line {
+  background-color: #ffffff !important;
   color: #212529 !important;
 }
-.reveal .shinylive-wrapper .cm-gutters {
+.reveal .shinylive-wrapper .cm-gutters,
+.reveal .shinylive-wrapper .cm-lineNumbers .cm-gutterElement {
   background-color: #f8f9fa !important;
   color: #6c757d !important;
 }
-.reveal .shinylive-wrapper .cm-lineNumbers .cm-gutterElement {
-  color: #6c757d !important;
-}
-.reveal .shinylive-wrapper .shinylive-header,
-.reveal .shinylive-wrapper [class*="header"] {
+
+// Headers and toolbar buttons (both sides)
+.reveal .shinylive-wrapper [class*="header"],
+.reveal .shinylive-wrapper [class*="toolbar"],
+.reveal .shinylive-wrapper button {
   background-color: #f8f9fa !important;
   color: #212529 !important;
   border-color: #dee2e6 !important;
 }
-.reveal .shinylive-wrapper button {
+
+// Right side: output/viewer pane — set color-scheme only, don't override child colors
+.reveal div.output-content {
+  color-scheme: light !important;
+  background-color: #ffffff !important;
   color: #212529 !important;
+}
+
+// App output iframe
+.reveal iframe.app-frame {
+  background-color: #ffffff !important;
+  color-scheme: light !important;
 }
 
 // Title slide — overlay text on background image
