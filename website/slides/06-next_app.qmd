@@ -12,26 +12,27 @@ Real dashboards have:
 - Multiple coordinated outputs
 - Summary statistics (value boxes)
 - Shared reactive computations
+## Example application
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| layout: vertical
+#| viewerHeight: 600
+
+{{< include /../code/demos/app-05-tips.py >}}
+
+## file: requirements.txt
+ridgeplot
+```
 
 ## Layout components
 
 ```python
-from shiny.express import input, render, ui
-
-ui.page_opts(title="Tips Dashboard", fillable=True)
-
-with ui.sidebar():
-    ui.input_slider("bill", "Max bill ($)", 3, 50, 25)
-    ui.input_checkbox_group("time", "Meal", ["Lunch", "Dinner"],
-                            selected=["Lunch", "Dinner"])
-
-with ui.layout_columns():
-    with ui.card():
-        ...  # output 1
-
-    with ui.card():
-        ...  # output 2
+{{< include /../code/demos/app-05a-tips-layout.py >}}
 ```
+
+
 
 ## Value boxes
 

@@ -15,9 +15,16 @@ The Python process runs your code and sends results back to the browser.
 
 Each Shiny app consists of:
 
-1. **Inputs** — widgets the user can interact with (sliders, dropdowns, checkboxes, ...)
-2. **Outputs** — things Shiny renders and displays (plots, tables, text, ...)
-3. **Instructions** — your code that builds outputs from inputs
+## Example application
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 600
+
+{{< include /../code/demos/app-01-intro.py >}}
+```
+
 
 ## Reactivity
 

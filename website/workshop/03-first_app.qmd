@@ -21,7 +21,7 @@ title: "Your First Application"
 #| components: [editor, viewer]
 #| viewerHeight: 520
 
-{{< include /../code/app-01-intro.py >}}
+{{< include /../code/demos/app-01-intro.py >}}
 
 ```
 
@@ -30,7 +30,7 @@ title: "Your First Application"
 #| components: [editor, viewer]
 #| viewerHeight: 520
 
-{{< include /../code/app-02-intro_ui.py >}}
+{{< include /../code/demos/app-02-intro_ui.py >}}
 
 ```
 

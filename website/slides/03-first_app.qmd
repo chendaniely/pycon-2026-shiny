@@ -114,5 +114,5 @@ Shiny tracked both dependencies automatically.
 #| standalone: true
 #| components: [editor, viewer]
 
-{{< include /../code/app-01-intro.py >}}
+{{< include /../code/demos/app-01-intro.py >}}
 ```

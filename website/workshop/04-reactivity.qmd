@@ -22,7 +22,7 @@ title: "Shiny Reactivity"
 #| standalone: true
 #| components: [editor, viewer]
 
-{{< include /../code/app-03-reactivity.py >}}
+{{< include /../code/demos/app-03-reactivity.py >}}
 ```
 
 :::
@@ -38,7 +38,7 @@ Change **Y Axis** and watch the count stay unchanged — `filtered()` is still c
 #| standalone: true
 #| components: [editor, viewer]
 
-{{< include /../code/app-04-reactivity_chained.py >}}
+{{< include /../code/demos/app-04-reactivity_chained.py >}}
 ```
 
 :::
