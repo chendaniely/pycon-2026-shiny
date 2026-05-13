@@ -4,11 +4,31 @@ title: "Welcome"
 
 ## Get your computer ready
 
-If you haven't done so, please have your computer set up for this workshop:
+
+::: {.columns}
+
+::: {.column}
+
+### Installation
 
 <https://chendaniely.github.io/pycon-2026-shiny/setup.html>
 
 ![](/img/qr-setup.png){width="350px" fig-align="center"}
+
+:::
+
+::: {.column}
+
+### Wifi
+
+SSID: `PyConUS26`\
+Password: `pyconLB2026`\
+![](/img/wifi.jpg)
+
+:::
+
+:::
+
 
 ## Today's goal
 
