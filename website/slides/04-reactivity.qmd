@@ -1,5 +1,7 @@
 ---
 title: "Shiny Reactivity"
+execute: 
+  echo: false
 ---
 
 ## Further reading
@@ -222,7 +224,7 @@ def count():            # <2>
     return f"{len(filtered())} penguins selected"
 ```
 
-1. `filtered()` runs once per change and caches the result
+1. `@reactive.calc` allows you to create `filtered()` - it runs once per change and caches the result
 2. Both outputs call `filtered()` — they get the cached dataframe
 
 ---
