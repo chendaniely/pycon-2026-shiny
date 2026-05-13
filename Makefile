@@ -26,4 +26,7 @@ setup-quarto:
 	cd website && quarto add quarto-ext/shinylive --no-prompt
 	cd website && quarto add coatless-quarto/custom-callout --no-prompt
 	cd website && quarto add EmilHvitfeldt/quarto-revealjs-chat-bubbles --no-prompt
-
+	cd website && quarto add quarto-ext/pointer --no-prompt
+	cd website && quarto add quarto-ext/include-code-files --no-prompt
+	cd website && quarto add mcanouil/quarto-revealjs-cascade@0.3.2 --no-prompt
+	cd website && quarto add mcanouil/quarto-revealjs-a11y@0.1.1 --no-prompt

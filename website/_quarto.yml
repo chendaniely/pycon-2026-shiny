@@ -66,6 +66,8 @@ format:
     highlight-style: monokai
     css: styles.css
     toc: true
+    anchor-sections: true
+
 
 custom-callout:
   exercise:
@@ -77,6 +79,4 @@ custom-callout:
 filters:
   - shinylive
   - custom-callout
-
-revealjs-plugins:
-  - chat-bubbles
+  - include-code-files
