@@ -117,3 +117,32 @@ Use an LLM to drive filters in a dashboard via natural language:
 - Dashboard updates reactively
 
 Template: `shiny create --mode core --github jcheng5/py-databot`
+
+## SQL is a great communication layer
+
+Upcoming tool: ggsql <https://ggsql.org/>
+
+Trt it: <https://ggsql.org/wasm/>
+
+
+::: {.columns}
+
+::: {.column}
+
+```
+VISUALISE FROM ggsql:penguins
+DRAW point
+    MAPPING
+      bill_dep AS x,
+      body_mass AS y,
+      species AS color
+```
+
+:::
+
+::: {.column}
+![](/img/ggsql-example.png)
+
+:::
+
+:::
