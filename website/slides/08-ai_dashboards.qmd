@@ -7,8 +7,8 @@ title: "AI + LLM Dashboards"
 Three patterns, increasing complexity:
 
 1. **Chat interface** — a conversational UI (`shinychat`)
-2. **Data chat** — query your dataframe with natural language (`querychat`)
-3. **Tool calling** — let the LLM take actions in your app
+2. **Tool calling** — let the LLM take actions in your app
+3. **Data chat** — query your dataframe with natural language (`querychat`)
 
 ## shinychat
 
@@ -81,33 +81,6 @@ querychat.chat_server("chat", qc)
 querychat.dataframe_server("df", qc)
 ```
 
-## Your turn
-
-::: {.callout-tip}
-## Exercise (~15 min)
-
-1. Run the `shinychat` example and chat with it
-2. Modify the system prompt to make it an expert on a specific topic
-3. Try the `querychat` example with a dataset of your choice
-4. **Stretch**: swap the model to an Ollama local model and compare responses
-:::
-
-## Tool calling
-
-LLMs can call functions in your code:
-
-```python
-def get_weather(city: str) -> str:
-    """Get the current weather for a city."""
-    ...  # call a weather API
-
-chat = ChatGithub(model="gpt-4.1")
-chat.register_tool(get_weather)
-chat.chat("What's the weather in Long Beach?")
-```
-
-The LLM decides when to call the tool and what arguments to pass.
-
 ## Sidebot pattern
 
 Use an LLM to drive filters in a dashboard via natural language:
@@ -118,11 +91,23 @@ Use an LLM to drive filters in a dashboard via natural language:
 
 Template: `shiny create --mode core --github jcheng5/py-databot`
 
+## Demo: LLMs + Chat
+
+Generative AI shiny templates: <https://shiny.posit.co/py/templates/#generative-ai>
+
+- <https://shiny.posit.co/py/templates/basic-chatbot/>
+- <https://shiny.posit.co/py/templates/querychat/>
+- <https://shiny.posit.co/py/templates/sidebot/>
+
+## Exercise
+
 ## SQL is a great communication layer
 
 Upcoming tool: ggsql <https://ggsql.org/>
 
 Trt it: <https://ggsql.org/wasm/>
+
+See also: Querychat + Vis docs: <https://posit-dev.github.io/querychat/py/visualize.html>
 
 
 ::: {.columns}

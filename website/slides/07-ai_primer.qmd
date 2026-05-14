@@ -237,7 +237,7 @@ Docs: <https://docs.github.com/en/github-models>
 `chatlas` is a unified Python interface to all major LLM providers:
 
 ```python
-from chatlas import ChatOpenAI, ChatAnthropic, ChatGoogleGemini, ChatGithub
+from chatlas import ChatOpenAI, ChatAnthropic, ChatGoogle, ChatGithub, ChatOllama, ChatHuggingFace
 
 chat = ChatGithub(model="gpt-4.1")
 chat.chat("What is the capital of France?")
@@ -245,12 +245,25 @@ chat.chat("What is the capital of France?")
 
 Same API regardless of provider — swap one line to switch models.
 
-## Your turn
+## Demo: Tool calling
 
-::: {.callout-tip}
-## Exercise (~10 min)
+LLMs can call functions in your code:
 
-1. Set your `GITHUB_TOKEN` environment variable
-2. Use `chatlas` to ask an LLM a question from a Python script
-3. Try switching to a different model or provider
-:::
+```python
+def pycon_locations(year: int) -> str:
+    match year:
+        case 2027:
+            return "The Moon"
+        case 2026:
+            return "New York City"
+        case 2025:
+            return "Vancouver, BC"
+
+chat = ChatGithub(model="gpt-5")
+
+chat.register_tool(pycon_locations)
+
+chat.chat("Where is PyCon US 2027 being held?")
+```
+
+The LLM decides when to call the tool and what arguments to pass.

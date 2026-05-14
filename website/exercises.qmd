@@ -166,3 +166,44 @@ def reset_filters():
 ```
 
 :::
+
+
+## Exercise 5 - AI Dashboards {#ex5}
+
+Let's start from the solution in the previous exercise
+`code/exercise_solutions/app-ex04-button.py`.
+You can find the original code in the [repository](https://github.com/chendaniely/pycon-2026-shiny/tree/main/code/exercise_solutions).
+
+We are going to convert this app from having multiple filters into an AI Chatbot using `querychat`.
+
+1. Import the querychat library and create the `QueryChat` object using the existing `tips` dataset
+
+```python
+from querychat.express import QueryChat
+
+qc = QueryChat(tips, "tips", client="github/gpt-4.1")
+```
+
+2. Replace all the sidebar UI elements with the filters (including button) with the querychat sidebar
+
+```python
+qc.sidebar()
+```
+
+3. Finally, replace the filtered dataframe object with the filtered dataframe returned from querychat
+
+```python
+qc.df()
+```
+
+::: {.callout-note collapse="true"}
+## Solution 4
+
+Will not work in shinylive, run locally.
+
+```{.python}
+
+{{< include /../code/exercise_solutions/app-ex05-querychat.py >}}
+```
+
+:::

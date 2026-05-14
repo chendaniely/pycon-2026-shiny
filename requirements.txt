@@ -24,8 +24,10 @@ faicons
 shinywidgets
 
 # data & visualization
+altair
 pandas
 plotly
+ridgeplot
 seaborn
 
 # testing

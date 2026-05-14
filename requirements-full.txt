@@ -1,11 +1,9 @@
 -r requirements.txt
 
 # heavy data processing
-altair
 ibis-framework[duckdb,examples,polars]
 narwhals
 polars
-ridgeplot
 
 # AI
 anthropic[bedrock]
@@ -19,4 +17,3 @@ tokenizers
 
 # testing & media
 pillow
-
