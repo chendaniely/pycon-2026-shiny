@@ -15,6 +15,12 @@ title: "Welcome"
 
 ![](/img/qr-setup.png){width="350px" fig-align="center"}
 
+If you cloned the repository and did the installation update your materials with:
+
+```bash
+git pull origin main
+```
+
 :::
 
 ::: {.column}
@@ -49,19 +55,7 @@ Have you used...
 
 ## Agenda
 
-| Time  | Topic |
-|-------|-------|
-| 9:00  | Welcome + Introduction |
-| 9:10  | Introduction to Shiny |
-| 9:20  | Your first application |
-| 9:50  | Shiny reactivity |
-| 10:20 | Deploying your application |
-| 10:30 | ☕ Coffee + Tea Break |
-| 11:00 | Your next application |
-| 11:30 | An AI + LLM Primer |
-| 11:50 | AI + LLM dashboards |
-| 12:10 | Testing |
-| 12:20 | Wrap up + Feedback Survey |
+{{< include /_schedule.qmd >}}
 
 ## House rules
 
@@ -77,4 +71,4 @@ TODO: fill this out
 
 - Bathrooms:
     - Gender-neutral:
-- This room: 
+- This room: Room 102A
