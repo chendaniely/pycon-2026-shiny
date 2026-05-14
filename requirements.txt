@@ -32,3 +32,5 @@ seaborn
 
 # testing
 playwright
+pytest
+pytest-playwright

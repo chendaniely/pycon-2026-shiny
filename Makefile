@@ -5,6 +5,7 @@ VENV := .venv
 venv:
 	uv venv $(VENV)
 	uv pip install --python $(VENV) -r requirements-full.txt
+	playwright install chromium
 
 clean-venv:
 	rm -rf $(VENV)
