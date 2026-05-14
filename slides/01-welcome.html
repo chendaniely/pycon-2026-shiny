@@ -30,8 +30,74 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2; background-color: #2e3440; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #75715e; } /* Annotation */
+    code span.at { color: #f92672; } /* Attribute */
+    code span.bn { color: #ae81ff; } /* BaseN */
+    code span.bu { color: #66d9ef; } /* BuiltIn */
+    code span.cf { color: #f92672; } /* ControlFlow */
+    code span.ch { color: #e6db74; } /* Char */
+    code span.cn { color: #ae81ff; } /* Constant */
+    code span.co { color: #75715e; } /* Comment */
+    code span.cv { color: #75715e; } /* CommentVar */
+    code span.do { color: #75715e; } /* Documentation */
+    code span.dt { color: #66d9ef; font-style: italic; } /* DataType */
+    code span.dv { color: #ae81ff; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #a6e22e; font-weight: bold; } /* Extension */
+    code span.fl { color: #ae81ff; } /* Float */
+    code span.fu { color: #a6e22e; } /* Function */
+    code span.im { color: #f92672; } /* Import */
+    code span.in { color: #f1fa8c; } /* Information */
+    code span.kw { color: #f92672; } /* Keyword */
+    code span.op { color: #f8f8f2; } /* Operator */
+    code span.ot { color: #a6e22e; } /* Other */
+    code span.pp { color: #f92672; } /* Preprocessor */
+    code span.re { color: #75715e; } /* RegionMarker */
+    code span.sc { color: #ae81ff; } /* SpecialChar */
+    code span.ss { color: #e6db74; } /* SpecialString */
+    code span.st { color: #e6db74; } /* String */
+    code span.va { color: #f8f8f2; } /* Variable */
+    code span.vs { color: #e6db74; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-73e4dc99ccaa08f049bfb76917fbc65e.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-5865772427f6f5fa98eaadd99c1d675e.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XFPBQ3BZ6M"></script>
 
   <script type="text/javascript">
@@ -45,6 +111,8 @@
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chat-bubbles/chat-bubbles.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-pointer/pointer.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/revealjs-a11y/a11y.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -159,10 +227,24 @@
 </section>
 <section id="get-your-computer-ready" class="slide level2">
 <h2>Get your computer ready</h2>
-<p>If you haven’t done so, please have your computer set up for this workshop:</p>
+<div class="columns">
+<div class="column">
+<h3 id="installation">Installation</h3>
 <p><a href="https://chendaniely.github.io/pycon-2026-shiny/setup.html" class="uri">https://chendaniely.github.io/pycon-2026-shiny/setup.html</a></p>
-
-<img data-src="../img/qr-setup.png" class="quarto-figure quarto-figure-center r-stretch" width="350"></section>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../img/qr-setup.png" class="quarto-figure quarto-figure-center" width="350"></p>
+</figure>
+</div>
+<p>If you cloned the repository and did the installation update your materials with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column">
+<h3 id="wifi">Wifi</h3>
+<p>SSID: <code>PyConUS26</code><br>
+Password: <code>pyconLB2026</code><br>
+<img data-src="../img/wifi.jpg"></p>
+</div></div>
+</section>
 <section id="todays-goal" class="slide level2">
 <h2>Today’s goal</h2>
 <p>Learn how to build reactive web apps with Shiny for Python, from the simple to the mission critical.</p>
@@ -190,23 +272,23 @@
 <tbody>
 <tr class="odd">
 <td>9:00</td>
-<td>Welcome + Introduction</td>
+<td><a href="workshop/01-welcome.qmd">Welcome + Introduction</a></td>
 </tr>
 <tr class="even">
 <td>9:10</td>
-<td>Introduction to Shiny</td>
+<td><a href="workshop/02-shiny_intro.qmd">Introduction to Shiny</a></td>
 </tr>
 <tr class="odd">
 <td>9:20</td>
-<td>Your first application</td>
+<td><a href="workshop/03-first_app.qmd">Your first application</a></td>
 </tr>
 <tr class="even">
 <td>9:50</td>
-<td>Shiny reactivity</td>
+<td><a href="workshop/04-reactivity.qmd">Shiny reactivity</a></td>
 </tr>
 <tr class="odd">
 <td>10:20</td>
-<td>Deploying your application</td>
+<td><a href="workshop/05-deploy.qmd">Deploying your application</a></td>
 </tr>
 <tr class="even">
 <td>10:30</td>
@@ -214,23 +296,27 @@
 </tr>
 <tr class="odd">
 <td>11:00</td>
-<td>Your next application</td>
+<td><a href="workshop/06-next_app.qmd">Your next application</a></td>
 </tr>
 <tr class="even">
 <td>11:30</td>
-<td>An AI + LLM Primer</td>
+<td><a href="workshop/07-ai_primer.qmd">An AI + LLM primer</a></td>
 </tr>
 <tr class="odd">
 <td>11:50</td>
-<td>AI + LLM dashboards</td>
+<td><a href="workshop/08-ai_dashboards.qmd">AI + LLM dashboards</a></td>
 </tr>
 <tr class="even">
 <td>12:10</td>
-<td>Testing</td>
+<td><a href="workshop/09-testing.qmd">Testing</a> your shiny apps with playwright</td>
 </tr>
 <tr class="odd">
 <td>12:20</td>
-<td>Wrap up + Feedback Survey</td>
+<td><a href="workshop/10-wrap_up.qmd">Wrap up</a> + Feedback Survey</td>
+</tr>
+<tr class="even">
+<td>12:30</td>
+<td>Finish</td>
 </tr>
 </tbody>
 </table>
@@ -250,7 +336,7 @@
 <ul>
 <li>Gender-neutral:</li>
 </ul></li>
-<li>This room:</li>
+<li>This room: Room 102A</li>
 </ul>
 
 
@@ -271,6 +357,8 @@
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-chat-bubbles/chat-bubbles.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-pointer/pointer.js"></script>
+  <script src="../site_libs/revealjs/plugin/revealjs-a11y/a11y.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -293,6 +381,8 @@
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'pointer': {"key":"q","color":"#ff0000","pointerSize":16,"alwaysVisible":false},
+'revealjs-a11y': {"revealjs-a11y":{"high-contrast":false,"alt-text-warnings":true,"slide-change-cue":{"visual":true,"audio":false}}},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -463,7 +553,7 @@
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChatBubbles, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChatBubbles, RevealPointer, RevealjsA11y, QuartoSupport,
 
           RevealMath,
           RevealNotes,

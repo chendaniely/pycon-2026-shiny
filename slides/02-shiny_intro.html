@@ -6,7 +6,12 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-1e0b2778967a7f561264898c2438b20e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.10.9/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.10.9/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.10.9/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.3">
 
   <title>PyCon 2026: Shiny Dashboards – Introduction to Shiny</title>
@@ -97,7 +102,7 @@
     code span.vs { color: #e6db74; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-73e4dc99ccaa08f049bfb76917fbc65e.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-5865772427f6f5fa98eaadd99c1d675e.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XFPBQ3BZ6M"></script>
 
   <script type="text/javascript">
@@ -111,6 +116,8 @@
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chat-bubbles/chat-bubbles.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-pointer/pointer.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/revealjs-a11y/a11y.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -236,10 +243,46 @@
 <h2>Components</h2>
 <p>Each Shiny app consists of:</p>
 <ol type="1">
-<li><strong>Inputs</strong> — widgets the user can interact with (sliders, dropdowns, checkboxes, …)</li>
-<li><strong>Outputs</strong> — things Shiny renders and displays (plots, tables, text, …)</li>
-<li><strong>Instructions</strong> — your code that builds outputs from inputs</li>
+<li><strong>Input</strong> components — widgets the user can interact with (sliders, dropdowns, checkboxes, …)
+<ul>
+<li><a href="https://shiny.posit.co/py/components/#inputs/" class="uri">https://shiny.posit.co/py/components/#inputs/</a></li>
+</ul></li>
+<li><strong>Output</strong> components — things Shiny renders and displays (plots, tables, text, …)
+<ul>
+<li><a href="https://shiny.posit.co/py/components/#outputs/" class="uri">https://shiny.posit.co/py/components/#outputs/</a></li>
+</ul></li>
+<li><strong>Layout</strong> — how the components are laid out on the page (columns, sidebar, boxes, cards, …)
+<ul>
+<li><a href="https://shiny.posit.co/py/layouts/" class="uri">https://shiny.posit.co/py/layouts/</a></li>
+</ul></li>
 </ol>
+</section>
+<section id="example-application" class="slide level2">
+<h2>Example application</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>#| '!! shinylive warning !!': |</span>
+<span id="cb1-2"><a></a>#|   shinylive does not work in self-contained HTML documents.</span>
+<span id="cb1-3"><a></a>#|   Please set `embed-resources: false` in your metadata.</span>
+<span id="cb1-4"><a></a>#| standalone: true</span>
+<span id="cb1-5"><a></a>#| components: [viewer]</span>
+<span id="cb1-6"><a></a>#| viewerHeight: 600</span>
+<span id="cb1-7"><a></a></span>
+<span id="cb1-8"><a></a>from palmerpenguins import load_penguins</span>
+<span id="cb1-9"><a></a>from plotnine import aes, geom_point, ggplot, theme_minimal</span>
+<span id="cb1-10"><a></a>from shiny.express import input, render, ui</span>
+<span id="cb1-11"><a></a></span>
+<span id="cb1-12"><a></a>dat = load_penguins().dropna()</span>
+<span id="cb1-13"><a></a>num_cols = dat.select_dtypes("float64").columns.tolist()</span>
+<span id="cb1-14"><a></a></span>
+<span id="cb1-15"><a></a>ui.input_select("x", "", num_cols, selected="bill_depth_mm")</span>
+<span id="cb1-16"><a></a>ui.input_select("y", "", num_cols, selected="body_mass_g")</span>
+<span id="cb1-17"><a></a></span>
+<span id="cb1-18"><a></a></span>
+<span id="cb1-19"><a></a>@render.plot</span>
+<span id="cb1-20"><a></a>def plot():</span>
+<span id="cb1-21"><a></a>    return (ggplot(dat, aes(x=input.x(), y=input.y(), color="species")) +</span>
+<span id="cb1-22"><a></a>        geom_point(alpha=0.7) +</span>
+<span id="cb1-23"><a></a>        theme_minimal()</span>
+<span id="cb1-24"><a></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="reactivity" class="slide level2">
 <h2>Reactivity</h2>
@@ -303,7 +346,7 @@
 </section>
 <section id="running-a-shiny-app" class="slide level2">
 <h2>Running a Shiny app</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">shiny</span> run app.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">shiny</span> run app.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or in Positron / VS Code: click the <strong>Run App</strong> button in the editor toolbar.</p>
 <p>Open URL:Port (e.g., <a href="http://127.0.0.1:8000" class="uri">http://127.0.0.1:8000</a>) in your browser.</p>
 
@@ -326,6 +369,8 @@
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-chat-bubbles/chat-bubbles.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-pointer/pointer.js"></script>
+  <script src="../site_libs/revealjs/plugin/revealjs-a11y/a11y.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -348,6 +393,8 @@
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'pointer': {"key":"q","color":"#ff0000","pointerSize":16,"alwaysVisible":false},
+'revealjs-a11y': {"revealjs-a11y":{"high-contrast":false,"alt-text-warnings":true,"slide-change-cue":{"visual":true,"audio":false}}},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -518,7 +565,7 @@
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChatBubbles, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChatBubbles, RevealPointer, RevealjsA11y, QuartoSupport,
 
           RevealMath,
           RevealNotes,

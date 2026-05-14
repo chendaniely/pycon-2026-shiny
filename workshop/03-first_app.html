@@ -318,11 +318,13 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <li><a href="#title-your-first-application" id="toc-title-your-first-application" class="nav-link" data-scroll-target="#title-your-first-application">title: “Your First Application”</a></li>
   <li><a href="#development-approach" id="toc-development-approach" class="nav-link" data-scroll-target="#development-approach">Development approach</a></li>
   <li><a href="#step-1-static-plot" id="toc-step-1-static-plot" class="nav-link" data-scroll-target="#step-1-static-plot">Step 1 — static plot</a></li>
+  <li><a href="#step-1b---parameterize-your-output" id="toc-step-1b---parameterize-your-output" class="nav-link" data-scroll-target="#step-1b---parameterize-your-output">Step 1b - parameterize your output</a></li>
   <li><a href="#step-2-add-shiny-imports" id="toc-step-2-add-shiny-imports" class="nav-link" data-scroll-target="#step-2-add-shiny-imports">Step 2 — add Shiny imports</a></li>
   <li><a href="#step-3-discover-the-axis-choices" id="toc-step-3-discover-the-axis-choices" class="nav-link" data-scroll-target="#step-3-discover-the-axis-choices">Step 3 — discover the axis choices</a></li>
   <li><a href="#step-4-add-inputs" id="toc-step-4-add-inputs" class="nav-link" data-scroll-target="#step-4-add-inputs">Step 4 — add inputs</a></li>
   <li><a href="#step-5-make-the-output-reactive" id="toc-step-5-make-the-output-reactive" class="nav-link" data-scroll-target="#step-5-make-the-output-reactive">Step 5 — make the output reactive</a></li>
   <li><a href="#what-just-happened" id="toc-what-just-happened" class="nav-link" data-scroll-target="#what-just-happened">What just happened?</a></li>
+  <li><a href="#output-without-reactive-context" id="toc-output-without-reactive-context" class="nav-link" data-scroll-target="#output-without-reactive-context">Output without reactive context</a></li>
   <li><a href="#the-complete-app" id="toc-the-complete-app" class="nav-link" data-scroll-target="#the-complete-app">The complete app</a></li>
   </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
@@ -378,7 +380,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </section>
 <section id="step-1-static-plot" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-static-plot">Step 1 — static plot</h2>
-<div id="00cc9e46" class="cell" data-execution_count="1">
+<div id="9905bd71" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -398,19 +400,44 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </div>
 </div>
 </section>
+<section id="step-1b---parameterize-your-output" class="level2">
+<h2 class="anchored" data-anchor-id="step-1b---parameterize-your-output">Step 1b - parameterize your output</h2>
+<div id="01261b65" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>dat <span class="op">=</span> load_penguins().dropna()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"bill_depth_mm"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="st">"body_mass_g"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    ggplot(dat, aes(x<span class="op">=</span>x, y<span class="op">=</span>y, color<span class="op">=</span><span class="st">"species"</span>))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> theme_minimal()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+<figure class="figure">
+<p><img src="03-first_app_files/figure-html/cell-3-output-1.png" width="672" height="480" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section id="step-2-add-shiny-imports" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-add-shiny-imports">Step 2 — add Shiny imports</h2>
-<div id="380f6da3" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
-<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
-<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a>dat <span class="op">=</span> load_penguins().dropna()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="b952f57d" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
+<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a>dat <span class="op">=</span> load_penguins().dropna()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="1">Import <code>input</code>, <code>render</code>, and <code>ui</code> from <code>shiny.express</code></span>
+<span data-code-cell="annotated-cell-3" data-code-lines="3" data-code-annotation="1">Import <code>input</code>, <code>render</code>, and <code>ui</code> from <code>shiny.express</code></span>
 </dd>
 </dl>
 </div>
@@ -418,22 +445,23 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </section>
 <section id="step-3-discover-the-axis-choices" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-discover-the-axis-choices">Step 3 — discover the axis choices</h2>
-<div id="c9a724c6" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
-<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
-<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
-<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a>dat <span class="op">=</span> load_penguins().dropna()</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-6" class="code-annotation-target"><a href="#annotated-cell-3-6" aria-hidden="true" tabindex="-1"></a>num_cols <span class="op">=</span> dat.select_dtypes(<span class="st">"float64"</span>).columns.tolist()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="d509c062" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
+<span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> aes, geom_point, ggplot, theme_minimal</span>
+<span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shiny.express <span class="im">import</span> <span class="bu">input</span>, render, ui</span>
+<span id="annotated-cell-4-4"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-4-5"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a>dat <span class="op">=</span> load_penguins().dropna()</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-6" class="code-annotation-target"><a href="#annotated-cell-4-6" aria-hidden="true" tabindex="-1"></a>num_cols <span class="op">=</span> dat.select_dtypes(<span class="st">"float64"</span>).columns.tolist()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="6" data-code-annotation="1">Automatically finds all numeric columns — no hard-coded list needed</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="6" data-code-annotation="1">Automatically finds all numeric columns — no hard-coded list needed</span>
 </dd>
 </dl>
 </div>
 </div>
+<p>You can still use your normal Python skills!</p>
 </section>
 <section id="step-4-add-inputs" class="level2">
 <h2 class="anchored" data-anchor-id="step-4-add-inputs">Step 4 — add inputs</h2>
@@ -489,11 +517,57 @@ def plot():
 <section id="what-just-happened" class="level2">
 <h2 class="anchored" data-anchor-id="what-just-happened">What just happened?</h2>
 <ul>
-<li><code>input.x()</code> and <code>input.y()</code> are <strong>reactive values</strong> — they change when the user picks</li>
-<li><code>@render.plot</code> creates a <strong>reactive context</strong> — it re-runs whenever its inputs change</li>
+<li><code>input.x()</code> and <code>input.y()</code> are <strong>reactive values</strong> — they change when the user picks
+<ul>
+<li><code>input.*()</code> - signals reading from an input component</li>
+</ul></li>
+<li><code>@render.plot</code> creates a <strong>reactive context</strong> — it re-runs whenever its inputs change
+<ul>
+<li><code>@render*</code> - signals an output component</li>
+</ul></li>
 <li>Both dropdowns drive the same output with no extra wiring</li>
 </ul>
 <p>Shiny tracked both dependencies automatically.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Reactive behaviors must stay within a reactive context.</p>
+</div>
+</div>
+<ul>
+<li>We will talk about <code>@reactive.*()</code> values for reactive intermediates</li>
+</ul>
+</section>
+<section id="output-without-reactive-context" class="level2">
+<h2 class="anchored" data-anchor-id="output-without-reactive-context">Output without reactive context</h2>
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [editor, viewer]
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_point, ggplot, theme_minimal
+from shiny.express import input, render, ui
+
+dat = load_penguins().dropna()
+num_cols = dat.select_dtypes("float64").columns.tolist()
+
+ui.input_select("x", "", num_cols, selected="bill_depth_mm")
+ui.input_select("y", "", num_cols, selected="body_mass_g")
+
+
+(
+    ggplot(dat, aes(x=input.x(), y=input.y(), color="species"))
+    + geom_point(alpha=0.7)
+    + theme_minimal()
+)</code></pre>
 </section>
 <section id="the-complete-app" class="level2">
 <h2 class="anchored" data-anchor-id="the-complete-app">The complete app</h2>

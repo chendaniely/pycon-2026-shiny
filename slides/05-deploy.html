@@ -97,7 +97,7 @@
     code span.vs { color: #e6db74; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-73e4dc99ccaa08f049bfb76917fbc65e.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-5865772427f6f5fa98eaadd99c1d675e.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XFPBQ3BZ6M"></script>
 
   <script type="text/javascript">
@@ -111,6 +111,8 @@
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chat-bubbles/chat-bubbles.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-pointer/pointer.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/revealjs-a11y/a11y.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -240,16 +242,21 @@
 <td>Easiest, GitHub-based deploy</td>
 </tr>
 <tr class="even">
-<td><a href="https://www.shinyapps.io">shinyapps.io</a></td>
+<td><a href="https://render.com/">Render.com</a></td>
 <td>Free tier</td>
-<td>Classic option, rsconnect CLI</td>
+<td>PaaS managed web service deployment</td>
 </tr>
 <tr class="odd">
-<td>Posit Connect (self-hosted)</td>
+<td><a href="https://www.shinyapps.io">shinyapps.io</a></td>
+<td>Free tier</td>
+<td>Deprecated - Move to Posit Cloud after 2026</td>
+</tr>
+<tr class="even">
+<td><a href="https://posit.co/products/enterprise/connect">Posit Connect</a> (self-hosted)</td>
 <td>Paid</td>
 <td>Enterprise, on-prem</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="https://shiny.posit.co/py/docs/shinylive.html">Shinylive</a></td>
 <td>Free</td>
 <td>Runs entirely in the browser (no server)</td>
@@ -308,22 +315,25 @@
 </ul>
 <p>Great for: demos, tutorials, sharing one-off apps.</p>
 </section>
-<section id="your-turn" class="slide level2">
-<h2>Your turn</h2>
-<div class="callout callout-tip callout-titled callout-style-default">
+<section id="exercise-break-back-at-1100" class="slide level2">
+<h2>Exercise + Break (Back at 11:00)</h2>
+<div class="callout callout-exercise callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Exercise (~5 min)</strong></p>
+<p><strong>Exercise</strong></p>
 </div>
 <div class="callout-content">
 <ol type="1">
-<li>Make sure your app has a <code>requirements.txt</code></li>
-<li>Push it to GitHub</li>
+<li>Create a new github repository</li>
+<li>Copy your first app code into an app.py file</li>
+<li>Make sure your repository has a <code>requirements.txt</code> file</li>
+<li>Push the <code>app.py</code> and <code>requirements.txt</code> to GitHub</li>
 <li>Deploy it to Posit Connect Cloud</li>
 </ol>
+<p><a href="https://docs.posit.co/connect-cloud/how-to/python/shiny-python.html" class="uri">https://docs.posit.co/connect-cloud/how-to/python/shiny-python.html</a></p>
 </div>
 </div>
 </div>
@@ -346,6 +356,8 @@
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-chat-bubbles/chat-bubbles.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-pointer/pointer.js"></script>
+  <script src="../site_libs/revealjs/plugin/revealjs-a11y/a11y.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -368,6 +380,8 @@
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'pointer': {"key":"q","color":"#ff0000","pointerSize":16,"alwaysVisible":false},
+'revealjs-a11y': {"revealjs-a11y":{"high-contrast":false,"alt-text-warnings":true,"slide-change-cue":{"visual":true,"audio":false}}},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -538,7 +552,7 @@
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChatBubbles, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChatBubbles, RevealPointer, RevealjsA11y, QuartoSupport,
 
           RevealMath,
           RevealNotes,

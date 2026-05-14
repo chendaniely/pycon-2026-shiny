@@ -82,6 +82,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-c0a8125121396f71ad460452467de944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/bootstrap/bootstrap-dark-02237f0e9102e9198409d526f990c58f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/bootstrap/bootstrap-c0a8125121396f71ad460452467de944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="dark">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.10.9/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.10.9/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.10.9/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -310,8 +315,10 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <ul>
   <li><a href="#slide-contents" id="toc-slide-contents" class="nav-link active" data-scroll-target="#slide-contents">Slide Contents</a>
   <ul class="collapse">
+  <li><a href="#title-introduction-to-shiny" id="toc-title-introduction-to-shiny" class="nav-link" data-scroll-target="#title-introduction-to-shiny">title: “Introduction to Shiny”</a></li>
   <li><a href="#what-is-a-shiny-app" id="toc-what-is-a-shiny-app" class="nav-link" data-scroll-target="#what-is-a-shiny-app">What is a Shiny app?</a></li>
   <li><a href="#components" id="toc-components" class="nav-link" data-scroll-target="#components">Components</a></li>
+  <li><a href="#example-application" id="toc-example-application" class="nav-link" data-scroll-target="#example-application">Example application</a></li>
   <li><a href="#reactivity" id="toc-reactivity" class="nav-link" data-scroll-target="#reactivity">Reactivity</a></li>
   <li><a href="#spreadsheet-analogy" id="toc-spreadsheet-analogy" class="nav-link" data-scroll-target="#spreadsheet-analogy">Spreadsheet analogy</a>
   <ul class="collapse">
@@ -356,6 +363,10 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </div>
 <section id="slide-contents" class="level1">
 <h1>Slide Contents</h1>
+<hr>
+<section id="title-introduction-to-shiny" class="level2">
+<h2 class="anchored" data-anchor-id="title-introduction-to-shiny">title: “Introduction to Shiny”</h2>
+</section>
 <section id="what-is-a-shiny-app" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-a-shiny-app">What is a Shiny app?</h2>
 <p>Each Shiny app involves:</p>
@@ -369,10 +380,48 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <h2 class="anchored" data-anchor-id="components">Components</h2>
 <p>Each Shiny app consists of:</p>
 <ol type="1">
-<li><strong>Inputs</strong> — widgets the user can interact with (sliders, dropdowns, checkboxes, …)</li>
-<li><strong>Outputs</strong> — things Shiny renders and displays (plots, tables, text, …)</li>
-<li><strong>Instructions</strong> — your code that builds outputs from inputs</li>
+<li><strong>Input</strong> components — widgets the user can interact with (sliders, dropdowns, checkboxes, …)
+<ul>
+<li><a href="https://shiny.posit.co/py/components/#inputs/" class="uri">https://shiny.posit.co/py/components/#inputs/</a></li>
+</ul></li>
+<li><strong>Output</strong> components — things Shiny renders and displays (plots, tables, text, …)
+<ul>
+<li><a href="https://shiny.posit.co/py/components/#outputs/" class="uri">https://shiny.posit.co/py/components/#outputs/</a></li>
+</ul></li>
+<li><strong>Layout</strong> — how the components are laid out on the page (columns, sidebar, boxes, cards, …)
+<ul>
+<li><a href="https://shiny.posit.co/py/layouts/" class="uri">https://shiny.posit.co/py/layouts/</a></li>
+</ul></li>
 </ol>
+</section>
+<section id="example-application" class="level2">
+<h2 class="anchored" data-anchor-id="example-application">Example application</h2>
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 600
+
+from palmerpenguins import load_penguins
+from plotnine import aes, geom_point, ggplot, theme_minimal
+from shiny.express import input, render, ui
+
+dat = load_penguins().dropna()
+num_cols = dat.select_dtypes("float64").columns.tolist()
+
+ui.input_select("x", "", num_cols, selected="bill_depth_mm")
+ui.input_select("y", "", num_cols, selected="body_mass_g")
+
+
+@render.plot
+def plot():
+    return (ggplot(dat, aes(x=input.x(), y=input.y(), color="species")) +
+        geom_point(alpha=0.7) +
+        theme_minimal()
+    )
+
+</code></pre>
 </section>
 <section id="reactivity" class="level2">
 <h2 class="anchored" data-anchor-id="reactivity">Reactivity</h2>
@@ -438,7 +487,7 @@ Important
 </section>
 <section id="running-a-shiny-app" class="level2">
 <h2 class="anchored" data-anchor-id="running-a-shiny-app">Running a Shiny app</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run app.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run app.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or in Positron / VS Code: click the <strong>Run App</strong> button in the editor toolbar.</p>
 <p>Open URL:Port (e.g., <a href="http://127.0.0.1:8000" class="uri">http://127.0.0.1:8000</a>) in your browser.</p>
 <p><img src="../img/positron-shiny-run-annotated.png" class="img-fluid"></p>

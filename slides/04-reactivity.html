@@ -97,7 +97,7 @@
     code span.vs { color: #e6db74; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-73e4dc99ccaa08f049bfb76917fbc65e.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-5865772427f6f5fa98eaadd99c1d675e.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-XFPBQ3BZ6M"></script>
 
   <script type="text/javascript">
@@ -111,6 +111,8 @@
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chat-bubbles/chat-bubbles.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-pointer/pointer.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/revealjs-a11y/a11y.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -256,9 +258,6 @@
 <p>Reactive output</p>
 </div></div>
 </section>
-<section class="slide level2">
-
-</section>
 <section>
 <section id="part-1-how-shiny-evaluates-your-app" class="title-slide slide level1 center">
 <h1>Part 1: How Shiny evaluates your app</h1>
@@ -269,17 +268,6 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a></a>flowchart TD</span>
-<span id="cb1-2"><a></a>  Sp[Species] --&gt; Fi{{filtered}}</span>
-<span id="cb1-3"><a></a>  X[X Axis] --&gt; Pl((plot))</span>
-<span id="cb1-4"><a></a>  Y[Y Axis] --&gt; Pl</span>
-<span id="cb1-5"><a></a>  Fi --&gt; Pl</span>
-<span id="cb1-6"><a></a>  Fi --&gt; Co((count))</span>
-<span id="cb1-7"><a></a></span>
-<span id="cb1-8"><a></a>  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9</span>
-<span id="cb1-9"><a></a>  classDef active fill:#25C8EB,color:#090A28,font-weight:bold</span>
-<span id="cb1-10"><a></a>  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold</span>
-<span id="cb1-11"><a></a>  linkStyle 0,1,2,3,4 display:none</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -316,17 +304,6 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a></a>flowchart TD</span>
-<span id="cb2-2"><a></a>  Sp[Species] --&gt; Fi{{filtered}}</span>
-<span id="cb2-3"><a></a>  X[X Axis] --&gt; Pl((plot)):::active</span>
-<span id="cb2-4"><a></a>  Y[Y Axis] --&gt; Pl</span>
-<span id="cb2-5"><a></a>  Fi --&gt; Pl</span>
-<span id="cb2-6"><a></a>  Fi --&gt; Co((count)):::active</span>
-<span id="cb2-7"><a></a></span>
-<span id="cb2-8"><a></a>  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9</span>
-<span id="cb2-9"><a></a>  classDef active fill:#25C8EB,color:#090A28,font-weight:bold</span>
-<span id="cb2-10"><a></a>  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold</span>
-<span id="cb2-11"><a></a>  linkStyle 0,1,2,3,4 display:none</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -358,17 +335,6 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a></a>flowchart TD</span>
-<span id="cb3-2"><a></a>  Sp[Species] --&gt; Fi{{filtered}}:::active</span>
-<span id="cb3-3"><a></a>  X[X Axis] --&gt; Pl((plot))</span>
-<span id="cb3-4"><a></a>  Y[Y Axis] --&gt; Pl</span>
-<span id="cb3-5"><a></a>  Fi --&gt; Pl</span>
-<span id="cb3-6"><a></a>  Fi --&gt; Co((count))</span>
-<span id="cb3-7"><a></a></span>
-<span id="cb3-8"><a></a>  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9</span>
-<span id="cb3-9"><a></a>  classDef active fill:#25C8EB,color:#090A28,font-weight:bold</span>
-<span id="cb3-10"><a></a>  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold</span>
-<span id="cb3-11"><a></a>  linkStyle 0,1,2 display:none</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -404,16 +370,6 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a></a>flowchart TD</span>
-<span id="cb4-2"><a></a>  Sp[Species]:::active --&gt; Fi{{filtered}}</span>
-<span id="cb4-3"><a></a>  X[X Axis]:::active --&gt; Pl((plot))</span>
-<span id="cb4-4"><a></a>  Y[Y Axis]:::active --&gt; Pl</span>
-<span id="cb4-5"><a></a>  Fi --&gt; Pl</span>
-<span id="cb4-6"><a></a>  Fi --&gt; Co((count))</span>
-<span id="cb4-7"><a></a></span>
-<span id="cb4-8"><a></a>  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9</span>
-<span id="cb4-9"><a></a>  classDef active fill:#25C8EB,color:#090A28,font-weight:bold</span>
-<span id="cb4-10"><a></a>  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -444,16 +400,6 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a></a>flowchart TD</span>
-<span id="cb5-2"><a></a>  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid</span>
-<span id="cb5-3"><a></a>  X[X Axis] --&gt; Pl((plot)):::invalid</span>
-<span id="cb5-4"><a></a>  Y[Y Axis] --&gt; Pl</span>
-<span id="cb5-5"><a></a>  Fi --&gt; Pl</span>
-<span id="cb5-6"><a></a>  Fi --&gt; Co((count)):::invalid</span>
-<span id="cb5-7"><a></a></span>
-<span id="cb5-8"><a></a>  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9</span>
-<span id="cb5-9"><a></a>  classDef active fill:#25C8EB,color:#090A28,font-weight:bold</span>
-<span id="cb5-10"><a></a>  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -479,9 +425,6 @@
 <p>X Axis and Y Axis are untouched — only the affected branch re-runs.</p>
 <p><code>filtered()</code> executes <strong>once</strong>. Both outputs share the new result.</p>
 </div></div>
-</section>
-<section class="slide level2">
-
 </section></section>
 <section>
 <section id="part-2-sharing-an-intermediate-dataframe" class="title-slide slide level1 center">
@@ -490,15 +433,15 @@
 </section>
 <section id="the-problem-without-reactive.calc" class="slide level2">
 <h2>The problem without <code>@reactive.calc</code></h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="at">@render.plot</span></span>
-<span id="cb6-2"><a></a><span class="kw">def</span> plot():</span>
-<span id="cb6-3"><a></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #1</span></span>
-<span id="cb6-4"><a></a>    <span class="cf">return</span> ggplot(sel, aes(x<span class="op">=</span><span class="bu">input</span>.x(), y<span class="op">=</span><span class="bu">input</span>.y(), color<span class="op">=</span><span class="st">"species"</span>)) <span class="op">+</span> ...</span>
-<span id="cb6-5"><a></a></span>
-<span id="cb6-6"><a></a><span class="at">@render.text</span></span>
-<span id="cb6-7"><a></a><span class="kw">def</span> count():</span>
-<span id="cb6-8"><a></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #2 — redundant!</span></span>
-<span id="cb6-9"><a></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(sel)<span class="sc">}</span><span class="ss"> penguins selected"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="at">@render.plot</span></span>
+<span id="cb1-2"><a></a><span class="kw">def</span> plot():</span>
+<span id="cb1-3"><a></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #1</span></span>
+<span id="cb1-4"><a></a>    <span class="cf">return</span> ggplot(sel, aes(x<span class="op">=</span><span class="bu">input</span>.x(), y<span class="op">=</span><span class="bu">input</span>.y(), color<span class="op">=</span><span class="st">"species"</span>)) <span class="op">+</span> ...</span>
+<span id="cb1-5"><a></a></span>
+<span id="cb1-6"><a></a><span class="at">@render.text</span></span>
+<span id="cb1-7"><a></a><span class="kw">def</span> count():</span>
+<span id="cb1-8"><a></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #2 — redundant!</span></span>
+<span id="cb1-9"><a></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(sel)<span class="sc">}</span><span class="ss"> penguins selected"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Species changes → the filter runs <strong>twice</strong>. With more outputs this keeps getting worse.</p>
 </section>
 <section id="the-solution-reactive.calc" class="slide level2">
@@ -519,16 +462,13 @@
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="1"><code>filtered()</code> runs once per change and caches the result</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="1"><code>@reactive.calc</code> allows you to create <code>filtered()</code> - it runs once per change and caches the result</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
 <span data-code-cell="annotated-cell-2" data-code-lines="8,12" data-code-annotation="2">Both outputs call <code>filtered()</code> — they get the cached dataframe</span>
 </dd>
 </dl>
-</section>
-<section class="slide level2">
-
 </section></section>
 <section>
 <section id="part-3-chaining-reactive-calcs" class="title-slide slide level1 center">
@@ -550,20 +490,6 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a></a>flowchart TD</span>
-<span id="cb7-2"><a></a>  Sp[Species] --&gt; Fi{{filtered}}</span>
-<span id="cb7-3"><a></a>  Y[Y Axis] --&gt; Pl((plot))</span>
-<span id="cb7-4"><a></a>  X[X Axis] --&gt; Pl</span>
-<span id="cb7-5"><a></a>  Y --&gt; Su{{summary}}</span>
-<span id="cb7-6"><a></a>  Fi --&gt; Pl</span>
-<span id="cb7-7"><a></a>  Fi --&gt; Co((count))</span>
-<span id="cb7-8"><a></a>  Fi --&gt; Su</span>
-<span id="cb7-9"><a></a>  Su --&gt; Ta((table))</span>
-<span id="cb7-10"><a></a></span>
-<span id="cb7-11"><a></a>  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9</span>
-<span id="cb7-12"><a></a>  classDef active fill:#25C8EB,color:#090A28,font-weight:bold</span>
-<span id="cb7-13"><a></a>  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold</span>
-<span id="cb7-14"><a></a>  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -602,20 +528,6 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a></a>flowchart TD</span>
-<span id="cb8-2"><a></a>  Sp[Species] --&gt; Fi{{filtered}}:::cached</span>
-<span id="cb8-3"><a></a>  Y[Y Axis]:::active --&gt; Pl((plot)):::invalid</span>
-<span id="cb8-4"><a></a>  X[X Axis] --&gt; Pl</span>
-<span id="cb8-5"><a></a>  Y --&gt; Su{{summary}}:::invalid</span>
-<span id="cb8-6"><a></a>  Fi --&gt; Pl</span>
-<span id="cb8-7"><a></a>  Fi --&gt; Co((count)):::cached</span>
-<span id="cb8-8"><a></a>  Fi --&gt; Su</span>
-<span id="cb8-9"><a></a>  Su --&gt; Ta((table)):::invalid</span>
-<span id="cb8-10"><a></a></span>
-<span id="cb8-11"><a></a>  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9</span>
-<span id="cb8-12"><a></a>  classDef active fill:#25C8EB,color:#090A28,font-weight:bold</span>
-<span id="cb8-13"><a></a>  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold</span>
-<span id="cb8-14"><a></a>  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -651,20 +563,6 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-reveal="true" data-fig-width="4" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a></a>flowchart TD</span>
-<span id="cb9-2"><a></a>  Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid</span>
-<span id="cb9-3"><a></a>  Y[Y Axis] --&gt; Pl((plot)):::invalid</span>
-<span id="cb9-4"><a></a>  X[X Axis] --&gt; Pl</span>
-<span id="cb9-5"><a></a>  Y --&gt; Su{{summary}}:::invalid</span>
-<span id="cb9-6"><a></a>  Fi --&gt; Pl</span>
-<span id="cb9-7"><a></a>  Fi --&gt; Co((count)):::invalid</span>
-<span id="cb9-8"><a></a>  Fi --&gt; Su</span>
-<span id="cb9-9"><a></a>  Su --&gt; Ta((table)):::invalid</span>
-<span id="cb9-10"><a></a></span>
-<span id="cb9-11"><a></a>  classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9</span>
-<span id="cb9-12"><a></a>  classDef active fill:#25C8EB,color:#090A28,font-weight:bold</span>
-<span id="cb9-13"><a></a>  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold</span>
-<span id="cb9-14"><a></a>  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -772,6 +670,9 @@
 </tr>
 </tbody>
 </table>
+</section>
+<section id="demo-exercises" class="slide level2">
+<h2>Demo + Exercises</h2>
 
 
 </section></section>
@@ -791,6 +692,8 @@
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-chat-bubbles/chat-bubbles.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-pointer/pointer.js"></script>
+  <script src="../site_libs/revealjs/plugin/revealjs-a11y/a11y.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -813,6 +716,8 @@
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'pointer': {"key":"q","color":"#ff0000","pointerSize":16,"alwaysVisible":false},
+'revealjs-a11y': {"revealjs-a11y":{"high-contrast":false,"alt-text-warnings":true,"slide-change-cue":{"visual":true,"audio":false}}},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -983,7 +888,7 @@
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChatBubbles, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChatBubbles, RevealPointer, RevealjsA11y, QuartoSupport,
 
           RevealMath,
           RevealNotes,

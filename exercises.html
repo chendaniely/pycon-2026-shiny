@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -271,8 +306,10 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1---basic-app" id="toc-exercise-1---basic-app" class="nav-link active" data-scroll-target="#exercise-1---basic-app">Exercise 1 - Basic App</a></li>
-  <li><a href="#exercise-2---reactivity" id="toc-exercise-2---reactivity" class="nav-link" data-scroll-target="#exercise-2---reactivity">Exercise 2 - Reactivity</a></li>
+  <li><a href="#ex1" id="toc-ex1" class="nav-link active" data-scroll-target="#ex1">Exercise 1 - Basic App</a></li>
+  <li><a href="#ex2" id="toc-ex2" class="nav-link" data-scroll-target="#ex2">Exercise 2 - Reactivity</a></li>
+  <li><a href="#ex3" id="toc-ex3" class="nav-link" data-scroll-target="#ex3">Exercise 3 - Tips</a></li>
+  <li><a href="#ex4" id="toc-ex4" class="nav-link" data-scroll-target="#ex4">Exercise 4 - Tips + Button</a></li>
   </ul>
 </nav>
     </div>
@@ -298,9 +335,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </header>
 
 
-<section id="exercise-1---basic-app" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1---basic-app">Exercise 1 - Basic App</h2>
-<p>Small exercises to do on your own, or talk through solutions.</p>
+<section id="ex1" class="level2">
+<h2 class="anchored" data-anchor-id="ex1">Exercise 1 - Basic App</h2>
 <div class="callout callout-style-default callout-exercise callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -311,7 +347,9 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Open <code>code/app-01-intro.py</code> and run it.</p>
+<p>Open <code>code/demos/app-01-intro.py</code> file in the <a href="https://github.com/chendaniely/pycon-2026-shiny/tree/main/code/demos">repository</a> and run it.</p>
+<p>Before doing the exercise make a copy of the file for your solution.</p>
+<p>Try out any one of the following changes:</p>
 <ol type="1">
 <li>Add a third input — a checkbox group to filter by species — and connect it to the plot</li>
 <li>Try <code>ui.input_slider()</code> to filter by one of the numeric columns</li>
@@ -472,8 +510,8 @@ def count():  #&lt;&lt;
 </div>
 </div>
 </section>
-<section id="exercise-2---reactivity" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2---reactivity">Exercise 2 - Reactivity</h2>
+<section id="ex2" class="level2">
+<h2 class="anchored" data-anchor-id="ex2">Exercise 2 - Reactivity</h2>
 <div class="callout callout-style-default callout-exercise callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -484,17 +522,354 @@ def count():  #&lt;&lt;
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Part A</strong> — open <code>code/app-03-reactivity.py</code>:</p>
+<p><strong>Part A</strong> — open <code>code/demos/app-03-reactivity.py</code> file in the <a href="https://github.com/chendaniely/pycon-2026-shiny/tree/main/code/demos">repository</a>.</p>
+<p>Before doing the exercise make a copy of the file for your solution.</p>
 <ol type="1">
 <li>Run it and confirm the scatter plot and count update together</li>
 <li>Add a <code>print("filtering...")</code> inside <code>filtered()</code> — change Species and verify it prints only once</li>
 </ol>
-<p><strong>Part B</strong> — open <code>code/app-04-reactivity_chained.py</code>:</p>
+<p><strong>Part B</strong> — open <code>code/demos/app-04-reactivity_chained.py</code> file in the <a href="https://github.com/chendaniely/pycon-2026-shiny/tree/main/code/demos">repository</a>.</p>
+<p>Before doing the exercise make a copy of the file for your solution.</p>
 <ol type="1">
 <li>Run it and explore all three outputs (plot, count, table)</li>
 <li>Change Y Axis — notice count does <em>not</em> change (filtered is still cached)</li>
 <li>Add a <code>print</code> to each calc to confirm which ones re-run for each input change</li>
 </ol>
+</div>
+</div>
+</section>
+<section id="ex3" class="level2">
+<h2 class="anchored" data-anchor-id="ex3">Exercise 3 - Tips</h2>
+<div class="callout callout-style-default callout-exercise callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Take a look at the <code>code/exercise/app-ex03-tips.py</code> file in the <a href="https://github.com/chendaniely/pycon-2026-shiny/tree/main/code/exercises">repository</a>.</p>
+<p>Before doing the exercise make a copy of the file for your solution.</p>
+<ol type="1">
+<li>Replace the plotly scatter plot with the altair scatter plot below.</li>
+<li>Wrap the scatter plot in a function, <code>scatterplot()</code>,</li>
+<li>Wse the appropriate output component decorator, <code>@render_altair</code></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> ____ <span class="co"># use the reactive calc dataframe here</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>points <span class="op">=</span> alt.Chart(data).mark_circle().encode(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">"total_bill"</span>, title<span class="op">=</span><span class="st">"Total bill"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">"tip"</span>, title<span class="op">=</span><span class="st">"Tip"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">"total_bill:Q"</span>, title<span class="op">=</span><span class="st">"Total bill"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".2f"</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        alt.Tooltip(<span class="st">"tip:Q"</span>, title<span class="op">=</span><span class="st">"Tip"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".2f"</span>),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>trend <span class="op">=</span> points.transform_regression(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"total_bill"</span>, <span class="st">"tip"</span>, method<span class="op">=</span><span class="st">"linear"</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>).mark_line()</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>zoom <span class="op">=</span> alt.selection_interval(bind<span class="op">=</span><span class="st">"scales"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> (points <span class="op">+</span> trend).add_params(zoom).properties(width<span class="op">=</span><span class="st">"container"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+import altair as alt
+import seaborn as sns
+from shiny.express import input, ui, render
+from shiny import reactive
+from shinywidgets import render_altair, render_widget
+
+tips = sns.load_dataset("tips")
+
+# title
+ui.page_opts(title="Restaurant tipping", fillable=True)
+
+# sidebar
+with ui.sidebar(open="desktop"):
+    ui.input_slider(
+        id="slider",
+        label="Bill amount",
+        min=tips.total_bill.min(),
+        max=tips.total_bill.max(),
+        value=[tips.total_bill.min(), tips.total_bill.max()],
+    )
+    ui.input_checkbox_group(
+        id="checkbox_group",
+        label="Food service",
+        choices={
+            "Lunch": "Lunch",
+            "Dinner": "Dinner",
+        },
+        selected=[
+            "Lunch",
+            "Dinner",
+        ],
+    )
+
+@reactive.calc
+def filtered_data():
+    idx1 = tips.total_bill.between(
+        left=input.slider()[0],
+        right=input.slider()[1],
+        inclusive="both",
+    )
+    idx2 = tips.time.isin(input.checkbox_group())
+    tips_filtered = tips[idx1 &amp; idx2]
+    return tips_filtered
+
+
+# body of application
+# first row of value boxes
+with ui.layout_columns(fill=False):
+    with ui.value_box():
+        "Total tippers"
+
+        @render.text
+        def total_tippers():
+            return filtered_data().shape[0]
+
+    with ui.value_box():
+        "Average tip"
+
+        @render.text
+        def average_tip():
+            perc = filtered_data().tip / filtered_data().total_bill
+            return f"{perc.mean():.1%}"
+
+    with ui.value_box():
+        "Average bill"
+
+        @render.text
+        def average_bill():
+            bill = filtered_data().total_bill.mean()
+            return f"${bill:.2f}"
+
+
+# second row of cards
+with ui.layout_columns(col_widths=[6, 6]):
+    with ui.card(full_screen=True):
+        ui.card_header("Tips data")
+
+        @render.data_frame
+        def tips_data():
+            return filtered_data()
+
+    with ui.card(full_screen=True):
+        ui.card_header("Total bill vs tip")
+
+        @render_altair
+        def scatterplot():
+            data = filtered_data()
+            points = alt.Chart(data).mark_circle().encode(
+                x=alt.X("total_bill", title="Total bill"),
+                y=alt.Y("tip", title="Tip"),
+                tooltip=[
+                    alt.Tooltip("total_bill:Q", title="Total bill", format=".2f"),
+                    alt.Tooltip("tip:Q", title="Tip", format=".2f"),
+                ],
+            )
+            trend = points.transform_regression(
+                "total_bill", "tip", method="linear"
+            ).mark_line()
+            zoom = alt.selection_interval(bind="scales")
+            return (points + trend).add_params(zoom).properties(width="container")
+</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="ex4" class="level2">
+<h2 class="anchored" data-anchor-id="ex4">Exercise 4 - Tips + Button</h2>
+<div class="callout callout-style-default callout-exercise callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Take a look at the <code>code/exercises/app-ex03-tips.py</code> file in the <a href="https://github.com/chendaniely/pycon-2026-shiny/tree/main/code/exercises">repository</a>.</p>
+<p>Before doing the exercise make a copy of the file for your solution.</p>
+<ol type="1">
+<li>Add a <code>ui.input_action_button()</code> component for the action button.
+<ul>
+<li>You can use the <code>"action_button"</code> id.</li>
+</ul></li>
+<li>Create a <code>reset_filters()</code> function that uses the <code>ui.update_slider()</code> and <code>ui.update_checkbox_group()</code> functions to reset the filter values to their default state.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reset_filters():</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    ui.update_slider(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"slider"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        value<span class="op">=</span>[tips.total_bill.<span class="bu">min</span>(), tips.total_bill.<span class="bu">max</span>()],</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    ui.update_checkbox_group(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"checkbox_group"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        selected<span class="op">=</span>[<span class="st">"Lunch"</span>, <span class="st">"Dinner"</span>],</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li>Decorate the function with a <code>@reactive.event(input.action_button)</code> call.</li>
+<li>Decorate the function <strong>again</strong> with a <code>@reactive.effect</code> call.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| components: [editor, viewer]
+#| layout: vertical
+#| viewerHeight: 650
+
+import altair as alt
+import seaborn as sns
+from shiny.express import input, ui, render
+from shiny import reactive
+from shinywidgets import render_altair, render_widget
+
+tips = sns.load_dataset("tips")
+
+# title
+ui.page_opts(title="Restaurant tipping", fillable=True)
+
+# sidebar
+with ui.sidebar(open="desktop"):
+    ui.input_slider(
+        id="slider",
+        label="Bill amount",
+        min=tips.total_bill.min(),
+        max=tips.total_bill.max(),
+        value=[tips.total_bill.min(), tips.total_bill.max()],
+    )
+    ui.input_checkbox_group(
+        id="checkbox_group",
+        label="Food service",
+        choices={
+            "Lunch": "Lunch",
+            "Dinner": "Dinner",
+        },
+        selected=[
+            "Lunch",
+            "Dinner",
+        ],
+    )
+    ui.input_action_button("action_button", "Reset filter")
+
+
+@reactive.effect
+@reactive.event(input.action_button)
+def reset_filters():
+    ui.update_slider(
+        "slider",
+        value=[tips.total_bill.min(), tips.total_bill.max()],
+    )
+    ui.update_checkbox_group(
+        "checkbox_group",
+        selected=["Lunch", "Dinner"],
+    )
+
+@reactive.calc
+def filtered_data():
+    idx1 = tips.total_bill.between(
+        left=input.slider()[0],
+        right=input.slider()[1],
+        inclusive="both",
+    )
+    idx2 = tips.time.isin(input.checkbox_group())
+    tips_filtered = tips[idx1 &amp; idx2]
+    return tips_filtered
+
+
+# body of application
+# first row of value boxes
+with ui.layout_columns(fill=False):
+    with ui.value_box():
+        "Total tippers"
+
+        @render.text
+        def total_tippers():
+            return filtered_data().shape[0]
+
+    with ui.value_box():
+        "Average tip"
+
+        @render.text
+        def average_tip():
+            perc = filtered_data().tip / filtered_data().total_bill
+            return f"{perc.mean():.1%}"
+
+    with ui.value_box():
+        "Average bill"
+
+        @render.text
+        def average_bill():
+            bill = filtered_data().total_bill.mean()
+            return f"${bill:.2f}"
+
+
+# second row of cards
+with ui.layout_columns(col_widths=[6, 6]):
+    with ui.card(full_screen=True):
+        ui.card_header("Tips data")
+
+        @render.data_frame
+        def tips_data():
+            return filtered_data()
+
+    with ui.card(full_screen=True):
+        ui.card_header("Total bill vs tip")
+
+        @render_altair
+        def scatterplot():
+            data = filtered_data()
+            points = alt.Chart(data).mark_circle().encode(
+                x=alt.X("total_bill", title="Total bill"),
+                y=alt.Y("tip", title="Tip"),
+                tooltip=[
+                    alt.Tooltip("total_bill:Q", title="Total bill", format=".2f"),
+                    alt.Tooltip("tip:Q", title="Tip", format=".2f"),
+                ],
+            )
+            trend = points.transform_regression(
+                "total_bill", "tip", method="linear"
+            ).mark_line()
+            zoom = alt.selection_interval(bind="scales")
+            return (points + trend).add_params(zoom).properties(width="container")
+</code></pre>
+</div>
 </div>
 </div>
 

@@ -123,9 +123,6 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-XFPBQ3BZ6M', { 'anonymize_ip': true});
 </script>
-<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <style>
 div.callout-exercise.callout {
   border-left-color: #F97316;
@@ -318,7 +315,6 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <ul>
   <li><a href="#slide-contents" id="toc-slide-contents" class="nav-link active" data-scroll-target="#slide-contents">Slide Contents</a>
   <ul class="collapse">
-  <li><a href="#title-shiny-reactivity" id="toc-title-shiny-reactivity" class="nav-link" data-scroll-target="#title-shiny-reactivity">title: “Shiny Reactivity”</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   <li><a href="#what-makes-shiny-special" id="toc-what-makes-shiny-special" class="nav-link" data-scroll-target="#what-makes-shiny-special">What makes Shiny special?</a>
   <ul class="collapse">
@@ -346,6 +342,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <li><a href="#species-changes-cascade-through-both-calcs" id="toc-species-changes-cascade-through-both-calcs" class="nav-link" data-scroll-target="#species-changes-cascade-through-both-calcs">Species changes — cascade through both calcs</a></li>
   <li><a href="#the-chained-code" id="toc-the-chained-code" class="nav-link" data-scroll-target="#the-chained-code">The chained code</a></li>
   <li><a href="#when-to-use-what" id="toc-when-to-use-what" class="nav-link" data-scroll-target="#when-to-use-what">When to use what</a></li>
+  <li><a href="#demo-exercises" id="toc-demo-exercises" class="nav-link" data-scroll-target="#demo-exercises">Demo + Exercises</a></li>
   </ul></li>
   <li><a href="#demo-shared-reactive.calc" id="toc-demo-shared-reactive.calc" class="nav-link" data-scroll-target="#demo-shared-reactive.calc">Demo: shared <code>@reactive.calc</code></a></li>
   <li><a href="#demo-chained-reactive.calc" id="toc-demo-chained-reactive.calc" class="nav-link" data-scroll-target="#demo-chained-reactive.calc">Demo: chained <code>@reactive.calc</code></a></li>
@@ -384,9 +381,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <section id="slide-contents" class="level1">
 <h1>Slide Contents</h1>
 <hr>
-<section id="title-shiny-reactivity" class="level2">
-<h2 class="anchored" data-anchor-id="title-shiny-reactivity">title: “Shiny Reactivity”</h2>
-</section>
+<p>title: “Shiny Reactivity” execute: echo: false —</p>
 <section id="further-reading" class="level2">
 <h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
 <style>
@@ -418,23 +413,17 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <p>Reactive output</p>
 </div>
 </div>
-<hr>
 </section>
 </section>
 </section>
 <section id="part-1-how-shiny-evaluates-your-app" class="level1 center">
 <h1 class="center">Part 1: How Shiny evaluates your app</h1>
-<hr>
 <section id="the-apps-reactive-graph" class="level2">
 <h2 class="anchored" data-anchor-id="the-apps-reactive-graph">The app’s reactive graph</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-fig-width="4" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
+<pre class="{mermaid}"><code>%%| fig-width: 4
+flowchart TD
   Sp[Species] --&gt; Fi{{filtered}}
   X[X Axis] --&gt; Pl((plot))
   Y[Y Axis] --&gt; Pl
@@ -444,13 +433,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
   classDef active fill:#25C8EB,color:#090A28,font-weight:bold
   classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  linkStyle 0,1,2,3,4 display:none
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+  linkStyle 0,1,2,3,4 display:none</code></pre>
 </div><div class="column" style="width:50%;">
 <ul>
 <li><strong>Species</strong> — checkbox group</li>
@@ -466,12 +449,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <h2 class="anchored" data-anchor-id="shiny-is-lazy-nothing-runs-until-needed">Shiny is lazy — nothing runs until needed</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-fig-width="4" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
+<pre class="{mermaid}"><code>%%| fig-width: 4
+flowchart TD
   Sp[Species] --&gt; Fi{{filtered}}
   X[X Axis] --&gt; Pl((plot)):::active
   Y[Y Axis] --&gt; Pl
@@ -481,13 +460,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
   classDef active fill:#25C8EB,color:#090A28,font-weight:bold
   classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  linkStyle 0,1,2,3,4 display:none
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+  linkStyle 0,1,2,3,4 display:none</code></pre>
 </div><div class="column" style="width:50%;">
 <p>Both outputs need to render.</p>
 <p>Shiny runs them and tracks every reactive value they read.</p>
@@ -498,12 +471,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <h2 class="anchored" data-anchor-id="plot-and-count-both-read-filtered">plot and count both read filtered</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-fig-width="4" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
+<pre class="{mermaid}"><code>%%| fig-width: 4
+flowchart TD
   Sp[Species] --&gt; Fi{{filtered}}:::active
   X[X Axis] --&gt; Pl((plot))
   Y[Y Axis] --&gt; Pl
@@ -513,13 +482,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
   classDef active fill:#25C8EB,color:#090A28,font-weight:bold
   classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  linkStyle 0,1,2 display:none
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+  linkStyle 0,1,2 display:none</code></pre>
 </div><div class="column" style="width:50%;">
 <p><code>filtered()</code> is called by both outputs.</p>
 <p>Shiny runs it <strong>once</strong>, caches the result, and records:</p>
@@ -534,12 +497,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <h2 class="anchored" data-anchor-id="filtered-reads-species-plot-reads-x-and-y">filtered reads Species; plot reads X and Y</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-fig-width="4" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
+<pre class="{mermaid}"><code>%%| fig-width: 4
+flowchart TD
   Sp[Species]:::active --&gt; Fi{{filtered}}
   X[X Axis]:::active --&gt; Pl((plot))
   Y[Y Axis]:::active --&gt; Pl
@@ -548,13 +507,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
   classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
   classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
 <p>All dependencies recorded. The full graph is built.</p>
 <p>Shiny now <strong>watches</strong> it — any change triggers only the affected branch.</p>
@@ -565,12 +518,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <h2 class="anchored" data-anchor-id="species-changes-invalidation-cascades">Species changes — invalidation cascades</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-fig-width="4" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
+<pre class="{mermaid}"><code>%%| fig-width: 4
+flowchart TD
   Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid
   X[X Axis] --&gt; Pl((plot)):::invalid
   Y[Y Axis] --&gt; Pl
@@ -579,36 +528,28 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 
   classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
   classDef active fill:#25C8EB,color:#090A28,font-weight:bold
-  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+  classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
 <p>Species changes → <strong>filtered</strong> cache discarded → <strong>plot</strong> and <strong>count</strong> marked stale.</p>
 <p>X Axis and Y Axis are untouched — only the affected branch re-runs.</p>
 <p><code>filtered()</code> executes <strong>once</strong>. Both outputs share the new result.</p>
 </div>
 </div>
-<hr>
 </section>
 </section>
 <section id="part-2-sharing-an-intermediate-dataframe" class="level1 center">
 <h1 class="center">Part 2: Sharing an intermediate dataframe</h1>
-<hr>
 <section id="the-problem-without-reactive.calc" class="level2">
 <h2 class="anchored" data-anchor-id="the-problem-without-reactive.calc">The problem without <code>@reactive.calc</code></h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">@render.plot</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot():</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #1</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ggplot(sel, aes(x<span class="op">=</span><span class="bu">input</span>.x(), y<span class="op">=</span><span class="bu">input</span>.y(), color<span class="op">=</span><span class="st">"species"</span>)) <span class="op">+</span> ...</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">@render.text</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count():</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #2 — redundant!</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(sel)<span class="sc">}</span><span class="ss"> penguins selected"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="at">@render.plot</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot():</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #1</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ggplot(sel, aes(x<span class="op">=</span><span class="bu">input</span>.x(), y<span class="op">=</span><span class="bu">input</span>.y(), color<span class="op">=</span><span class="st">"species"</span>)) <span class="op">+</span> ...</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">@render.text</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count():</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    sel <span class="op">=</span> dat[dat[<span class="st">"species"</span>].isin(<span class="bu">input</span>.species())]  <span class="co"># filter #2 — redundant!</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(sel)<span class="sc">}</span><span class="ss"> penguins selected"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Species changes → the filter runs <strong>twice</strong>. With more outputs this keeps getting worse.</p>
 </section>
 <section id="the-solution-reactive.calc" class="level2">
@@ -629,19 +570,17 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="1"><code>filtered()</code> runs once per change and caches the result</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="1"><code>@reactive.calc</code> allows you to create <code>filtered()</code> - it runs once per change and caches the result</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
 <span data-code-cell="annotated-cell-2" data-code-lines="8,12" data-code-annotation="2">Both outputs call <code>filtered()</code> — they get the cached dataframe</span>
 </dd>
 </dl>
-<hr>
 </section>
 </section>
 <section id="part-3-chaining-reactive-calcs" class="level1 center">
 <h1 class="center">Part 3: Chaining reactive calcs</h1>
-<hr>
 <section id="adding-a-second-calc-downstream" class="level2">
 <h2 class="anchored" data-anchor-id="adding-a-second-calc-downstream">Adding a second calc downstream</h2>
 <p>What if we also want a <strong>summary table</strong> of per-species statistics?</p>
@@ -656,12 +595,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <h2 class="anchored" data-anchor-id="the-chained-reactive-graph">The chained reactive graph</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-fig-width="4" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
+<pre class="{mermaid}"><code>%%| fig-width: 4
+flowchart TD
   Sp[Species] --&gt; Fi{{filtered}}
   Y[Y Axis] --&gt; Pl((plot))
   X[X Axis] --&gt; Pl
@@ -674,13 +609,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
   classDef active fill:#25C8EB,color:#090A28,font-weight:bold
   classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
 <ul>
 <li><strong>filtered</strong> — species filter (as before)</li>
@@ -695,12 +624,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <h2 class="anchored" data-anchor-id="y-axis-changes-surgical-invalidation">Y Axis changes — surgical invalidation</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-fig-width="4" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
+<pre class="{mermaid}"><code>%%| fig-width: 4
+flowchart TD
   Sp[Species] --&gt; Fi{{filtered}}:::cached
   Y[Y Axis]:::active --&gt; Pl((plot)):::invalid
   X[X Axis] --&gt; Pl
@@ -713,13 +638,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
   classDef active fill:#25C8EB,color:#090A28,font-weight:bold
   classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
 <p>Y Axis changes → <strong>plot</strong>, <strong>summary</strong>, and <strong>table</strong> re-run.</p>
 <p><strong>filtered</strong> and <strong>count</strong> are unaffected — Species didn’t change, so that branch stays cached.</p>
@@ -731,12 +650,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <h2 class="anchored" data-anchor-id="species-changes-cascade-through-both-calcs">Species changes — cascade through both calcs</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-fig-width="4" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
+<pre class="{mermaid}"><code>%%| fig-width: 4
+flowchart TD
   Sp[Species]:::active --&gt; Fi{{filtered}}:::invalid
   Y[Y Axis] --&gt; Pl((plot)):::invalid
   X[X Axis] --&gt; Pl
@@ -749,13 +664,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   classDef default fill:#101136,color:#F5F5F5,stroke:#3B3EA9
   classDef active fill:#25C8EB,color:#090A28,font-weight:bold
   classDef invalid fill:#D47454,color:#FFFFFF,font-weight:bold
-  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+  classDef cached fill:#5833E9,color:#FFFFFF,font-weight:bold</code></pre>
 </div><div class="column" style="width:50%;">
 <p>Species changes → <strong>filtered</strong> cache discarded → everything downstream is stale.</p>
 <p><code>filtered()</code> runs <strong>once</strong>. <code>summary()</code> runs <strong>once</strong> using the new filtered result. All four outputs update.</p>
@@ -840,6 +749,9 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </tr>
 </tbody>
 </table>
+</section>
+<section id="demo-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="demo-exercises">Demo + Exercises</h2>
 </section>
 </section>
 <section id="demo-shared-reactive.calc" class="level1 page-columns page-full">

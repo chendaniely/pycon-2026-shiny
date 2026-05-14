@@ -318,6 +318,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your turn</a></li>
   <li><a href="#tool-calling" id="toc-tool-calling" class="nav-link" data-scroll-target="#tool-calling">Tool calling</a></li>
   <li><a href="#sidebot-pattern" id="toc-sidebot-pattern" class="nav-link" data-scroll-target="#sidebot-pattern">Sidebot pattern</a></li>
+  <li><a href="#sql-is-a-great-communication-layer" id="toc-sql-is-a-great-communication-layer" class="nav-link" data-scroll-target="#sql-is-a-great-communication-layer">SQL is a great communication layer</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -467,6 +468,23 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <li>Dashboard updates reactively</li>
 </ul>
 <p>Template: <code>shiny create --mode core --github jcheng5/py-databot</code></p>
+</section>
+<section id="sql-is-a-great-communication-layer" class="level2">
+<h2 class="anchored" data-anchor-id="sql-is-a-great-communication-layer">SQL is a great communication layer</h2>
+<p>Upcoming tool: ggsql <a href="https://ggsql.org/" class="uri">https://ggsql.org/</a></p>
+<p>Trt it: <a href="https://ggsql.org/wasm/" class="uri">https://ggsql.org/wasm/</a></p>
+<div class="columns">
+<div class="column">
+<pre><code>VISUALISE FROM ggsql:penguins
+DRAW point
+    MAPPING
+      bill_dep AS x,
+      body_mass AS y,
+      species AS color</code></pre>
+</div><div class="column">
+<p><img src="../img/ggsql-example.png" class="img-fluid"></p>
+</div>
+</div>
 
 
 </section>
