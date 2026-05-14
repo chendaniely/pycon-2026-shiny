@@ -9,9 +9,15 @@ Your first app had one input and one output.
 Real dashboards have:
 
 - Layout structure (sidebars, columns, tabs)
+    - `shiny.express.ui.*()`
 - Multiple coordinated outputs
 - Summary statistics (value boxes)
+    - `ui.value_box()`
 - Shared reactive computations
+    - `@reactive.calc`
+- Interactive plots (jupyter widgets)
+    - `shinywidgets.render_*()`
+
 ## Example application
 
 ```{shinylive-python}
@@ -89,28 +95,6 @@ with ui.layout_columns():
         def table(): ...
 ```
 
-## Tabs and navigation
+## Exercise
 
-```python
-with ui.navset_card_underline():
-    with ui.nav_panel("Plot"):
-        @render.plot
-        def scatter(): ...
 
-    with ui.nav_panel("Table"):
-        @render.data_frame
-        def table(): ...
-```
-
-## Your turn
-
-::: {.callout-tip}
-## Exercise (~25 min)
-
-Build a dashboard using the seaborn `tips` dataset (or your own data):
-
-1. Add a sidebar with at least two inputs
-2. Use `@reactive.calc` for the filtered data
-3. Include at least one value box, one plot, and one table
-4. Try using `ui.layout_columns()` to arrange your outputs
-:::
