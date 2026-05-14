@@ -11,7 +11,7 @@
     "href": "setup.html#python-environment",
     "title": "Setup",
     "section": "Python Environment",
-    "text": "Python Environment\nPick one of the following methods — they all produce the same result.\nHere are the packages you’ll be installing:\n\n\nrequirements.txt\n\n# core code examples\npalmerpenguins\nplotnine\nshiny\n\n# website rendering\nipykernel\njupyter\nshinylive\n\n# mybinder\njupyter-server-proxy\n\n# AI slides (07-08)\nanthropic\nchatlas\nopenai\npython-dotenv\nquerychat\nshinychat\n\n# extended Shiny UI\nfaicons\nshinywidgets\n\n# data & visualization\naltair\npandas\nplotly\nridgeplot\nseaborn\n\n# testing\nplaywright\n\n\n\npython + venvcondauvpixi\n\n\npython -m venv .venv\n\n# macOS / Linux\nsource .venv/bin/activate\n\n# Windows\n.venv\\Scripts\\activate\n\npip install -r requirements.txt\n\n\nconda create -n pycon2026 python=3.12\nconda activate pycon2026\npip install -r requirements.txt\n\n\nuv venv .venv\n\n# macOS / Linux\nsource .venv/bin/activate\n\n# Windows\n.venv\\Scripts\\activate\n\nuv pip install -r requirements.txt\n\n\npixi init .\npixi add python==3.12.* pip\npixi run python -m pip install -r requirements.txt\npixi shell"
+    "text": "Python Environment\nPick one of the following methods — they all produce the same result.\nHere are the packages you’ll be installing:\n\n\nrequirements.txt\n\n# core code examples\npalmerpenguins\nplotnine\nshiny\n\n# website rendering\nipykernel\njupyter\nshinylive\n\n# mybinder\njupyter-server-proxy\n\n# AI slides (07-08)\nanthropic\nchatlas\nopenai\npython-dotenv\nquerychat\nshinychat\n\n# extended Shiny UI\nfaicons\nshinywidgets\n\n# data & visualization\naltair\npandas\nplotly\nridgeplot\nseaborn\n\n# testing\nplaywright\npytest\npytest-playwright\n\n\n\npython + venvcondauvpixi\n\n\npython -m venv .venv\n\n# macOS / Linux\nsource .venv/bin/activate\n\n# Windows\n.venv\\Scripts\\activate\n\npip install -r requirements.txt\n\n\nconda create -n pycon2026 python=3.12\nconda activate pycon2026\npip install -r requirements.txt\n\n\nuv venv .venv\n\n# macOS / Linux\nsource .venv/bin/activate\n\n# Windows\n.venv\\Scripts\\activate\n\nuv pip install -r requirements.txt\n\n\npixi init .\npixi add python==3.12.* pip\npixi run python -m pip install -r requirements.txt\npixi shell"
   },
   {
     "objectID": "setup.html#ide",
@@ -1007,25 +1007,46 @@
     "text": "Why test?\n\nManual “click around and check” doesn’t scale\nCatch regressions before users do\nDocument expected behavior as executable code"
   },
   {
-    "objectID": "slides/09-testing.html#playwright",
-    "href": "slides/09-testing.html#playwright",
+    "objectID": "slides/09-testing.html#visual-check-assert-statements",
+    "href": "slides/09-testing.html#visual-check-assert-statements",
     "title": "Testing Shiny Apps",
-    "section": "Playwright",
-    "text": "Playwright\nPlaywright is a modern browser automation library.\nShiny provides a Playwright controller that understands Shiny-specific widgets:\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import ShinyAppProc\nDocs: https://shiny.posit.co/py/docs/testing.html"
+    "section": "Visual check + assert statements",
+    "text": "Visual check + assert statements\n\ndef my_add(x, y):\n    return x + y\n\n\nmy_add(3, 10)\n\n13\n\n\n\nassert my_add(3, 10) == 13\n\n\nassert my_add(3, 10) == 100\n\n\n---------------------------------------------------------------------------\nAssertionError                            Traceback (most recent call last)\nCell In[4], line 1\n----&gt; 1 assert my_add(3, 10) == 100\n\nAssertionError:"
+  },
+  {
+    "objectID": "slides/09-testing.html#unit-testing---pytest",
+    "href": "slides/09-testing.html#unit-testing---pytest",
+    "title": "Testing Shiny Apps",
+    "section": "Unit testing - pytest",
+    "text": "Unit testing - pytest\n\nNeed to know a bit of how packages are set up"
+  },
+  {
+    "objectID": "slides/09-testing.html#python-functions-shiny",
+    "href": "slides/09-testing.html#python-functions-shiny",
+    "title": "Testing Shiny Apps",
+    "section": "Python functions + Shiny",
+    "text": "Python functions + Shiny\n\nIf you have a normal python function, you can still pass in reactive values as the arguments!\n\nImport your existing functions / modules\nUse other packages\n\nAs long as you don’t plan on having reactive calls inside the function body\n\nRemember: reactive things must happen inside a reactive context\n\npytest is the package / tool to do unit testing"
+  },
+  {
+    "objectID": "slides/09-testing.html#playwright---end-to-end-testing",
+    "href": "slides/09-testing.html#playwright---end-to-end-testing",
+    "title": "Testing Shiny Apps",
+    "section": "Playwright - end-to-end testing",
+    "text": "Playwright - end-to-end testing\nPlaywright is a modern browser automation library.\nShiny provides a Playwright controller that understands Shiny-specific widgets:\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import ShinyAppProc\nDocs: https://shiny.posit.co/py/docs/testing.html"
   },
   {
     "objectID": "slides/09-testing.html#test-structure",
     "href": "slides/09-testing.html#test-structure",
     "title": "Testing Shiny Apps",
     "section": "Test structure",
-    "text": "Test structure\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import ShinyAppProc\n\ndef test_species_filter(page: Page, local_app: ShinyAppProc):\n    page.goto(local_app.url)\n\n    radio = controller.InputRadioButtons(page, \"species\")\n    plot  = controller.OutputPlot(page, \"plot\")\n\n    radio.expect_choices([\"Adelie\", \"Chinstrap\", \"Gentoo\"])\n    radio.set(\"Chinstrap\")\n    plot.expect_img_src(timeout=3000)  # plot re-rendered"
+    "text": "Test structure\nfrom pathlib import Path\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import run_shiny_app\n\nAPP = Path(__file__).parent / \"app.py\"\n\ndef test_species_filter(page: Page):\n    with run_shiny_app(str(APP)) as app:\n        page.goto(app.url)\n\n        radio = controller.InputRadioButtons(page, \"species\")\n        text  = controller.OutputText(page, \"n_rows\")\n\n        radio.expect_choices([\"Adelie\", \"Chinstrap\", \"Gentoo\"])\n        radio.set(\"Chinstrap\")\n        text.expect_value(\"68 penguins\")"
   },
   {
-    "objectID": "slides/09-testing.html#pytest-fixtures",
-    "href": "slides/09-testing.html#pytest-fixtures",
+    "objectID": "slides/09-testing.html#running-tests",
+    "href": "slides/09-testing.html#running-tests",
     "title": "Testing Shiny Apps",
-    "section": "pytest fixtures",
-    "text": "pytest fixtures\n# conftest.py\nimport pytest\nfrom shiny.run import run_shiny_app\n\n@pytest.fixture(scope=\"module\")\ndef local_app():\n    with run_shiny_app(\"app.py\") as proc:\n        yield proc\nRun with:\npytest tests/"
+    "section": "Running tests",
+    "text": "Running tests\ncode/demos/testing/\n├── app.py          ← the Shiny app\n└── test_app.py     ← tests\ncd code/demos/testing\npytest\nOr from the repo root:\npytest code/demos/testing/"
   },
   {
     "objectID": "slides/09-testing.html#controllers",
@@ -1040,13 +1061,6 @@
     "title": "Testing Shiny Apps",
     "section": "What to test",
     "text": "What to test\n\nDefault state renders without errors\nEach input change produces the expected output change\nEdge cases: empty selections, out-of-range values\nError messages appear when they should"
-  },
-  {
-    "objectID": "slides/09-testing.html#your-turn",
-    "href": "slides/09-testing.html#your-turn",
-    "title": "Testing Shiny Apps",
-    "section": "Your turn",
-    "text": "Your turn\n\n\n\n\n\n\nExercise (~10 min)\n\n\n\nInstall Playwright: pip install playwright && playwright install chromium\nWrite a test for your first app that:\n\nChecks the default radio button selection\nChanges the selection and verifies the plot updates\n\nRun pytest and watch it pass"
   },
   {
     "objectID": "slides/04-reactivity.html#further-reading",
@@ -1592,7 +1606,7 @@
   {
     "objectID": "workshop/09-testing.html",
     "href": "workshop/09-testing.html",
-    "title": "Testing Shiny Apps",
+    "title": "Testing",
     "section": "",
     "text": "View slides in full screen",
     "crumbs": [
@@ -1601,9 +1615,20 @@
     ]
   },
   {
+    "objectID": "workshop/09-testing.html#title-testing-shiny-apps",
+    "href": "workshop/09-testing.html#title-testing-shiny-apps",
+    "title": "Testing",
+    "section": "title: “Testing Shiny Apps”",
+    "text": "title: “Testing Shiny Apps”",
+    "crumbs": [
+      "Home",
+      "Testing"
+    ]
+  },
+  {
     "objectID": "workshop/09-testing.html#why-test",
     "href": "workshop/09-testing.html#why-test",
-    "title": "Testing Shiny Apps",
+    "title": "Testing",
     "section": "Why test?",
     "text": "Why test?\n\nManual “click around and check” doesn’t scale\nCatch regressions before users do\nDocument expected behavior as executable code",
     "crumbs": [
@@ -1612,11 +1637,44 @@
     ]
   },
   {
-    "objectID": "workshop/09-testing.html#playwright",
-    "href": "workshop/09-testing.html#playwright",
-    "title": "Testing Shiny Apps",
-    "section": "Playwright",
-    "text": "Playwright\nPlaywright is a modern browser automation library.\nShiny provides a Playwright controller that understands Shiny-specific widgets:\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import ShinyAppProc\nDocs: https://shiny.posit.co/py/docs/testing.html",
+    "objectID": "workshop/09-testing.html#visual-check-assert-statements",
+    "href": "workshop/09-testing.html#visual-check-assert-statements",
+    "title": "Testing",
+    "section": "Visual check + assert statements",
+    "text": "Visual check + assert statements\n\ndef my_add(x, y):\n    return x + y\n\n\nmy_add(3, 10)\n\n13\n\n\n\nassert my_add(3, 10) == 13\n\n\nassert my_add(3, 10) == 100\n\n\n---------------------------------------------------------------------------\nAssertionError                            Traceback (most recent call last)\nCell In[4], line 1\n----&gt; 1 assert my_add(3, 10) == 100\n\nAssertionError:",
+    "crumbs": [
+      "Home",
+      "Testing"
+    ]
+  },
+  {
+    "objectID": "workshop/09-testing.html#unit-testing---pytest",
+    "href": "workshop/09-testing.html#unit-testing---pytest",
+    "title": "Testing",
+    "section": "Unit testing - pytest",
+    "text": "Unit testing - pytest\n\nNeed to know a bit of how packages are set up",
+    "crumbs": [
+      "Home",
+      "Testing"
+    ]
+  },
+  {
+    "objectID": "workshop/09-testing.html#python-functions-shiny",
+    "href": "workshop/09-testing.html#python-functions-shiny",
+    "title": "Testing",
+    "section": "Python functions + Shiny",
+    "text": "Python functions + Shiny\n\nIf you have a normal python function, you can still pass in reactive values as the arguments!\n\nImport your existing functions / modules\nUse other packages\n\nAs long as you don’t plan on having reactive calls inside the function body\n\nRemember: reactive things must happen inside a reactive context\n\npytest is the package / tool to do unit testing",
+    "crumbs": [
+      "Home",
+      "Testing"
+    ]
+  },
+  {
+    "objectID": "workshop/09-testing.html#playwright---end-to-end-testing",
+    "href": "workshop/09-testing.html#playwright---end-to-end-testing",
+    "title": "Testing",
+    "section": "Playwright - end-to-end testing",
+    "text": "Playwright - end-to-end testing\nPlaywright is a modern browser automation library.\nShiny provides a Playwright controller that understands Shiny-specific widgets:\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import ShinyAppProc\nDocs: https://shiny.posit.co/py/docs/testing.html",
     "crumbs": [
       "Home",
       "Testing"
@@ -1625,20 +1683,20 @@
   {
     "objectID": "workshop/09-testing.html#test-structure",
     "href": "workshop/09-testing.html#test-structure",
-    "title": "Testing Shiny Apps",
+    "title": "Testing",
     "section": "Test structure",
-    "text": "Test structure\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import ShinyAppProc\n\ndef test_species_filter(page: Page, local_app: ShinyAppProc):\n    page.goto(local_app.url)\n\n    radio = controller.InputRadioButtons(page, \"species\")\n    plot  = controller.OutputPlot(page, \"plot\")\n\n    radio.expect_choices([\"Adelie\", \"Chinstrap\", \"Gentoo\"])\n    radio.set(\"Chinstrap\")\n    plot.expect_img_src(timeout=3000)  # plot re-rendered",
+    "text": "Test structure\nfrom pathlib import Path\nfrom playwright.sync_api import Page\nfrom shiny.playwright import controller\nfrom shiny.run import run_shiny_app\n\nAPP = Path(__file__).parent / \"app.py\"\n\ndef test_species_filter(page: Page):\n    with run_shiny_app(str(APP)) as app:\n        page.goto(app.url)\n\n        radio = controller.InputRadioButtons(page, \"species\")\n        text  = controller.OutputText(page, \"n_rows\")\n\n        radio.expect_choices([\"Adelie\", \"Chinstrap\", \"Gentoo\"])\n        radio.set(\"Chinstrap\")\n        text.expect_value(\"68 penguins\")",
     "crumbs": [
       "Home",
       "Testing"
     ]
   },
   {
-    "objectID": "workshop/09-testing.html#pytest-fixtures",
-    "href": "workshop/09-testing.html#pytest-fixtures",
-    "title": "Testing Shiny Apps",
-    "section": "pytest fixtures",
-    "text": "pytest fixtures\n# conftest.py\nimport pytest\nfrom shiny.run import run_shiny_app\n\n@pytest.fixture(scope=\"module\")\ndef local_app():\n    with run_shiny_app(\"app.py\") as proc:\n        yield proc\nRun with:\npytest tests/",
+    "objectID": "workshop/09-testing.html#running-tests",
+    "href": "workshop/09-testing.html#running-tests",
+    "title": "Testing",
+    "section": "Running tests",
+    "text": "Running tests\ncode/demos/testing/\n├── app.py          ← the Shiny app\n└── test_app.py     ← tests\ncd code/demos/testing\npytest\nOr from the repo root:\npytest code/demos/testing/",
     "crumbs": [
       "Home",
       "Testing"
@@ -1647,7 +1705,7 @@
   {
     "objectID": "workshop/09-testing.html#controllers",
     "href": "workshop/09-testing.html#controllers",
-    "title": "Testing Shiny Apps",
+    "title": "Testing",
     "section": "Controllers",
     "text": "Controllers\nShiny provides typed controllers for every input and output type:\n# Inputs\ncontroller.InputRadioButtons(page, \"id\")\ncontroller.InputSlider(page, \"id\")\ncontroller.InputSelect(page, \"id\")\ncontroller.InputCheckboxGroup(page, \"id\")\n\n# Outputs\ncontroller.OutputPlot(page, \"id\")\ncontroller.OutputText(page, \"id\")\ncontroller.OutputDataFrame(page, \"id\")",
     "crumbs": [
@@ -1658,20 +1716,9 @@
   {
     "objectID": "workshop/09-testing.html#what-to-test",
     "href": "workshop/09-testing.html#what-to-test",
-    "title": "Testing Shiny Apps",
+    "title": "Testing",
     "section": "What to test",
     "text": "What to test\n\nDefault state renders without errors\nEach input change produces the expected output change\nEdge cases: empty selections, out-of-range values\nError messages appear when they should",
-    "crumbs": [
-      "Home",
-      "Testing"
-    ]
-  },
-  {
-    "objectID": "workshop/09-testing.html#your-turn",
-    "href": "workshop/09-testing.html#your-turn",
-    "title": "Testing Shiny Apps",
-    "section": "Your turn",
-    "text": "Your turn\n\n\n\n\n\n\nTipExercise (~10 min)\n\n\n\n\nInstall Playwright: pip install playwright && playwright install chromium\nWrite a test for your first app that:\n\nChecks the default radio button selection\nChanges the selection and verifies the plot updates\n\nRun pytest and watch it pass",
     "crumbs": [
       "Home",
       "Testing"
