@@ -42,11 +42,7 @@ Reactive output
 :::
 ::::
 
----
-
 # Part 1: How Shiny evaluates your app {.center}
-
----
 
 ## The app's reactive graph
 
@@ -183,11 +179,7 @@ X Axis and Y Axis are untouched — only the affected branch re-runs.
 :::
 ::::
 
----
-
 # Part 2: Sharing an intermediate dataframe {.center}
-
----
 
 ## The problem without `@reactive.calc`
 
@@ -227,11 +219,8 @@ def count():            # <2>
 1. `@reactive.calc` allows you to create `filtered()` - it runs once per change and caches the result
 2. Both outputs call `filtered()` — they get the cached dataframe
 
----
-
 # Part 3: Chaining reactive calcs {.center}
 
----
 
 ## Adding a second calc downstream
 
@@ -378,3 +367,8 @@ def table():
 | Trigger side effects (write file, log, etc.) | `@reactive.effect` |
 | Store mutable state | `reactive.value` |
 | Render a plot / table / text | `@render.*` |
+
+## Demo + Exercises
+
+
+
