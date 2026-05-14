@@ -42,6 +42,8 @@ ridgeplot
 
 ## Value boxes
 
+<https://shiny.posit.co/py/components/outputs/value-box/>
+
 ```python
 from shiny.express import render, ui
 from faicons import icon_svg
@@ -55,6 +57,8 @@ with ui.value_box(showcase=icon_svg("dollar-sign")):
 ```
 
 ## `@reactive.calc` for shared filtering
+
+<https://shiny.posit.co/py/docs/reactive-foundations.html#calculations>
 
 ```python
 from shiny import reactive
@@ -95,6 +99,22 @@ with ui.layout_columns():
         def table(): ...
 ```
 
+## Pausing computations
+
+Sometimes you want an action to wait until you say so (e.g., do something when I push a button)
+
+- Using user text input to filter
+- Adjusting multiple filters
+
+We can use a `ui.innput_action_buttion()` input component to trigger a reactive event.
+
+<https://shiny.posit.co/py/components/inputs/action-button/>
+
+## Parts of an action button
+
+1. UI input component: `ui.innput_action_buttion()`
+2. A function that gets called when the button gets clicked
+    - `@reactive.event(input.<ID>)` decorator which button triggers which function
+    - `@reactive.effect` decorator a button click doesn't return a result, it creates a side effect
+
 ## Exercise
-
-
