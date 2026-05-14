@@ -5,6 +5,15 @@ title: Setup
 Please complete these steps **before** the tutorial begins.
 If you run into trouble, find us before the session starts or post in the workshop chat.
 
+:::{.callout-important}
+## Python Version
+Please make sure you are using a version of Python **BELOW** 3.15
+
+Any of Python 3.11.x, 3.12.x, 3.13.x, 3.14.x will be fine.
+
+Check the GitHub Actions of the install tests on different python versions here: <https://github.com/chendaniely/pycon-2026-shiny/actions/workflows/test-install.yml>
+:::
+
 ## Python Environment
 
 Pick **one** of the following methods — they all produce the same result.
