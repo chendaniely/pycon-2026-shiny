@@ -135,8 +135,21 @@ Before doing the exercise make a copy of the file for your solution.
 1. Add a `ui.input_action_button()` component for the action button.
     - You can use the `"action_button"` id.
 2. Create a `reset_filters()` function that uses the `ui.update_slider()` and `ui.update_checkbox_group()` functions to reset the filter values to their default state.
-3. Dectorate the function with a `@reactive.event(input.action_button)` call.
-4. Decortate the function __again__ with a `@reactive.effect` call.
+
+```python
+def reset_filters():
+    ui.update_slider(
+        "slider",
+        value=[tips.total_bill.min(), tips.total_bill.max()],
+    )
+    ui.update_checkbox_group(
+        "checkbox_group",
+        selected=["Lunch", "Dinner"],
+    )
+```
+
+3. Decorate the function with a `@reactive.event(input.action_button)` call.
+4. Decorate the function __again__ with a `@reactive.effect` call.
 
 :::
 
