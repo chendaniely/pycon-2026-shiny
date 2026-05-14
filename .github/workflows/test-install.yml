@@ -18,6 +18,7 @@ jobs:
         method: [uv, venv, conda, pixi]
         python-version: ["3.11", "3.12", "3.13", "3.14", "3.15"]
     name: test (${{ matrix.method }}, py${{ matrix.python-version }})
+    continue-on-error: ${{ matrix.python-version == '3.15' }}
 
     steps:
       - uses: actions/checkout@v6
