@@ -90,7 +90,7 @@ jobs:
         if: matrix.method == 'pixi'
         run: |
           pixi init .
-          pixi add "python==${{ matrix.python-version }}.*" pip
+          pixi add "python==${{ matrix.python-version }}" pip
           pixi run python -m pip install -r requirements.txt
           pixi run python test-install.py
           pixi run shiny run test-install.py &
