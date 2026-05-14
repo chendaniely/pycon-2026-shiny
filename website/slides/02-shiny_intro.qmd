@@ -15,6 +15,13 @@ The Python process runs your code and sends results back to the browser.
 
 Each Shiny app consists of:
 
+1. **Input** components — widgets the user can interact with (sliders, dropdowns, checkboxes, ...)
+    - <https://shiny.posit.co/py/components/#inputs/>
+2. **Output** components — things Shiny renders and displays (plots, tables, text, ...)
+    - <https://shiny.posit.co/py/components/#outputs/>
+3. **Layout** — how the components are laid out on the page (columns, sidebar, boxes, cards, ...)
+    - <https://shiny.posit.co/py/layouts/>
+
 ## Example application
 
 ```{shinylive-python}
