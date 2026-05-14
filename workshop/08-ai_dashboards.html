@@ -79,9 +79,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-b65803fd109541e968e8a862f308f2e2.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c0a8125121396f71ad460452467de944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-dark-02237f0e9102e9198409d526f990c58f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c0a8125121396f71ad460452467de944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-48cd1248662fde70d410f78e6770efa3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-dark-629cb46b84c1b7d59f2a49b0c9ccd13d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-48cd1248662fde70d410f78e6770efa3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -315,9 +315,9 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
   <li><a href="#demo-shinychat" id="toc-demo-shinychat" class="nav-link" data-scroll-target="#demo-shinychat">Demo: shinychat</a></li>
   <li><a href="#chatting-with-your-data" id="toc-chatting-with-your-data" class="nav-link" data-scroll-target="#chatting-with-your-data">Chatting with your data</a></li>
   <li><a href="#demo-querychat" id="toc-demo-querychat" class="nav-link" data-scroll-target="#demo-querychat">Demo: querychat</a></li>
-  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your turn</a></li>
-  <li><a href="#tool-calling" id="toc-tool-calling" class="nav-link" data-scroll-target="#tool-calling">Tool calling</a></li>
   <li><a href="#sidebot-pattern" id="toc-sidebot-pattern" class="nav-link" data-scroll-target="#sidebot-pattern">Sidebot pattern</a></li>
+  <li><a href="#demo-llms-chat" id="toc-demo-llms-chat" class="nav-link" data-scroll-target="#demo-llms-chat">Demo: LLMs + Chat</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   <li><a href="#sql-is-a-great-communication-layer" id="toc-sql-is-a-great-communication-layer" class="nav-link" data-scroll-target="#sql-is-a-great-communication-layer">SQL is a great communication layer</a></li>
   </ul></li>
   </ul>
@@ -359,8 +359,8 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <p>Three patterns, increasing complexity:</p>
 <ol type="1">
 <li><strong>Chat interface</strong> — a conversational UI (<code>shinychat</code>)</li>
-<li><strong>Data chat</strong> — query your dataframe with natural language (<code>querychat</code>)</li>
 <li><strong>Tool calling</strong> — let the LLM take actions in your app</li>
+<li><strong>Data chat</strong> — query your dataframe with natural language (<code>querychat</code>)</li>
 </ol>
 </section>
 <section id="shinychat" class="level2">
@@ -426,39 +426,6 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>querychat.chat_server(<span class="st">"chat"</span>, qc)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>querychat.dataframe_server(<span class="st">"df"</span>, qc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="your-turn" class="level2">
-<h2 class="anchored" data-anchor-id="your-turn">Your turn</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Exercise (~15 min)
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>Run the <code>shinychat</code> example and chat with it</li>
-<li>Modify the system prompt to make it an expert on a specific topic</li>
-<li>Try the <code>querychat</code> example with a dataset of your choice</li>
-<li><strong>Stretch</strong>: swap the model to an Ollama local model and compare responses</li>
-</ol>
-</div>
-</div>
-</section>
-<section id="tool-calling" class="level2">
-<h2 class="anchored" data-anchor-id="tool-calling">Tool calling</h2>
-<p>LLMs can call functions in your code:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_weather(city: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Get the current weather for a city."""</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    ...  <span class="co"># call a weather API</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>chat <span class="op">=</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-4.1"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>chat.register_tool(get_weather)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>chat.chat(<span class="st">"What's the weather in Long Beach?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The LLM decides when to call the tool and what arguments to pass.</p>
-</section>
 <section id="sidebot-pattern" class="level2">
 <h2 class="anchored" data-anchor-id="sidebot-pattern">Sidebot pattern</h2>
 <p>Use an LLM to drive filters in a dashboard via natural language:</p>
@@ -469,10 +436,23 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
 </ul>
 <p>Template: <code>shiny create --mode core --github jcheng5/py-databot</code></p>
 </section>
+<section id="demo-llms-chat" class="level2">
+<h2 class="anchored" data-anchor-id="demo-llms-chat">Demo: LLMs + Chat</h2>
+<p>Generative AI shiny templates: <a href="https://shiny.posit.co/py/templates/#generative-ai" class="uri">https://shiny.posit.co/py/templates/#generative-ai</a></p>
+<ul>
+<li><a href="https://shiny.posit.co/py/templates/basic-chatbot/" class="uri">https://shiny.posit.co/py/templates/basic-chatbot/</a></li>
+<li><a href="https://shiny.posit.co/py/templates/querychat/" class="uri">https://shiny.posit.co/py/templates/querychat/</a></li>
+<li><a href="https://shiny.posit.co/py/templates/sidebot/" class="uri">https://shiny.posit.co/py/templates/sidebot/</a></li>
+</ul>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+</section>
 <section id="sql-is-a-great-communication-layer" class="level2">
 <h2 class="anchored" data-anchor-id="sql-is-a-great-communication-layer">SQL is a great communication layer</h2>
 <p>Upcoming tool: ggsql <a href="https://ggsql.org/" class="uri">https://ggsql.org/</a></p>
 <p>Trt it: <a href="https://ggsql.org/wasm/" class="uri">https://ggsql.org/wasm/</a></p>
+<p>See also: Querychat + Vis docs: <a href="https://posit-dev.github.io/querychat/py/visualize.html" class="uri">https://posit-dev.github.io/querychat/py/visualize.html</a></p>
 <div class="columns">
 <div class="column">
 <pre><code>VISUALISE FROM ggsql:penguins

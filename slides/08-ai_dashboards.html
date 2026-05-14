@@ -230,8 +230,8 @@
 <p>Three patterns, increasing complexity:</p>
 <ol type="1">
 <li><strong>Chat interface</strong> — a conversational UI (<code>shinychat</code>)</li>
-<li><strong>Data chat</strong> — query your dataframe with natural language (<code>querychat</code>)</li>
 <li><strong>Tool calling</strong> — let the LLM take actions in your app</li>
+<li><strong>Data chat</strong> — query your dataframe with natural language (<code>querychat</code>)</li>
 </ol>
 </section>
 <section id="shinychat" class="slide level2">
@@ -297,39 +297,6 @@
 <span id="cb4-13"><a></a>querychat.chat_server(<span class="st">"chat"</span>, qc)</span>
 <span id="cb4-14"><a></a>querychat.dataframe_server(<span class="st">"df"</span>, qc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="your-turn" class="slide level2">
-<h2>Your turn</h2>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Exercise (~15 min)</strong></p>
-</div>
-<div class="callout-content">
-<ol type="1">
-<li>Run the <code>shinychat</code> example and chat with it</li>
-<li>Modify the system prompt to make it an expert on a specific topic</li>
-<li>Try the <code>querychat</code> example with a dataset of your choice</li>
-<li><strong>Stretch</strong>: swap the model to an Ollama local model and compare responses</li>
-</ol>
-</div>
-</div>
-</div>
-</section>
-<section id="tool-calling" class="slide level2">
-<h2>Tool calling</h2>
-<p>LLMs can call functions in your code:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="kw">def</span> get_weather(city: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
-<span id="cb5-2"><a></a>    <span class="co">"""Get the current weather for a city."""</span></span>
-<span id="cb5-3"><a></a>    ...  <span class="co"># call a weather API</span></span>
-<span id="cb5-4"><a></a></span>
-<span id="cb5-5"><a></a>chat <span class="op">=</span> ChatGithub(model<span class="op">=</span><span class="st">"gpt-4.1"</span>)</span>
-<span id="cb5-6"><a></a>chat.register_tool(get_weather)</span>
-<span id="cb5-7"><a></a>chat.chat(<span class="st">"What's the weather in Long Beach?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The LLM decides when to call the tool and what arguments to pass.</p>
-</section>
 <section id="sidebot-pattern" class="slide level2">
 <h2>Sidebot pattern</h2>
 <p>Use an LLM to drive filters in a dashboard via natural language:</p>
@@ -340,10 +307,23 @@
 </ul>
 <p>Template: <code>shiny create --mode core --github jcheng5/py-databot</code></p>
 </section>
+<section id="demo-llms-chat" class="slide level2">
+<h2>Demo: LLMs + Chat</h2>
+<p>Generative AI shiny templates: <a href="https://shiny.posit.co/py/templates/#generative-ai" class="uri">https://shiny.posit.co/py/templates/#generative-ai</a></p>
+<ul>
+<li><a href="https://shiny.posit.co/py/templates/basic-chatbot/" class="uri">https://shiny.posit.co/py/templates/basic-chatbot/</a></li>
+<li><a href="https://shiny.posit.co/py/templates/querychat/" class="uri">https://shiny.posit.co/py/templates/querychat/</a></li>
+<li><a href="https://shiny.posit.co/py/templates/sidebot/" class="uri">https://shiny.posit.co/py/templates/sidebot/</a></li>
+</ul>
+</section>
+<section id="exercise" class="slide level2">
+<h2>Exercise</h2>
+</section>
 <section id="sql-is-a-great-communication-layer" class="slide level2">
 <h2>SQL is a great communication layer</h2>
 <p>Upcoming tool: ggsql <a href="https://ggsql.org/" class="uri">https://ggsql.org/</a></p>
 <p>Trt it: <a href="https://ggsql.org/wasm/" class="uri">https://ggsql.org/wasm/</a></p>
+<p>See also: Querychat + Vis docs: <a href="https://posit-dev.github.io/querychat/py/visualize.html" class="uri">https://posit-dev.github.io/querychat/py/visualize.html</a></p>
 <div class="columns">
 <div class="column">
 <pre><code>VISUALISE FROM ggsql:penguins
