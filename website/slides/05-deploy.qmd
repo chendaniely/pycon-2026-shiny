@@ -65,7 +65,7 @@ Limitations:
 
 Great for: demos, tutorials, sharing one-off apps.
 
-## Exercise + Break
+## Exercise + Break (Back at 11:00)
 
 ::: {.exercise}
 
@@ -77,4 +77,3 @@ Great for: demos, tutorials, sharing one-off apps.
 
 <https://docs.posit.co/connect-cloud/how-to/python/shiny-python.html>
 :::
-
