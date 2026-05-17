@@ -299,6 +299,7 @@ div.callout-exercise.callout-style-default .callout-icon::before, div.callout-ex
    
   <ul>
   <li><a href="#python-environment" id="toc-python-environment" class="nav-link active" data-scroll-target="#python-environment">Python Environment</a></li>
+  <li><a href="#playwright-browser" id="toc-playwright-browser" class="nav-link" data-scroll-target="#playwright-browser">Playwright Browser</a></li>
   <li><a href="#ide" id="toc-ide" class="nav-link" data-scroll-target="#ide">IDE</a></li>
   <li><a href="#run-in-the-cloud" id="toc-run-in-the-cloud" class="nav-link" data-scroll-target="#run-in-the-cloud">Run in the Cloud</a></li>
   <li><a href="#ai-chat-model" id="toc-ai-chat-model" class="nav-link" data-scroll-target="#ai-chat-model">AI / Chat Model</a>
@@ -434,6 +435,12 @@ pytest-playwright
 </div>
 </div>
 </section>
+<section id="playwright-browser" class="level2">
+<h2 class="anchored" data-anchor-id="playwright-browser">Playwright Browser</h2>
+<p>Shiny app testing uses <a href="https://playwright.dev/python/">Playwright</a> to drive a real browser. After installing the Python packages, install the Chromium browser that Playwright will use:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">playwright</span> install chromium</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This downloads a Playwright-managed copy of Chromium (about 150 MB) — it won’t touch any browser you already have installed.</p>
+</section>
 <section id="ide" class="level2">
 <h2 class="anchored" data-anchor-id="ide">IDE</h2>
 <p>We recommend <a href="https://positron.posit.co/">Positron</a>, this is what the workshop will be using. <a href="https://code.visualstudio.com/">VS Code</a> works just as well.</p>
@@ -479,8 +486,8 @@ Warning
 <li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic">Create a classic PAT</a> following GitHub’s instructions</li>
 <li>Set the token as an environment variable:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GITHUB_TOKEN</span><span class="op">=</span>your_token_here   <span class="co"># macOS / Linux</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">$env</span><span class="ex">:GITHUB_TOKEN=</span><span class="st">"your_token_here"</span>   <span class="co"># Windows PowerShell</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GITHUB_TOKEN</span><span class="op">=</span>your_token_here   <span class="co"># macOS / Linux</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">$env</span><span class="ex">:GITHUB_TOKEN=</span><span class="st">"your_token_here"</span>   <span class="co"># Windows PowerShell</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="local-llm-via-ollama-optional-no-account-needed" class="level3">
 <h3 class="anchored" data-anchor-id="local-llm-via-ollama-optional-no-account-needed">Local LLM via Ollama (optional, no account needed)</h3>
@@ -544,21 +551,21 @@ Note
 <li>Add credits</li>
 <li>Create an API key at <a href="https://console.anthropic.com/settings/keys" class="uri">https://console.anthropic.com/settings/keys</a></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_API_KEY</span><span class="op">=</span>your_key_here</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_API_KEY</span><span class="op">=</span>your_key_here</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <ol type="1">
 <li>Sign up at <a href="https://openai.com/" class="uri">https://openai.com/</a></li>
 <li>Create an API key at <a href="https://platform.openai.com/api-keys" class="uri">https://platform.openai.com/api-keys</a></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">OPENAI_API_KEY</span><span class="op">=</span>your_key_here</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">OPENAI_API_KEY</span><span class="op">=</span>your_key_here</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <ol type="1">
 <li>Sign in at <a href="https://aistudio.google.com" class="uri">https://aistudio.google.com</a></li>
 <li>Click <strong>Create API key</strong></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GOOGLE_API_KEY</span><span class="op">=</span>your_key_here</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GOOGLE_API_KEY</span><span class="op">=</span>your_key_here</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -571,10 +578,10 @@ Note
 <li>Activate your Python environment</li>
 </ol>
 <p><strong>Step 1 — check that all packages import correctly:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> test-install.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> test-install.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should see a <code>✓</code> next to every package and a final <code>All good!</code> message.</p>
 <p><strong>Step 2 — check that Shiny is working:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run test-install.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run test-install.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should see:</p>
 <pre><code>INFO:     Started server process [...]
 INFO:     Waiting for application startup.
